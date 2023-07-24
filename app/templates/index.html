@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+<!-- Head -->
+{% block head %}
+  <title>MindSpark</title>
+{% endblock %}
+
+<!-- Body -->
+{% block body %}
+  <!-- Hero Section -->
+  <section id="hero" class="py-5 text-center relative mb-10">
+    <div class="flex justify-center flex-wrap">
+      <div
+        class="text-hero md:order-first order-last md:w-1/2 px-4 md:px-0 relative z-10 m-auto"
+      >
+        <h1
+          class="text-2xl md:text-4xl py-3 font-bold text-primaryMaroon mb-4 text-center"
+        >
+          Make big subjects easier to digest with flashcards and practice
+          tests
+        </h1>
+        <p class="md:text-xl">
+          Whether you're a student seeking academic excellence or a lifelong
+          learner hungry for knowledge, our interactive learning resources are
+          designed to empower you every step of the way. Join us today and
+          embark on a transformative learning experience that will pave the
+          path to your success.
+        </p>
+        <div>
+          <a
+            href="#about"
+            onclick="smoothScroll('#about')"
+            class="px-5 py-3 mt-6 rounded-sm bg-primaryMaroon text-white inline-block"
+            >Start Learning Today! <i class="las la-graduation-cap"></i>
+          </a>
+        </div>
+      </div>
+      <div class="img-hero w-3/5 md:w-2/5">
+        <img src="static/img/4119036.jpg" class="hero_img_sm w-full h-full" alt="" />
+      </div>
+    </div>
+  </section>
+  <!-- What we can do -->
+  <section id="about" class="py-8 md:py-16">
+    <div class="px-5">
+      <h1
+        class="text-center text-2xl font-bold text-primaryMaroon uppercase md:my-6"
+      >
+        What we can do for you!
+      </h1>
+      <!-- Reason 1 -->
+      <div class="flex justify-center flex-wrap md:my-2">
+        <div
+          class="text-about_1 mt-10 text-center z-10 md:text-left md:order-last md:mt-36 md:w-1/2"
+        >
+          <h2 class="text-3xl mb-3 font-bold">Comprehensive Quiz Library</h2>
+          <p>
+            Access a vast collection of quizzes covering various subjects and
+            topics to cater to different learning needs.
+          </p>
+          <a
+            href=""
+            class="bg-primaryMaroon px-4 py-2 my-3 rounded-sm text-white inline-block"
+            >Get Started now! <i class="las la-thumbs-up"></i
+          ></a>
+        </div>
+
+        <div class="img-about_1 floating w-4/5 md:w-2/5">
+          <img src="static/img/library.jpg" alt="" />
+        </div>
+      </div>
+      <!-- Reason 2 -->
+      <div class="flex justify-center flex-wrap md:my-2">
+        <div
+          class="text-about_2 mt-10 text-center z-10 md:text-left md:mt-36 md:w-1/2"
+        >
+          <h2 class="text-3xl my-3 font-bold">Customizable Quizzes</h2>
+          <p>
+            Create personalized quizzes by selecting specific subjects,
+            difficulty levels, or desired question types. You could even
+            request quizzes of your choosing!
+          </p>
+        </div>
+        <div class="img-about_2 floating w-4/5 md:w-2/5">
+          <img src="static/img/customize.jpg" alt="" />
+        </div>
+      </div>
+      <!-- Reason 3 -->
+      <div class="flex justify-center flex-wrap md:my-2">
+        <div
+          class="text-about_3 mt-10 text-center z-10 md:text-left md:order-last md:mt-36 md:w-1/2"
+        >
+          <h2 class="text-3xl mb-3 font-bold">Practice Tests</h2>
+          <p>
+            Take simulated practice tests that mimic real exam conditions to
+            assess your knowledge and prepare effectively.
+          </p>
+        </div>
+        <div class="img-about_3 floating w-4/5 md:w-2/5">
+          <img src="static/img/test.jpg" alt="" />
+        </div>
+      </div>
+      <!-- Reason 4 -->
+      <div class="flex justify-center flex-wrap md:my-2">
+        <div
+          class="text-4 mt-10 text-center z-10 md:text-left md:mt-36 md:w-1/2"
+        >
+          <h2 class="text-3xl mb-3 font-bold">Social Learning Community</h2>
+          <p>
+            Engage with a vibrant community of learners, share knowledge,
+            discuss topics, and collaborate on study materials.
+          </p>
+        </div>
+        <div class="img-about_4 floating w-4/5 md:w-2/5">
+          <img src="static/img/community.png" alt="" />
+        </div>
+      </div>
+      <!-- Reason 5 -->
+      <div class="flex justify-center flex-wrap md:my-2">
+        <div
+          class="text-about_3 mt-10 text-center z-10 md:order-last md:text-left md:mt-36 md:w-1/2"
+        >
+          <h2 class="text-3xl mb-3 font-bold">Gamification Elements</h2>
+          <p>
+            Earn badges, achievements, and rewards for completing quizzes or
+            reaching specific learning milestones to stay motivated.
+          </p>
+        </div>
+        <div class="img-about_3 floating w-4/5 md:w-2/5">
+          <img src="static/img/reward.jpg" alt="" />
+        </div>
+      </div>
+      <!-- Reason 6 -->
+      <div class="flex justify-center flex-wrap md:my-2">
+        <div
+          class="text-about_3 mt-10 text-center z-10 md:text-left md:mt-36 md:w-1/2"
+        >
+          <h2 class="text-3xl mb-3 font-bold">User-generated Content</h2>
+          <p>
+            Contribute your own quizzes and study materials to share with
+            others, fostering a collaborative learning environment.
+          </p>
+        </div>
+        <div class="img-about_3 floating w-4/5 md:w-2/5">
+          <img src="static/img/ugc.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

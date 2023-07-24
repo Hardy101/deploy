@@ -1,0 +1,207 @@
+* {
+  transition: all 0.3s ease-in-out;
+}
+@font-face {
+  font-family: renogare;
+  src: url(RenogareSoft-Regular.ttf);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Arima", cursive;
+}
+/* DropDown Menu for Categories and all-menu for Mobile View Navigation Menu */
+.dropdown-menu {
+  display: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.all-menu {
+  display: none;
+}
+.dropdown-menu.show,
+.all-menu.show {
+  display: block;
+  animation: slideFadeIn 0.3s ease-in-out;
+}
+
+.dropdown-menu.hide,
+.all-menu.hide {
+  display: block;
+  animation: slideFadeOut 0.3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.rotate-caret {
+  transition: transform 0.3s ease-in-out;
+}
+.caret-rotate {
+  transform: rotate(180deg);
+}
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+/* Login and Signup */
+.input_section {
+  height: 90vh;
+  display: grid;
+  place-items: center;
+}
+/* Line before */
+.styled-text::before,
+.styled-text::after {
+  content: "";
+  display: inline-block;
+  width: 65px;
+  margin: 0 5px;
+  height: 1px;
+  background-color: #d1d1d1;
+  vertical-align: middle;
+}
+.google {
+  background: linear-gradient(to right, #4285f4, #ea4335, #fbbc05, #34a853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.styled-text {
+  display: inline-block;
+  margin: 0;
+}
+/* Utilities */
+.shadow_lg {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+/*  */
+.left-align {
+  flex: 0 0 auto;
+}
+.center-align {
+  flex: 1;
+  text-align: center;
+}
+/* Styling the Question Div */
+.dialog {
+  position: relative;
+  box-shadow: 20px 20px #dfdfdf;
+}
+
+.dialog::after {
+  transform: translatey(0px);
+  animation: float2 5s ease-in-out infinite;
+  content: ".";
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px #fff9c9;
+  -webkit-text-fill-color: #fff9c9;
+  border: 1px solid #fff9c9;
+  text-shadow: 22px 22px #dfdfdf;
+  text-align: left;
+  font-size: 55px;
+  width: 55px;
+  height: 11px;
+  line-height: 30px;
+  border-radius: 11px;
+  background-color: #fff9c9;
+  position: absolute;
+  display: block;
+  bottom: -35px;
+  left: 0;
+  box-shadow: 22px 22px #dfdfdf;
+  z-index: -2;
+}
+/* Styling for EndQuiz Page */
+.details {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.score {
+  animation: box-shadow-animation 2s ease-in-out infinite;
+}
+/* Notifications */
+.notifications {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+#notificationDiv {
+  right: -570px;
+  transition: right 0.3s ease-in-out;
+}
+
+#notificationDiv.active {
+  right: 0;
+}
+/* Placeholder Animation */
+.placeholder-label {
+  position: absolute;
+  pointer-events: none;
+  top: 19px;
+  left: 10px;
+  transition: 0.2s ease-out;
+  color: #b6b6b6;
+}
+.placeholder-active {
+  font-size: 12px;
+  top: 0;
+  color: #b70404;
+  padding: 0 10px;
+  font-weight: bold;
+}
+.placeholder-not-active {
+  font-size: 14px;
+  top: 19px;
+  color: #999999;
+}
+.shadow-btn{
+    position: relative;
+    box-shadow: 5px 5px 0px 1px rgba(0,0,0,1);
+-webkit-box-shadow: 5px 5px 0px 1px rgba(0,0,0,1);
+-moz-box-shadow: 5px 5px 0px 1px rgba(0,0,0,1);
+}
+/* Animations */
+@keyframes box-shadow-animation {
+  0% {
+    box-shadow: 0 0 0 5px rgba(39, 252, 75, 0.281),
+      0 0 0 20px rgba(39, 252, 75, 0.281);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(39, 252, 75, 0.281),
+      0 0 0 30px rgba(39, 252, 75, 0.281);
+  }
+  100% {
+    box-shadow: 0 0 0 5px rgba(39, 252, 75, 0.281),
+      0 0 0 20px rgba(39, 252, 75, 0.281);
+  }
+}
+
+@keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

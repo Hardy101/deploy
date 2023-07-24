@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"
+      integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/tailwindcss" href="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arima&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+    {% block head %}{% endblock %}
+  </head>
+  <body class="relative">
+    <!--  Navigation Menu -->
+    {% block nav %}
+     <nav class="shadow-lg bg-white sticky top-0 z-20 bg-white">
+        <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
+          <a href="/" class="my-auto w-32"
+            ><img src="static/img/logo.png" alt=""
+          /></a>
+          <ul class="hidden md:flex md:justify-center gap-5 my-auto">
+            <li><a href="/fish">Home</a></li>
+            <li><a href="/about">About us</a></li>
+
+            <li>
+              <a href="#" class="dropdown-toggle" id="dropdown-toggle"
+                >Categories <i class="las la-angle-down caret_icon"></i
+              ></a>
+              <div
+                class="dropdown-menu absolute top-24 rounded-md bg-white"
+                id="dropdown-menu"
+              >
+                <ul>
+                  <li class="px-4 py-2 mt-2">
+                    <a href="" class="flex gap-2"
+                      ><img
+                        src="img/arts.png"
+                        class="my-auto"
+                        width="20"
+                        alt=""
+                      /><span class="my-auto">Arts and Humanities</span></a
+                    >
+                  </li>
+                  <li class="px-4 py-2">
+                    <a href="" class="flex gap-2"
+                      ><img
+                        src="img/science.png"
+                        class="my-auto"
+                        width="20"
+                        alt=""
+                      /><span class="my-auto">Science</span></a
+                    >
+                  </li>
+                  <li class="px-4 py-2">
+                    <a href="" class="flex gap-2"
+                      ><img
+                        src="img/social-science.png"
+                        class="my-auto"
+                        width="20"
+                        alt=""
+                      /><span class="my-auto">Social science</span></a
+                    >
+                  </li>
+                  <li class="px-4 py-2">
+                    <a href="" class="flex gap-2"
+                      ><img
+                        src="img/others.png"
+                        class="my-auto"
+                        width="20"
+                        alt=""
+                      /><span class="my-auto">Others</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="/quiz">Quiz Me!</a>
+            </li>
+          </ul>
+          <ul class="flex justify-center gap-5">
+            <li class="hidden md:inline-block">
+              <a
+                href="/login"
+                class="px-10 py-2 rounded-sm inline-block"
+                ><span>Log in</span> <i class="las la-sign-in-alt my-auto"></i
+              ></a>
+            </li>
+            <li class="hidden md:inline-block">
+              <a
+                href="/register"
+                class="bg-primaryMaroon px-10 py-2 rounded-sm text-white inline-block"
+                ><span>Signup</span> <i class="las la-user-plus"></i
+              ></a>
+            </li>
+            <li class="px-10 py-2 my-auto inline-block md:hidden relative">
+              <button class="toggle_btn text-4xl" id="toggle_btn">
+                <i class="las la-bars mt-3"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+       <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden" id="all_menu">
+         <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
+         <ul class="mt-40 h-full text-center">
+          <li class="m-3"><a href="/index">Home</a></li>
+          <li class="m-3"><a href="/about">About us</a></li>
+          <li class="m-3"><a href="#">Categories <i class="las la-angle-down"></i></a></li>
+          <li class="m-3"><a href="/quiz">Quiz Me!</a></li>
+          <li class="m-3"><a href="/login">Login </a></li>
+          <li class="m-3"><a href="/register">Sign up</a></li>
+           <li class="mt-16 mx-auto block text-center">
+             <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center">
+             <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
+           </li>
+        </ul>
+       </div>
+      </nav>
+    {% endblock %}
+    {% block body %}{% endblock %}
+    <!-- Footer -->
+    {% block footer %}
+    <footer class="bg-yellow py-3">
+        <div
+          class="parent-div flex justify-between px-10 gap-20 flex-wrap md:justify-center"
+        >
+          <div class="grid_1 flex flex-col">
+            <div class="font-bold my-2">Company</div>
+            <ul class="columnList">
+              <li>
+                <a href="/about">About</a>
+              </li>
+              <li>
+                <a href="/coming_soon">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="/coming_soon">Terms of Service</a>
+              </li>
+            </ul>
+          </div>
+          <div class="grid_2">
+            <div class="font-bold my-2">Connect</div>
+            <ul class="columnList">
+              <li><a href="#">Contact us</a></li>
+              <li>
+                <a href=""><i class="lab la-facebook-f"></i> Facebook</a>
+              </li>
+              <li>
+                <a href=""><i class="lab la-instagram"></i> Instagram</a>
+              </li>
+              <li>
+                <a href=""><i class="lab la-twitter"></i> Twitter</a>
+              </li>
+              <li>
+                <a href=""><i class="lab la-linkedin"></i> Linkedin</a>
+              </li>
+            </ul>
+          </div>
+          <div class="grid_3">
+            <div class="font-bold my-2">Features</div>
+            <ul class="columnList">
+              <li><a href="/quiz">Quiz</a></li>
+              <li><a href="">Quiz Generator</a></li>
+              <li>
+                <a href="">Random Quiz Picker</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center mt-3">2023 Mind Spark Inc.</div>
+      </footer>
+    {% endblock %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

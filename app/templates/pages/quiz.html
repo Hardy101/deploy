@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+<!-- Head Tag -->
+{% block head %}
+    <title>Quiz</title>
+{% endblock %}
+
+<!-- Custom Navigation Menu-->
+{% block nav %}
+  <!-- Quiz Navigation Menu -->
+  <nav class="bg-white z-20 bg-white w-full">
+    <div class="flex justify-between px-4 py-5">
+      <a href="/" class="my-auto w-32"
+        ><img src="static/img/logo.png" alt=""
+      /></a>
+      <ul class="hidden md:flex md:justify-center gap-5 my-auto">
+        <li class="my-auto"><a href="/">Home</a></li>
+        <li>
+          <form action="" class="flex gap-2">
+            <input
+              type="text"
+              placeholder="Search"
+              class="border-2 border-gray focus:outline-none rounded-md px-2 py-1"
+            />
+            <input
+              type="submit"
+              value="search"
+              class="rounded-sm px-2 py-1 bg-primaryMaroon text-white"
+            />
+          </form>
+        </li>
+        <li class="my-auto">
+          <a
+            href="/create-quiz"
+            class="bg-primaryMaroon px-2 py-1 text-white rounded-sm"
+            ><span class="hidden md:inline-block">Create Quiz</span>
+            <i class="las la-plus"></i
+          ></a>
+        </li>
+      </ul>
+      <ul class="flex justify-center gap-5 my-auto">
+        <li>
+          <button class="noticeToggle" >
+            <i class="las la-bell text-2xl"></i>
+          </button>
+        </li>
+        <li>
+          <a href="/coming-soon"
+            ><i class="las la-sign-out-alt text-2xl"></i
+          ></a>
+        </li>
+        <li class="my-auto md:hidden">
+          <button class="toggle_btn" id="toggle_btn">
+            <i class="las la-bars"></i> <span class="my-auto">Menu</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <ul
+      class="all-menu absolute top-20 w-full bg-white md:hidden"
+      id="all_menu"
+    >
+      <li class="m-3"><a href="/">Home</a></li>
+      <li class="m-3"><a href="about">About us</a></li>
+      <li class="m-3"><a href="#">Categories</a></li>
+      <li class="m-3">
+        <a href="/dashboard">Account</a>
+      </li>
+    </ul>
+  </nav>
+{% endblock %}
+
+<!-- Body -->
+{% block body %}
+  <!-- Notifications -->
+  <div
+    class="fixed right-0 bg-white notifications w-10/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
+    id="notificationDiv"
+  >
+    <div class="flex justify-between block my-3">
+      <span class="my-auto inline-block font-bold md:text-2xl"
+        >Notifications</span
+      >
+      <button class="my-auto md:text-2xl font-bold noticeToggle">
+        <i class="las la-arrow-right"></i>
+      </button>
+    </div>
+    <div class="notices mt-4">
+      <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
+        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+          ><img src="static/img/notice.png" alt="" class=""
+        /></span>
+
+        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+          >Congratulations! You've earned a new achievement: "Master of
+          Quizzes."</span
+        >
+      </div>
+      <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
+        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+          ><img src="static/img/notice.png" alt="" class=""
+        /></span>
+        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+          >Our summer sale is here! Enjoy up to 50% off on selected items.
+          Limited time offer, shop now!</span
+        >
+      </div>
+    </div>
+  </div>
+  <!-- Quiz section -->
+  <section class="py-10 px-4">
+    <div>
+      <h1 class="text-3xl font-bold">Science</h1>
+      <div class="quizzes flex justify-between flex-wrap mt-10">
+        <!-- ================ -->
+        <div class="quiz_div w-5/12 md:w-3/12 shadow-lg p-3">
+          <div class="flex justify-center">
+            <div class="quiz-img w-3/5">
+              <img src="static/img/bch.jpg" alt="" class="w-full" />
+            </div>
+          </div>
+          <div class="quiz-main">
+            <h2 class="quiz-heading mt-4 text-base">Biochemistry</h2>
+            <p class="quiz-body my-3 text-sm">
+              Challenge yourself to do a Biochemistry quiz. This pack contains
+              textbooks, material to test you.
+            </p>
+            <div class="quiz-footer text-right mt-4">
+              <a
+                href="/select-quiz"
+                class="bg-sage py-2 px-4 rounded-lg inline-block cursor-pointer hover:text-white"
+                >Take Quiz</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- ================ -->
+      </div>
+    </div>
+  </section>
+{% endblock %}

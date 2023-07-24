@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<!-- Head -->
+{% block head %}
+<title>Comin soon</title>
+  <style>
+    body {
+      background-color: #ffb400;
+    }
+  </style>
+{% endblock %}
+
+<!-- Navigation Menu-->
+{% block nav %}{% endblock %}
+
+<!-- Body -->
+{% block body %}
+  <div class="h-screen grid place-items-center">
+  <img src="static/img/comingsoon.jpg" alt="" class="h-screen" />
+  </div>
+  {% block footer %}{% endblock %}
+{% endblock %}

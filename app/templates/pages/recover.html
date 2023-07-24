@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+<!-- Head -->
+{% block head %}
+  <title>Reset Password</title>
+{% endblock %}
+  <!-- Navigation Menu -->
+{% block nav %}{% endblock %}
+
+<!-- Body -->
+{% block body %}
+  <section class="h-screen grid place-items-center">
+      <div class="px-10 md:w-2/5">
+        <div class="container flex justify-center my-6">
+          <div class="md:w-1/2">
+            <img src="static/img/logo.png" alt="" class="w-full" />
+          </div>
+        </div>
+
+        <div>
+          <h1 class="text-center font-bold text-2xl">Reset Password</h1>
+          <p class="my-3">
+            Enter the email address associated with your account, and we'll send
+            you a link to reset your password
+          </p>
+        </div>
+
+        <form>
+          <div class="form-control">
+            <label class="font-bold">Email</label>
+            <input
+              type="email"
+              placeholder=""
+              class="border-2 rounded-sm border-gray p-2 block w-full my-2 focus:outline-none"
+            />
+          </div>
+          <div class="form-control bg-primaryMaroon py-3 text-white rounded-sm">
+            <input type="submit" value="submit" class="w-full" />
+          </div>
+          <div class="form-control text-center my-6">
+            <p>
+              If Remember your password
+              <a
+                href="/login"
+                class="underline text-primaryBlue text-[14px]"
+                >Sign in</a
+              >
+            </p>
+            <p>
+              Or don't have accound yet
+              <a
+                href="/register"
+                class="underline text-primaryBlue text-[14px]"
+                >Sign up</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+{% endblock %}
