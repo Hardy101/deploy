@@ -114,9 +114,6 @@ def register():
 def notfound(page):
     return render_template('pages/notFound.html')
 
-<<<<<<< HEAD:app/main.py
 
 if __name__ == "__main__":
     app.run(debug=True)
-=======
->>>>>>> c84196ce5cff2c16a78f0075a4362e2bdff31637:main.py
