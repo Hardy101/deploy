@@ -4,7 +4,13 @@
   <title>Results</title>
 {% endblock %}
 <!-- Navigation -->
-{% block nav %}{% endblock %}
+{% block nav %}
+<nav>
+  <div class="flex justify-center text-xl py-2 mx-5 mt-3 lg:w-4/12 lg:mx-auto rounded-lg shadow-lg">
+    <span>BCH - Lipids</span>
+  </div>
+</nav>
+{% endblock %}
 <!-- Body -->
 {% block body %}
   <section class="h-screen grid place-items-center py-10">
@@ -16,58 +22,61 @@
           <span>99%</span>
         </div>
         <div
-          class="details grid grid-cols-2 align-center justify-center gap-4 py-2 mb-10 rounded-lg"
+          class="shadow-unq flex justify-center flex-wrap align-center justify-center gap-4 py-4 mb-10 rounded-lg"
         >
-          <p class="inline-block relative">
-            <span class="block text-center text-primaryBlue font-bold"
+          <p class="inline-block w-4/12 relative flex flex-col">
+            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white"
               >100%</span
             >
-            <span class="block text-center">Completion</span>
+            <span class="block text-center mt-3">Completion</span>
           </p>
-          <p class="inline-block relative">
-            <span class="block text-center text-primaryBlue font-bold">20</span>
-            <span class="block text-center">Total Question</span>
+          <p class="inline-block w-4/12 relative flex flex-col">
+            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white">20</span>
+            <span class="block text-center mt-3">Total Question</span>
           </p>
-          <p class="inline-block relative">
-            <span class="block text-center text-brightGreen font-bold">19</span>
-            <span class="block text-center">Correct</span>
+          <p class="inline-block w-4/12 relative flex flex-col">
+            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-brightGreen font-bold mx-auto text-white">19</span>
+            <span class="block text-center mt-3">Correct</span>
           </p>
-          <p class="inline-block relative">
-            <span class="block text-center text-red font-bold">1</span>
-            <span class="block text-center">Wrong</span>
+          <p class="inline-block w-4/12 relative flex flex-col">
+            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-red font-bold mx-auto text-white">1</span>
+            <span class="block text-center mt-3">Wrong</span>
           </p>
         </div>
-        <div class="moreoptions grid grid-cols-3 gap-4 text-center">
-          <p>
+        <div class="moreoptions grid grid-cols-3 gap-4 text-center relative">
+          <div class="share-div hidden w-40 flex justify-center gap-3 absolute top-[-60%] right-0 bg-white shadow-share rounded-md text-2xl py-2 animate__animated">
+            <a ><i class="lab la-facebook"></i></a>
+            <a href="https://www.twitter.com/"><i class="lab la-twitter"></i></a>
+            <a href="https://www.instagram.com/"><i class="lab la-instagram"></i></a>
+            <a ><i class="las la-link"></i></a>
+          </div>
+          <a href="/select-quiz" class="retake flex gap-3 justify-center my-auto p-2 rounded-md shadow-url hover:bg-primaryMaroon hover:text-white">
             <i
-              class="las la-redo-alt bg-primaryBlue text-white p-3 rounded-full mb-2"
+              class="las la-redo-alt my-auto"
             ></i>
-            <a href="/select-quiz" class="block">Retake</a>
-          </p>
+            <span class="my-auto">Retake</span>
+          </a>
           <!-- ======== -->
-          <p>
+          <a class="review flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">
+            <span class="my-auto">Review Answers <i class="las la-external-link-alt"></i></span>
+          </a>
+          <!-- ======== -->
+          <button class="share flex gap-3 justify-center my-auto p-2 rounded-md shadow-url cursor-pointer">
+            <i class="las la-share my-auto"></i>
+            <span class="my-auto">Share</span>
+          </button>
+          <!-- ======== -->
+          <a class="pdf flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">
             <i
-              class="las la-eye p-3 bg-primaryMaroon text-white rounded-full mb-2"
+              class="las la-file-pdf my-auto"
             ></i>
-            <a class="block">Review Answers <i class="las la-external-link-alt"></i></a>
-          </p>
+            <span class="my-auto">Generate PDF</span>
+          </a>
           <!-- ======== -->
-          <p>
-            <i class="las la-share p-3 bg-brown rounded-full mb-2"></i>
-            <a class="block">Share</a>
-          </p>
-          <!-- ======== -->
-          <p>
-            <i
-              class="las la-file-pdf p-3 bg-yellow text-white rounded-full mb-2"
-            ></i>
-            <a class="block">Generate PDF</a>
-          </p>
-          <!-- ======== -->
-          <p>
-            <i class="las la-home p-3 bg-sage text-white rounded-full mb-2"></i>
-            <a href="/quiz" class="block">Home</a>
-          </p>
+          <a href="/quiz" class="home flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">
+            <i class="las la-home my-auto"></i>
+            <span class="my-auto">Home</span>
+          </a>
           <!-- ======== -->
         </div>
       </div>

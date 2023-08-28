@@ -20,15 +20,9 @@
         </div>
 
         <div class="flex gap-5 my-auto">
-          <a href="/coming-soon" class="my-auto">
+          <button class="px-6 py-2 bg-red rounded-3xl text-white">
             <i class="las la-eye font-bold my-auto"></i>
             <span class="hidden md:inline-block">Preview</span>
-          </a>
-          <button class="px-6 py-2 bg-red rounded-3xl text-white">
-            <i class="las la-upload font-bold my-auto"></i>
-            <span href="/endquiz" class="my-auto hidden md:inline-block"
-              >Publish</span
-            >
           </button>
         </div>
       </div>
@@ -135,6 +129,7 @@
               <option value="">Select a Type</option>
               <option value="multiple-choice">Multiple-choice</option>
               <option value="true/false">True/False</option>
+              <option value="both">Both</option>
             </select>
           </div>
           <div class="mt-3">
@@ -314,12 +309,18 @@
               <option value="public">Public</option>
             </select>
           </div>
-          <div class="mt-3">
+          <div class="mt-3 flex justify-between">
             <button
               type="button"
               class="py-2 px-3 bg-red text-white rounded-md previous-button"
             >
               <i class="las la-angle-double-left"></i> Previous
+            </button>
+            <button
+              type="button"
+              class="py-2 px-3 bg-red text-white rounded-md previous-button"
+            >
+              Publish <i class="las la-upload font-bold my-auto"></i>
             </button>
           </div>
         </div>

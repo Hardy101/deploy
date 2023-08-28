@@ -78,36 +78,75 @@
           </li>
         </ul>
         <ul class="flex justify-center gap-5 my-auto">
-          <li>
-            <a href=""><i class="las la-bell text-2xl"></i></a>
+          <li class="my-auto noticeToggle" >
+            <button><i class="las la-bell text-2xl"></i></button>
           </li>
-          <li>
+          <li class="my-auto">
             <a href="/coming-soon"
               ><i class="las la-sign-out-alt text-2xl"></i
             ></a>
           </li>
           <li class="my-auto md:hidden">
             <button class="toggle_btn" id="toggle_btn">
-              <i class="las la-bars"></i> <span class="my-auto">Menu</span>
+              <i class="las la-bars  text-2xl"></i>
             </button>
           </li>
         </ul>
       </div>
-      <ul
-        class="all-menu absolute top-20 w-full bg-white md:hidden"
-        id="all_menu"
-      >
+    <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden z-20" id="all_menu">
+      <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
+      <ul class="mt-40 h-full text-center">
         <li class="m-3"><a href="/">Home</a></li>
         <li class="m-3"><a href="/about">About us</a></li>
         <li class="m-3"><a href="#">Categories</a></li>
         <li class="m-3"><a href="/quiz">Quiz Me!</a></li>
         <li class="m-3"><a href="/create-quiz">Create quiz</a></li>
+        <li class="mt-16 mx-auto block text-center">
+           <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center">
+           <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
+        </li>
       </ul>
+    </div>
     </nav>
 {% endblock %}
 
 <!-- Body -->
 {% block body %}
+<!-- Notifications -->
+  <div
+    class="fixed right-0 top-0 bg-white notifications w-8/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
+    id="notificationDiv"
+  >
+    <div class="flex justify-between block my-3">
+      <span class="my-auto inline-block font-bold md:text-2xl"
+        >Notifications</span
+      >
+      <button class="my-auto md:text-2xl font-bold noticeToggle">
+        <i class="las la-arrow-right"></i>
+      </button>
+    </div>
+    <div class="notices mt-4">
+      <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
+        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+          ><img src="static/img/notice.png" alt="" class=""
+        /></span>
+
+        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+          >Congratulations! You've earned a new achievement: "Master of
+          Quizzes."</span
+        >
+      </div>
+      <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
+        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+          ><img src="static/img/notice.png" alt="" class=""
+        /></span>
+        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+          >Our summer sale is here! Enjoy up to 50% off on selected items.
+          Limited time offer, shop now!</span
+        >
+      </div>
+    </div>
+  </div>
   <!-- Profile Section -->
   <section
       class="profile pt-12 md:pt-20 grid place-items-center"

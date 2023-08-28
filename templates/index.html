@@ -5,6 +5,55 @@
   <title>MindSpark</title>
 {% endblock %}
 
+{% block all_menu %}
+  <li class="m-3"><a href="/index">Home</a></li>
+  <li class="m-3"><a href="/about">About</a></li>
+  <li class="m-3 mt-5 font-bold text-xl"><span>Categories</span></li>
+  <li class="mx-10 my-3 exams-toggle"><a>Exams <i class="las la-angle-down"></i></a></li>
+  <ul class="exams-menu other-menu mx-16 my-1 h-0 overflow-hidden" style="transition: height 0.3s ease;">
+      <li><a>JAMB</a></li>
+      <li><a>NECO</a></li>
+      <li><a>WAEC</a></li>
+    </ul>
+  <li class="mx-10 my-3 exam-p-toggle"><a>Exam Practice <i class="las la-angle-down"></i></a></li>
+  <ul class="exam-p-menu other-menu mx-16 h-0 overflow-hidden">
+      <li><a>Biochemistry</a></li>
+      <li><a>Zoology</a></li>
+      <li><a>Plant Biology</a></li>
+      <li><a>Microbiology</a></li>
+    </ul>
+  <li class="mx-10 my-3 arts-toggle"><a>Arts and Humanities <i class="las la-angle-down"></i></a></li>
+  <ul class="arts-menu other-menu mx-16 my-1 h-0 overflow-hidden">
+      <li><a>Art History</a></li>
+      <li><a>Dance</a></li>
+      <li><a>Film Studies</a></li>
+      <li><a>Literature</a></li>
+      <li><a>Music</a></li>
+    </ul>
+  <li class="mx-10 my-3 science-toggle"><a>Science <i class="las la-angle-down"></i></a></li>
+  <ul class="science-menu other-menu mx-16 my-1 h-0 overflow-hidden">
+      <li><a>Biochemistry</a></li>
+      <li><a>Zoology</a></li>
+      <li><a>Plant Biology</a></li>
+      <li><a>Microbiology</a></li>
+    </ul>
+  <li class="mx-10 my-3 social-science-toggle"><a>Social Science <i class="las la-angle-down"></i></a>
+  <ul class="social-science-menu other-menu mx-16 my-1 h-0 overflow-hidden">
+      <li><a>Anthropology</a></li>
+      <li><a>Economics</a></li>
+      <li><a>Political Science</a></li>
+      <li><a>Psychology</a></li>
+      <li><a>Sociology</a></li>
+    </ul></li>
+  <li class="mx-10 my-3"><a>Miscellenous <i class="las la-angle-down"></i></a></li>
+  <li class="m-3 mt-5"><a href="/coming-soon">Flash Cards</a></li>
+  <li class="m-3"><a href="/login">Login </a></li>
+  <li class="m-3"><a href="/register">Sign up</a></li>
+  <li class="mt-16 mx-auto block text-center">
+     <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center hover:border-b-primaryMaroon">
+     <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
+  </li>
+{% endblock %}
 <!-- Body -->
 {% block body %}
   <!-- Hero Section -->

@@ -2,6 +2,19 @@
 {% block head %}
   <title>About us</title>
 {% endblock %}
+
+{% block all_menu %}
+  <li class="m-3"><a href="/index">Home</a></li>
+  <li class="m-3"><a href="#">Categories <i class="las la-angle-down"></i></a></li>
+  <li class="m-3"><a href="/quiz">Quiz Me!</a></li>
+  <li class="m-3"><a href="/login">Login </a></li>
+  <li class="m-3"><a href="/register">Sign up</a></li>
+  <li class="mt-16 mx-auto block text-center">
+     <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center hover:border-b-primaryMaroon">
+     <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
+  </li>
+{% endblock %}
+
 {% block body %}
   <!-- About us -->
   <section id="about">

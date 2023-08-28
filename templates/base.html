@@ -18,6 +18,10 @@
       href="https://fonts.googleapis.com/css2?family=Arima&display=swap"
       rel="stylesheet"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
     <script src="{{ url_for('static', filename='js/config.js') }}"></script>
     {% block head %}{% endblock %}
@@ -42,41 +46,62 @@
                 class="dropdown-menu absolute top-24 rounded-md bg-white"
                 id="dropdown-menu"
               >
-                <ul>
-                  <li class="px-4 py-2 mt-2">
-                    <a href="" class="flex gap-2"
+                <div class="flex">
+                <ul class="border-r-2">
+                  <li class="mt-2 cat-ul">
+                    <a href="" class="flex gap-2 px-4 py-3 exams"
                       ><img
-                        src="img/arts.png"
+                        src="{{ url_for('static', filename='img/exam.png') }}"
+                        class="my-auto"
+                        width="20"
+                        alt=""
+                      /><span class="my-auto">Exams</span></a
+                    >
+                  </li>
+                  <li class="cat-ul">
+                    <a href="" class="flex gap-2 px-4 py-3 exams-p"
+                      ><img
+                        src="{{ url_for('static', filename='img/exam-p.png') }}"
+                        class="my-auto"
+                        width="20"
+                        alt=""
+                      /><span class="my-auto">Exams Practice</span></a
+                    >
+                  </li>
+                  <li class="cat-ul">
+                    <a href="" class="flex gap-2 px-4 py-3 arts"
+                      ><img
+                        src="{{ url_for('static', filename='img/arts.png') }}"
                         class="my-auto"
                         width="20"
                         alt=""
                       /><span class="my-auto">Arts and Humanities</span></a
                     >
                   </li>
-                  <li class="px-4 py-2">
-                    <a href="" class="flex gap-2"
+                  <li class="cat-ul">
+                    <a href="" class="flex gap-2 px-4 py-3 science"
                       ><img
-                        src="img/science.png"
+                        src="{{ url_for('static', filename='img/science.png') }}"
                         class="my-auto"
                         width="20"
                         alt=""
                       /><span class="my-auto">Science</span></a
                     >
                   </li>
-                  <li class="px-4 py-2">
-                    <a href="" class="flex gap-2"
+                  <li class="cat-ul">
+                    <a href="" class="flex gap-2 px-4 py-3 social-science"
                       ><img
-                        src="img/social-science.png"
+                        src="{{ url_for('static', filename='img/social-science.png') }}"
                         class="my-auto"
                         width="20"
                         alt=""
                       /><span class="my-auto">Social science</span></a
                     >
                   </li>
-                  <li class="px-4 py-2">
-                    <a href="" class="flex gap-2"
+                  <li class="cat-ul">
+                    <a href="" class="flex gap-2 px-4 py-3 others"
                       ><img
-                        src="img/others.png"
+                        src="{{ url_for('static', filename='img/others.png') }}"
                         class="my-auto"
                         width="20"
                         alt=""
@@ -84,10 +109,132 @@
                     >
                   </li>
                 </ul>
+                <ul class="exams-div detail-div">
+                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">JAMB</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">NECO</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">WAEC</span></a
+                    >
+                  </li>
+                </ul>
+                <ul class="exams-p-div detail-div hidden">
+                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Biochemistry</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Zoology</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Plant Biology</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Microbiology</span></a
+                    >
+                  </li>
+                </ul>
+                <ul class="science-div detail-div hidden">
+                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Biochemistry</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Zoology</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Plant Biology</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Microbiology</span></a
+                    >
+                  </li>
+                </ul>
+                <ul class="social-science-div hidden detail-div">
+                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Anthropology</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Economics</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Political Science</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Psychology</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Sociology</span></a
+                    >
+                  </li>
+                </ul>
+                <ul class="arts-div hidden detail-div">
+                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Art History</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Dance</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Design</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Film Studies</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Literature</span></a
+                    >
+                  </li>
+                  <li class="pl-10 pr-8 py-3 cat-ul">
+                    <a href="" class="flex gap-2"
+                      ><span class="my-auto">Music</span></a
+                    >
+                  </li>
+                </ul>
+                </div>
+
               </div>
             </li>
             <li>
-              <a href="/quiz">Quiz Me!</a>
+              <a href="/quiz">Flash Cards</a>
             </li>
           </ul>
           <ul class="flex justify-center gap-5">
@@ -105,30 +252,23 @@
                 ><span>Signup</span> <i class="las la-user-plus"></i
               ></a>
             </li>
-            <li class="px-10 py-2 my-auto inline-block md:hidden relative">
-              <button class="toggle_btn text-4xl" id="toggle_btn">
+            <li class="my-auto inline-block md:hidden relative">
+              <button class="px-10 py-2 toggle_btn text-4xl" id="toggle_btn">
                 <i class="las la-bars mt-3"></i>
               </button>
             </li>
           </ul>
         </div>
-       <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden" id="all_menu">
-         <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
-         <ul class="mt-40 h-full text-center">
-          <li class="m-3"><a href="/index">Home</a></li>
-          <li class="m-3"><a href="/about">About us</a></li>
-          <li class="m-3"><a href="#">Categories <i class="las la-angle-down"></i></a></li>
-          <li class="m-3"><a href="/quiz">Quiz Me!</a></li>
-          <li class="m-3"><a href="/login">Login </a></li>
-          <li class="m-3"><a href="/register">Sign up</a></li>
-           <li class="mt-16 mx-auto block text-center">
-             <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center">
-             <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
-           </li>
-        </ul>
-       </div>
       </nav>
     {% endblock %}
+    <div class="all-menu hidden fixed top-0 w-full h-full bg-white animate__animated z-20 overflow-auto" id="all_menu">
+         <button class="absolute top-10 right-[9%] text-3xl close_btn"><i class="las la-times"></i></button>
+         <ul class="mt-28 h-full pl-10">
+         {% block all_menu %}{% endblock %}
+        </ul>
+       </div>
+    <!-- Overlay -->
+    <div class="overlay hidden bg-[#000] opacity-30 fixed w-full h-full top-0 z-10 cursor-pointer"></div>
     {% block body %}{% endblock %}
     <!-- Footer -->
     {% block footer %}
@@ -182,6 +322,8 @@
         <div class="text-center mt-3">2023 Mind Spark Inc.</div>
       </footer>
     {% endblock %}
+    {% block script %}
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% endblock %}
   </body>
 </html>

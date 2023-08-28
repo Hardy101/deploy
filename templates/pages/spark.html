@@ -38,26 +38,29 @@
         }
       </style>
 {% endblock %}
-
 <!-- Custom Navigation -->
 {% block nav %}
+<!-- Loader -->
+<div class="loader fixed top-0 w-full h-full z-40 bg-[#FDFDFD] grid place-items-center hidden" id="loader">
+  <img src="{{ url_for('static', filename='img/loader.gif') }}" class="">
+</div>
   <nav>
       <div class="flex flex-wrap justify-center gap-20 px-4 py-5 text-xl">
         <div class="flex gap-5 my-auto">
-          <span>BCH Quiz - Lipids</span>
-          <div class="inline-block">Timer: <span id="timer"></span></div>
+          <span>CSC 220 - Data Processing and Management</span>
+          <div class="inline-block">Timer: 0:00<span id="timer hidden"></span></div>
         </div>
         <div class="flex gap-5">
           <a
             href="/select-quiz"
             class="px-6 py-2 bg-primaryBlue rounded-3xl text-white"
-            id="restart"
+            id="restartButton"
           >
             <span>Re take quiz</span>
             <i class="las la-redo-alt"></i>
           </a>
           <button class="px-6 py-2 bg-red rounded-3xl text-white">
-            <a href="/endquiz" class="my-auto">End Quiz</a>
+            <a href="/select-quiz" class="my-auto">End Quiz</a>
             <i class="las la-trash font-bold my-auto"></i>
           </button>
         </div>
@@ -67,7 +70,7 @@
 
   <!-- Body -->
 {% block body %}
-  <section class="grid place-items-center pb-14 md:p-0 md:h-screen">
+<section class="grid place-items-center pb-14 md:p-0 md:h-screen">
       {% for question_data in quiz_data %}
       <div class="questionDiv animate__animated hidden flex gap-20 justify-center flex-col lg:px-10 md:flex-row" id="question">
       <div
@@ -105,7 +108,9 @@
         </div>
     </section>
   -->
+{% endblock %}
 <!-- Footer -->
 {% block footer %}{% endblock %}
-  <script src="{{ url_for('static', filename='js/spark.js') }}"></script>
+{% block script %}
+<script src="{{ url_for('static', filename='js/spark.js') }}"></script>
 {% endblock %}

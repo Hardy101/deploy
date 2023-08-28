@@ -5,6 +5,13 @@
   <title>Register</title>
 {% endblock %}
 
+<!-- Dropdown -->
+{% block all_menu %}
+  <li class="m-3"><a href="/index">Home</a></li>
+  <li class="m-3"><a href="/about">About us</a></li>
+  <li class="m-3"><a href="/login">Sign in</a></li>
+{% endblock %}
+
 <!-- Navigation Menu -->
 {% block nav %}
   <nav class="shadow-lg bg-white">
@@ -15,24 +22,24 @@
         <ul class="hidden md:flex md:justify-center gap-5 my-auto">
           <li><a href="/">Home</a></li>
           <li>
-            <a href="#">Categories <i class="las la-angle-down"></i></a>
+            <a href="/login">Login</a>
           </li>
         </ul>
         <ul class="flex justify-center gap-5">
-          <li class="px-10 py-2 my-auto inline-block md:hidden relative">
-            <button class="toggle_btn" id="toggle_btn">
-              <i class="las la-bars"></i> <span class="my-auto">Menu</span>
+          <li class="my-auto md:hidden relative">
+            <button class="toggle_btn text-2xl" id="toggle_btn">
+              <i class="las la-bars mt-1"></i>
             </button>
-          </li>
+        </li>
         </ul>
       </div>
-      <ul
-        class="all-menu absolute top-20 w-full bg-white md:hidden"
-        id="all_menu"
-      >
+    <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden" id="all_menu">
+      <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
+      <ul class="mt-40 h-full text-center">
         <li class="m-3"><a href="/">Home</a></li>
         <li class="m-3"><a href="/about">About us</a></li>
       </ul>
+    </div>
     </nav>
 {% endblock %}
 
@@ -55,18 +62,18 @@
 
           <form action="" class="my-3">
             <div class="form-control">
-              <label for="" class="font-bold text-lg">Email Id</label>
+              <label class="font-bold text-lg">Email Id</label>
               <input
                 type="email"
-                class="border-2 rounded-sm border-gray p-2 block w-full my-2 focus:outline-none"
+                class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
                 placeholder="johndoe@example.com"
               />
             </div>
             <div class="form-control">
-              <label for="" class="font-bold text-lg">Password</label>
+              <label class="font-bold text-lg">Password</label>
               <input
                 type="password"
-                class="border-2 rounded-sm border-gray p-2 block w-full my-2 focus:outline-none"
+                class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
                 placeholder="Enter 6 Characters or more"
               />
             </div>
@@ -93,14 +100,14 @@
             <div
               class="form-control bg-primaryMaroon py-3 text-white rounded-sm"
             >
-              <input type="submit" value="SIGN UP" class="w-full" />
+              <input type="submit" value="SIGN UP" class="w-full cursor-pointer" />
             </div>
             <div class="form-control text-center my-3">
               <span class="styled-text text-grey">or continue with</span>
             </div>
             <div class="form-control flex justify-center gap-10">
-              <a href="" class="border border-gray p-2 rounded font-bold"
-                ><i class="lab la-google google"></i>
+              <a href="" class="border border-gray p-2 rounded font-bold text-red"
+                ><i class="lab la-google-plus-g"></i>
                 <span class="text-red">Google</span></a
               >
               <a
