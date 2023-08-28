@@ -3,6 +3,7 @@ import requests
 import random
 
 ENDPOINT = "https://opentdb.com/api.php"
+NPPOINT_ENDPOINT = "https://api.npoint.io/448aa3410f90c8091eb2"
 
 questions = []
 options = []

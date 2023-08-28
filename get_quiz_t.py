@@ -33,6 +33,6 @@ def get_quiz(amount):
             'is_correct': is_correct,
             'len': len(questions)
         })
-    return quiz_data[:amount + 1]
+    return quiz_data[:amount]
 
-print(get_quiz(10))
+

@@ -1,3 +1,11 @@
+// Loader for  fetching API
+//const isContentLoaded = document.querySelector('.questionDiv')
+//while (isContentLoaded){
+//   document.getElementById('loader').classList.remove('hidden');
+//}
+// document.addEventListener('DOMContentLoaded', () => {
+//      document.getElementById('loader').style.display = 'none';
+//  });
 // Go back to the previous page
 function goBack() {
   window.history.back();
@@ -24,30 +32,147 @@ if (document.getElementById("dropdown-toggle")) {
   });
 }
 
+// Dropdown Hover Function
+const science_button = document.querySelector('.science')
+const science_div = document.querySelector('.science-div')
+const social_science_button = document.querySelector('.social-science')
+const social_science_div = document.querySelector('.social-science-div')
+const arts_button = document.querySelector('.arts')
+const arts_div = document.querySelector('.arts-div')
+const detail_div = document.querySelectorAll('.detail-div')
+const exams_button = document.querySelector('.exams')
+const exams_div = document.querySelector('.exams-div')
+const exams_practice_button = document.querySelector('.exams-p')
+const exams_practice_div = document.querySelector('.exams-p-div')
+
+if (document.querySelector('.science')){
+function showDept(divToShow){
+    detail_div.forEach((div)=>{
+        div.classList.add('hidden')
+    })
+    divToShow.classList.remove('hidden')
+}
+social_science_button.addEventListener('mouseover', ()=>{
+    showDept(social_science_div)
+})
+science_button.addEventListener('mouseover', ()=>{
+    showDept(science_div)
+})
+arts_button.addEventListener('mouseover', ()=>{
+    showDept(arts_div)
+})
+exams_button.addEventListener('mouseover', ()=>{
+    showDept(exams_div)
+})
+exams_practice_button.addEventListener('mouseover', ()=>{
+    showDept(exams_practice_div)
+})
+}
+
 // All Menu Function
 if (document.getElementById("toggle_btn")) {
   const toggle_btn = document.querySelectorAll(".toggle_btn");
   const dropmenu = document.getElementById("all_menu");
-   toggle_btn.forEach((toggle_btn) => {
-       toggle_btn.addEventListener("click", function () {
-        isOpen = !isOpen;
-        dropmenu.classList.toggle("show", isOpen);
-        dropmenu.classList.toggle("hide", !isOpen);
-      });
-   })
+  const close_btn = document.querySelector('.close_btn');
+
+  toggle_btn.forEach((toggle_btn) => {
+    toggle_btn.addEventListener("click", function () {
+      dropmenu.classList.remove("hidden");
+      dropmenu.classList.add('animate__fadeInDown');
+      document.body.classList.add('overflow-hidden')
+    });
+  });
+
+  close_btn.addEventListener("click", function () {
+    dropmenu.classList.add('animate__fadeOutUp');
+    setTimeout(() => {
+      dropmenu.classList.add("hidden");
+      dropmenu.classList.remove('animate__fadeInDown', 'animate__fadeOutUp');
+    }, 300);
+    document.body.classList.remove('overflow-hidden')
+  });
+}
+
+// Categories Caret
+exam_toggle = document.querySelector('.exams-toggle')
+exam_menu = document.querySelector('.exams-menu')
+exam_practice_toggle = document.querySelector('.exam-p-toggle')
+exam_practice_menu = document.querySelector('.exam-p-menu')
+arts_toggle = document.querySelector('.arts-toggle')
+arts_menu = document.querySelector('.arts-menu')
+science_toggle = document.querySelector('.science-toggle')
+science_menu = document.querySelector('.science-menu')
+social_science_toggle = document.querySelector('.social-science-toggle')
+social_science_menu = document.querySelector('.social-science-menu')
+other_menu = document.querySelectorAll('.other-menu')
+
+function openMenu(menuToOpen){
+    other_menu.forEach((menu)=>{
+        menu.classList.add('h-0')
+    })
+    menuToOpen.classList.toggle('h-auto')
+}
+
+exam_toggle.addEventListener('click', (event)=>{
+    childElement = event.target.querySelector('i')
+    childElement.classList.toggle('caret-rotate')
+    openMenu(exam_menu)}
+    )
+exam_practice_toggle.addEventListener('click', (event)=>{
+    childElement = event.target.querySelector('i')
+    childElement.classList.toggle('caret-rotate')
+    openMenu(exam_practice_menu)})
+arts_toggle.addEventListener('click', ()=>{
+openMenu(arts_menu)})
+science_toggle.addEventListener('click', ()=>{
+openMenu(science_menu)})
+social_science_toggle.addEventListener('click', ()=>{
+openMenu(social_science_menu)})
+
+
+// Share Div
+share_links = document.querySelector('.share-div')
+share_btn = document.querySelector('.share')
+let isShareDivVisible = false;
+if (document.querySelector('.share-div')){
+    share_btn.addEventListener('click', () => {
+      if (isShareDivVisible) {
+        share_links.classList.add('animate__fadeOutDown');
+        setTimeout(() => {
+          share_links.classList.add('hidden');
+          share_links.classList.remove('animate__fadeOutDown');
+        }, 600);
+      } else {
+        share_links.classList.remove('hidden');
+        share_links.classList.add('animate__fadeInUp');
+      }
+
+      isShareDivVisible = !isShareDivVisible;
+    });
 }
 
 // Notification Tab Function
 if (document.querySelectorAll(".noticeToggle")) {
   const toggleButtons = document.querySelectorAll(".noticeToggle");
   const notificationDiv = document.getElementById("notificationDiv");
-
   toggleButtons.forEach((toggleButton) => {
     toggleButton.addEventListener("click", function () {
       notificationDiv.classList.toggle("active");
+      toggleOverlay()
     });
   });
 }
+// When the background is clicked
+
+// Overlay Feature
+const overlay_div = document.querySelector('.overlay')
+function toggleOverlay(){
+    overlay_div.classList.toggle('hidden')
+}
+overlay_div.addEventListener('click', ()=> {
+    notificationDiv.classList.remove("active");
+    overlay_div.classList.add('hidden')
+})
 // Placeholder Animation
 const inputFields = document.querySelectorAll(".quiz-input");
 

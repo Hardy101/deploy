@@ -46,23 +46,30 @@
 </div>
   <nav>
       <div class="flex flex-wrap justify-center gap-20 px-4 py-5 text-xl">
-        <div class="flex gap-5 my-auto">
-          <span>CSC 220 - Data Processing and Management</span>
-          <div class="inline-block">Timer: 0:00<span id="timer hidden"></span></div>
+        <div class="flex gap-2 my-auto">
+            <span class="border-r-2 pr-3">CSC 220</span>
+            <div class="inline-block border-r-2 pr-3">Timer: 0:00<span id="timer hidden"></span></div>
+            <div>
+                <span>Question: </span>
+                <span class="question_num">1</span>
+                <span>/</span>
+                <span class="total_que_num"></span>
+            </div>
+
         </div>
         <div class="flex gap-5">
-          <a
-            href="/select-quiz"
-            class="px-6 py-2 bg-primaryBlue rounded-3xl text-white"
-            id="restartButton"
-          >
-            <span>Re take quiz</span>
-            <i class="las la-redo-alt"></i>
-          </a>
-          <button class="px-6 py-2 bg-red rounded-3xl text-white">
-            <a href="/select-quiz" class="my-auto">End Quiz</a>
-            <i class="las la-trash font-bold my-auto"></i>
-          </button>
+        <button
+        class="px-6 py-2 bg-primaryBlue rounded-3xl text-white btn_prev"
+        >
+            <span>Previous Question</span>
+            <i class="las la-arrow-left"></i>
+        </button>
+        <button
+        class="px-6 py-2 bg-primaryBlue rounded-3xl text-white btn_next"
+        >
+            <span>Next Question</span>
+            <i class="las la-long-arrow-alt-right"></i>
+        </button>
         </div>
       </div>
     </nav>
@@ -74,12 +81,12 @@
       {% for question_data in quiz_data %}
       <div class="questionDiv animate__animated hidden flex gap-20 justify-center flex-col lg:px-10 md:flex-row" id="question">
       <div
-        class="relative p-5 my-10 mx-auto text-4xl w-8/12 bg-brown rounded-xl dialog md:my-auto md:w-1/2"
+        class="relative p-5 my-10 mx-auto text-4xl w-10/12 bg-brown rounded-xl dialog md:my-auto md:w-1/2"
       >
-        <span class="absolute top-3 left-3 text-grey text-xl">{% if question_data.idx < 9 %}0{% endif %}{{ question_data.idx+1 }}</span>
+        <span class="absolute top-3 left-3 text-grey text-xl question_num_get">{% if question_data.idx < 9 %}0{% endif %}{{ question_data.idx+1 }}</span>
         <h2 class="my-auto p-5">{{ question_data.question }}</h2>
       </div>
-      <div class="option-div mx-auto my-auto w-8/12 md:w-1/2">
+      <div class="option-div mx-auto my-auto w-10/12 md:w-1/2">
         <ul id="parent-elem" data-id="{{ question_data.is_correct }}">
           {% for option in question_data.options %}
           <li data-answer="{% if option == question_data.options[question_data.is_correct] %}true{% endif %}" class="list{{ question_data.idx }}">
@@ -95,6 +102,12 @@
       </div>
       </div>
       {% endfor %}
+    <div class="w-1/2 bg-[#eee] mt-6 text-center">
+        <button class="px-6 py-2 bg-red rounded-3xl text-white w-full">
+            <a href="/select-quiz" class="my-auto">End Quiz</a>
+            <i class="las la-trash font-bold my-auto"></i>
+        </button>
+    </div>
   </section>
 <!-- Jump to (For Exam) -->
 <!--<section id="jumpto">

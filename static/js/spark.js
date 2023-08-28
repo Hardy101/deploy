@@ -1,4 +1,8 @@
 let check = 0
+que_num_get = document.querySelectorAll('.question_num_get')
+que_num_nav = document.querySelector('.question_num')
+total_que_num = document.querySelector('.total_que_num')
+
 function checkAnswer(event){
     const clickedOption = event.target;
     parentElement = clickedOption.parentNode;
@@ -22,43 +26,60 @@ function checkAnswer(event){
 // Function to toggle class for the current div and the next div
 const divs = document.querySelectorAll('.questionDiv');
 const buttons = document.querySelectorAll('.btn');
+const button = document.querySelector('.btn_next');
+const button_prev = document.querySelector('.btn_prev');
 let currentQuestion = 0;
 divs[currentQuestion].classList.remove('hidden');
+total_que_num.textContent = divs.length
 buttons.forEach(btn => {
     btn.addEventListener('click', (event) => {
         checkAnswer(event)
-        setTimeout(() => {
-        if (currentQuestion < divs.length - 1) {
-            divs[currentQuestion].classList.add('hidden');
-            divs[currentQuestion + 1].classList.remove('hidden');
-            divs[currentQuestion + 1].classList.add('animate__fadeInLeft');
-            currentQuestion += 1;
-        }
-        }, 500);
     });
 });
+// ShowQuestion
+function showQuestion(questionIndex) {
+    divs[currentQuestion].classList.add('hidden');
+    divs[questionIndex].classList.remove('hidden');
+    divs[questionIndex].classList.add('animate__fadeInLeft');
+    currentQuestion = questionIndex;
+    que_num_nav.textContent = currentQuestion + 1;
+}
+
+// Displaying Next Question
+button.addEventListener('click', function(){
+ if (currentQuestion < divs.length - 1) {
+        showQuestion(currentQuestion + 1);
+    }
+})
+
+button_prev.addEventListener('click', function() {
+    if (currentQuestion > 0) {
+        showQuestion(currentQuestion - 1);
+    }
+});
+//Change Question Number in nav
 
 
 //////////////////////////////////////////
-let countDownDate = new Date().getTime() + 30 * 60000; // 30 minutes from now
-
-let x = setInterval(function () {
-  let now = new Date().getTime();
-  let distance = countDownDate - now;
-
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("timer").innerHTML = minutes + ":" + seconds;
-
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("timer").innerHTML = "EXPIRED";
-  }
-}, 1000);
-document.getElementById("restartButton").addEventListener("click", function () {
-  countDownDate = new Date().getTime() + 30 * 60000; // Reset the countdown to 30 minutes
-});
+//let countDownDate = new Date().getTime() + 30 * 60000; // 30 minutes from now
+//
+//let x = setInterval(function () {
+//  let now = new Date().getTime();
+//  let distance = countDownDate - now;
+//
+//  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//
+//  document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+//
+//  if (distance < 0) {
+//    clearInterval(x);
+//    document.getElementById("timer").innerHTML = "EXPIRED";
+//  }
+//}, 1000);
+//document.getElementById("restartButton").addEventListener("click", function () {
+//  countDownDate = new Date().getTime() + 30 * 60000; // Reset the countdown to 30 minutes
+//});
 
 
 //===========================//
