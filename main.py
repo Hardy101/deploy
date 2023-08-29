@@ -65,8 +65,8 @@ def dashboard():
 
 @app.route('/endquiz')
 def endquiz():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/endquiz.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/endquiz.html')
 
 
 @app.route('/select-quiz')

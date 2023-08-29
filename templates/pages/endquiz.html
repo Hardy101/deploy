@@ -6,81 +6,109 @@
 <!-- Navigation -->
 {% block nav %}
 <nav>
-  <div class="flex justify-center text-xl py-2 mx-5 mt-3 lg:w-4/12 lg:mx-auto rounded-lg shadow-lg">
-    <span>BCH - Lipids</span>
+  <div class="flex gap-5 justify-center text-xl py-5 px-2 shadow-lg">
+    <a href="/select-quiz"
+            class="px-6 py-1 bg-primaryBlue rounded-3xl text-white md:px-6 md:py-2 inline-block my-auto"
+          >
+            <span class="hidden md:inline-block">Back to Quizzes </span>
+            <i class="las la-home inline-block text-3xl"></i>
+    </a>
+    <span class="inline-block my-auto">CSC220 - Data Processing and Management</span>
   </div>
 </nav>
 {% endblock %}
 <!-- Body -->
 {% block body %}
   <section class="h-screen grid place-items-center py-10">
+    <div>
       <div class="mx-5">
         <div
           class="score text-center mb-10 bg-[#539165] text-white w-40 h-40 pt-14 rounded-full mx-auto"
         >
           <span>Your score</span> <br />
-          <span>99%</span>
+          <span class="scoreDisplay">99</span>
         </div>
-        <div
-          class="shadow-unq flex justify-center flex-wrap align-center justify-center gap-4 py-4 mb-10 rounded-lg"
-        >
-          <p class="inline-block w-4/12 relative flex flex-col">
-            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white"
-              >100%</span
-            >
-            <span class="block text-center mt-3">Completion</span>
-          </p>
-          <p class="inline-block w-4/12 relative flex flex-col">
-            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white">20</span>
-            <span class="block text-center mt-3">Total Question</span>
-          </p>
-          <p class="inline-block w-4/12 relative flex flex-col">
-            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-brightGreen font-bold mx-auto text-white">19</span>
-            <span class="block text-center mt-3">Correct</span>
-          </p>
-          <p class="inline-block w-4/12 relative flex flex-col">
-            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-red font-bold mx-auto text-white">1</span>
-            <span class="block text-center mt-3">Wrong</span>
-          </p>
-        </div>
-        <div class="moreoptions grid grid-cols-3 gap-4 text-center relative">
-          <div class="share-div hidden w-40 flex justify-center gap-3 absolute top-[-60%] right-0 bg-white shadow-share rounded-md text-2xl py-2 animate__animated">
-            <a ><i class="lab la-facebook"></i></a>
-            <a href="https://www.twitter.com/"><i class="lab la-twitter"></i></a>
-            <a href="https://www.instagram.com/"><i class="lab la-instagram"></i></a>
-            <a ><i class="las la-link"></i></a>
-          </div>
-          <a href="/select-quiz" class="retake flex gap-3 justify-center my-auto p-2 rounded-md shadow-url hover:bg-primaryMaroon hover:text-white">
-            <i
-              class="las la-redo-alt my-auto"
-            ></i>
-            <span class="my-auto">Retake</span>
-          </a>
-          <!-- ======== -->
-          <a class="review flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">
-            <span class="my-auto">Review Answers <i class="las la-external-link-alt"></i></span>
-          </a>
-          <!-- ======== -->
-          <button class="share flex gap-3 justify-center my-auto p-2 rounded-md shadow-url cursor-pointer">
-            <i class="las la-share my-auto"></i>
-            <span class="my-auto">Share</span>
-          </button>
-          <!-- ======== -->
-          <a class="pdf flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">
-            <i
-              class="las la-file-pdf my-auto"
-            ></i>
-            <span class="my-auto">Generate PDF</span>
-          </a>
-          <!-- ======== -->
-          <a href="/quiz" class="home flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">
-            <i class="las la-home my-auto"></i>
-            <span class="my-auto">Home</span>
-          </a>
-          <!-- ======== -->
+        <div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+<!--  <section class="h-screen grid place-items-center py-10">-->
+<!--      <div class="mx-5">-->
+<!--        <div-->
+<!--          class="score text-center mb-10 bg-[#539165] text-white w-40 h-40 pt-14 rounded-full mx-auto"-->
+<!--        >-->
+<!--          <span>Your score</span> <br />-->
+<!--          <span>99%</span>-->
+<!--        </div>-->
+<!--        <div-->
+<!--          class="shadow-unq flex justify-center flex-wrap align-center justify-center gap-4 py-4 mb-10 rounded-lg"-->
+<!--        >-->
+<!--          <p class="inline-block w-4/12 relative flex flex-col">-->
+<!--            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white"-->
+<!--              >100%</span-->
+<!--            >-->
+<!--            <span class="block text-center mt-3">Completion</span>-->
+<!--          </p>-->
+<!--          <p class="inline-block w-4/12 relative flex flex-col">-->
+<!--            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white">20</span>-->
+<!--            <span class="block text-center mt-3">Total Question</span>-->
+<!--          </p>-->
+<!--          <p class="inline-block w-4/12 relative flex flex-col">-->
+<!--            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-brightGreen font-bold mx-auto text-white">19</span>-->
+<!--            <span class="block text-center mt-3">Correct</span>-->
+<!--          </p>-->
+<!--          <p class="inline-block w-4/12 relative flex flex-col">-->
+<!--            <span class="inline-block text-center px-4 py-1 rounded-3xl bg-red font-bold mx-auto text-white">1</span>-->
+<!--            <span class="block text-center mt-3">Wrong</span>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--        <div class="moreoptions grid grid-cols-3 gap-4 text-center relative">-->
+<!--          <div class="share-div hidden w-40 flex justify-center gap-3 absolute top-[-60%] right-0 bg-white shadow-share rounded-md text-2xl py-2 animate__animated">-->
+<!--            <a ><i class="lab la-facebook"></i></a>-->
+<!--            <a href="https://www.twitter.com/"><i class="lab la-twitter"></i></a>-->
+<!--            <a href="https://www.instagram.com/"><i class="lab la-instagram"></i></a>-->
+<!--            <a ><i class="las la-link"></i></a>-->
+<!--          </div>-->
+<!--          <a href="/select-quiz" class="retake flex gap-3 justify-center my-auto p-2 rounded-md shadow-url hover:bg-primaryMaroon hover:text-white">-->
+<!--            <i-->
+<!--              class="las la-redo-alt my-auto"-->
+<!--            ></i>-->
+<!--            <span class="my-auto">Retake</span>-->
+<!--          </a>-->
+<!--          &lt;!&ndash; ======== &ndash;&gt;-->
+<!--          <a class="review flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">-->
+<!--            <span class="my-auto">Review Answers <i class="las la-external-link-alt"></i></span>-->
+<!--          </a>-->
+<!--          &lt;!&ndash; ======== &ndash;&gt;-->
+<!--          <button class="share flex gap-3 justify-center my-auto p-2 rounded-md shadow-url cursor-pointer">-->
+<!--            <i class="las la-share my-auto"></i>-->
+<!--            <span class="my-auto">Share</span>-->
+<!--          </button>-->
+<!--          &lt;!&ndash; ======== &ndash;&gt;-->
+<!--          <a class="pdf flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">-->
+<!--            <i-->
+<!--              class="las la-file-pdf my-auto"-->
+<!--            ></i>-->
+<!--            <span class="my-auto">Generate PDF</span>-->
+<!--          </a>-->
+<!--          &lt;!&ndash; ======== &ndash;&gt;-->
+<!--          <a href="/quiz" class="home flex gap-3 justify-center my-auto p-2 rounded-md shadow-url">-->
+<!--            <i class="las la-home my-auto"></i>-->
+<!--            <span class="my-auto">Home</span>-->
+<!--          </a>-->
+<!--          &lt;!&ndash; ======== &ndash;&gt;-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
 <!-- Footer-->
+{% endblock %}
 {% block footer %}{% endblock %}
+{% block script %}
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const score = urlParams.get('score');
+document.querySelector('.scoreDisplay').textContent = score
+</script>
 {% endblock %}

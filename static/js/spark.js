@@ -1,13 +1,14 @@
 let check = 0
+let correctAnswersCount = 0;
 que_num_get = document.querySelectorAll('.question_num_get')
 que_num_nav = document.querySelector('.question_num')
 total_que_num = document.querySelector('.total_que_num')
-
+/*
 function checkAnswer(event){
     const clickedOption = event.target;
     parentElement = clickedOption.parentNode;
     is_correct = parentElement.getAttribute('data-answer')=='true'
-//    correctIndex = correctOption.getAttribute('data-answer')
+    correctIndex = correctOption.getAttribute('data-answer')
     if (is_correct){
         clickedOption.classList.add('bg-green','text-white')
     }
@@ -23,6 +24,29 @@ function checkAnswer(event){
     }
     check+=1
 }
+*/
+function checkAnswer(event) {
+    const clickedOption = event.target;
+    const parentListItem = clickedOption.closest('li');
+    const is_correct = parentListItem.getAttribute('data-answer') === 'true';
+    const nextPageLink = document.getElementById('nextPageLink');
+
+
+  if (is_correct) {
+    clickedOption.classList.add('bg-green', 'text-white');
+    correctAnswersCount++;
+    document.querySelector('#score').textContent = correctAnswersCount;
+  } else {
+    clickedOption.classList.add('bg-red', 'text-white');
+
+    const correctOption = parentListItem.parentElement.querySelector('[data-answer="true"]');
+    if (correctOption) {
+      correctOption.querySelector('.btn').classList.add('bg-green', 'text-white');
+    }
+  }
+  nextPageLink.href = `endquiz?score=${correctAnswersCount}`;
+}
+
 // Function to toggle class for the current div and the next div
 const divs = document.querySelectorAll('.questionDiv');
 const buttons = document.querySelectorAll('.btn');

@@ -48,21 +48,22 @@
       <div class="flex flex-wrap justify-center gap-20 px-4 py-5 text-xl">
         <div class="flex gap-2 my-auto">
             <span class="border-r-2 pr-3">CSC 220</span>
-            <div class="inline-block border-r-2 pr-3">Timer: 0:00<span id="timer hidden"></span></div>
-            <div>
+<!--            <div class="inline-block border-r-2 pr-3">Timer: 0:00<span id="timer hidden"></span></div>-->
+            <div class=" border-r-2 pr-3">
                 <span>Question: </span>
                 <span class="question_num">1</span>
                 <span>/</span>
                 <span class="total_que_num"></span>
             </div>
+            <div class="inline-block">Score: <span id="score">0</span></div>
 
         </div>
         <div class="flex gap-5">
         <button
         class="px-6 py-2 bg-primaryBlue rounded-3xl text-white btn_prev"
         >
-            <span>Previous Question</span>
             <i class="las la-arrow-left"></i>
+            <span>Previous Question</span>
         </button>
         <button
         class="px-6 py-2 bg-primaryBlue rounded-3xl text-white btn_next"
@@ -103,9 +104,9 @@
       </div>
       {% endfor %}
     <div class="w-1/2 bg-[#eee] mt-6 text-center">
-        <button class="px-6 py-2 bg-red rounded-3xl text-white w-full">
-            <a href="/select-quiz" class="my-auto">End Quiz</a>
-            <i class="las la-trash font-bold my-auto"></i>
+        <button class="px-6 py-2 bg-green rounded-3xl text-white w-full">
+            <a href="/endquiz" id="nextPageLink" class="my-auto">End Quiz</a>
+            <i class="las la-check font-bold my-auto pl-1"></i>
         </button>
     </div>
   </section>
