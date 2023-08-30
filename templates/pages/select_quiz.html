@@ -10,10 +10,11 @@
       <div class="flex flex-wrap justify-center gap-20 px-4 py-5 text-xl">
         <div class="flex gap-5 my-auto">
           <a href="" onclick="event.preventDefault()"
-            class="px-6 py-1 bg-primaryBlue rounded-3xl text-white md:px-6 md:py-2 inline-block my-auto"
+            class="px-6 py-1 bg-primaryBlue rounded-3xl text-white md:px-6 md:py-2 block my-auto"
           >
-            <span class="hidden md:inline-block">Back to Quizzes </span>
-            <i class="las la-home inline-block text-3xl"></i>
+            <span class="hidden md:inline-block my-auto pt-1">Back to Quizzes</span>
+            <span class="text-3xl lg:hidden"><i class="las la-home"></i></span>
+
           </a>
           <span class="my-auto">CSC220 - Data Processing and Management</span>
         </div>
@@ -32,30 +33,49 @@
         </div>
         <form class="mt-20 w-full px-6 md:px-0 md:w-4/12 md:my-auto" action="/take-quiz" method="post">
           <h1 class="font-bold text-3xl mb-5">Quiz Setup</h1>
-          <p class="mt-2 text-[#F94C10]">Field marked with <i class="las la-ban"></i> have been temporarily disabled!</p>
           <div class="form-control my-3">
             <label class="font-medium">Number of Questions</label>
             <input
               name="amount"
               type="number"
+              min="1"
+              max="30"
               class="w-full mt-2 border border-1 border-gray rounded focus:outline-none p-2 "
               placeholder="--"
+              title="Please enter a number between 0 and 30"
+              required
             />
           </div>
+          <!-- Difficulty Selection -->
+          <!--          <div class="form-control my-3">
+              <label class="font-medium">Select Difficulty <i class="las la-ban text-[#F94C10]"></i></label>
+              <select
+                name="difficulty"
+                disabled
+                class="w-full mt-2 border border-1 border-gray rounded focus:outline-none p-2 disabled:bg-[#f5f5f5]"
+              >
+                <option>&#45;&#45;</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Hard</option>
+                <option value="hard">Einstein Mad</option>
+              </select>
+            </div>-->
+          <!--  Chapter Selection -->
           <div class="form-control my-3">
-            <label class="font-medium">Select Difficulty <i class="las la-ban text-[#F94C10]"></i></label>
+            <label class="font-medium">Select Chapter</label>
             <select
-              name="difficulty"
-              disabled
-              class="w-full mt-2 border border-1 border-gray rounded focus:outline-none p-2 disabled:bg-[#f5f5f5]"
+              name="chapter"
+              class="w-full mt-2 border border-1 border-gray rounded focus:outline-none p-2"
+              required
             >
               <option>--</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Hard</option>
-              <option value="hard">Einstein Mad</option>
+              <option value="2">Chapter 2 - Current trends in computing</option>
+              <option value="4">Chapter 4 - Introduction to database systems</option>
+              <!-- <option value="6">Chapter 6 - Query Optimization and Recovery</option> -->
             </select>
           </div>
-          <div class="form-control my-3">
+          <!-- Answer Type Selection -->
+          <!-- <div class="form-control my-3">
             <label class="font-medium">Select Type <i class="las la-ban text-[#F94C10]"></i></label>
             <select
               name="type"
@@ -66,6 +86,8 @@
               <option value="multiple">Multiple Option</option>
             </select>
           </div>
+          -->
+          <!-- Submit -->
           <div class="form-control my-6">
             <input
               type="submit"
@@ -76,7 +98,8 @@
         </form>
       </div>
     </section>
-  <!-- Footer -->
-  {% block footer %}{% endblock %}
 {% endblock %}
+<!-- Footer -->
+{% block footer %}{% endblock %}
+{% block script %}{% endblock %}
 

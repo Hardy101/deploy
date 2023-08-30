@@ -3,16 +3,23 @@ import requests
 import random
 
 ENDPOINT = "https://opentdb.com/api.php"
-NPPOINT_ENDPOINT = "https://api.npoint.io/448aa3410f90c8091eb2"
+NPPOINT_ENDPOINT_2 = "https://api.npoint.io/62224aa142fb44e52a94"
+NPPOINT_ENDPOINT_4 = "https://api.npoint.io/1f98edab6fc5431d7356"
 
 questions = []
 options = []
 correct_indices = []  # List to store the index of the correct option for each question
+response = None
 
 
-def get_quiz(amount):
+def get_quiz(amount, chapter):
     amount = int(amount)
-    response = requests.get(NPPOINT_ENDPOINT)
+    chapter = int(chapter)
+    global response
+    if chapter == 2:
+        response = requests.get(NPPOINT_ENDPOINT_2)
+    elif chapter == 4:
+        response = requests.get(NPPOINT_ENDPOINT_4)
     data = response.json()['results']
     random.shuffle(data)
     quiz_data = []

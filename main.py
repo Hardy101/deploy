@@ -80,9 +80,9 @@ def take_quiz():
     if not amount or int(amount) < 1:
         return redirect(url_for('notfound', page='notfound'))
     else:
-        # difficulty = request.form['difficulty']
+        chapter = request.form['chapter']
         # quiz_type = request.form['type']
-        quiz_data = get_quiz(amount)
+        quiz_data = get_quiz(amount, chapter)
         return render_template('pages/spark.html', quiz_data=quiz_data, quiz_contents=amount)
 
 
