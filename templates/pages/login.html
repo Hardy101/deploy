@@ -5,43 +5,6 @@
   <title>Login</title>
 {% endblock %}
 
-<!-- Navigation Menu -->
-{% block nav %}
-  <nav class="shadow-lg bg-white">
-      <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
-        <a href="/" class="my-auto w-32"
-          ><img src="static/img/logo.png" alt=""
-        /></a>
-        <ul class="hidden md:flex md:justify-center gap-5 my-auto">
-          <li><a href="/">Home</a></li>
-          <li>
-            <a href="#">Categories <i class="las la-angle-down"></i></a>
-          </li>
-        </ul>
-        <ul class="flex justify-center gap-5">
-          <li class="my-auto md:hidden relative">
-            <button class="toggle_btn text-2xl" id="toggle_btn">
-              <i class="las la-bars mt-1"></i>
-            </button>
-        </li>
-        </ul>
-      </div>
-    <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden" id="all_menu">
-      <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
-      <ul class="mt-40 h-full text-center">
-        <li class="m-3"><a href="/">Home</a></li>
-        <li class="m-3"><a href="/about">About us</a></li>
-      </ul>
-    </div>
-    </nav>
-{% endblock %}
-
-<!-- Dropdown -->
-{% block all_menu %}
-  <li class="m-3"><a href="/index">Home</a></li>
-  <li class="m-3"><a href="/about">About us</a></li>
-  <li class="m-3"><a href="/register">Sign up</a></li>
-{% endblock %}
 <!-- Body -->
 {% block body %}
   <section class="h-screen mt-20 place-items-center md:m-0 md:grid">
@@ -59,11 +22,12 @@
             </p>
           </div>
 
-          <form action="" class="my-3">
+          <form action="" class="my-3" method="post">
             <div class="form-control">
               <label class="font-bold text-lg">Email Id</label>
               <input
                 type="email"
+                name="email"
                 class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
                 placeholder="johndoe@example.com"
               />
@@ -79,6 +43,7 @@
               </div>
               <input
                 type="password"
+                name="password"
                 class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
                 placeholder="Enter 6 Characters or more"
               />
@@ -89,19 +54,19 @@
             <div
               class="form-control bg-primaryMaroon py-3 text-white rounded-sm"
             >
-              <input type="submit" value="LOGIN" class="w-full cursor-pointer" />
+              <input type="submit" name="submit" value="LOGIN" class="w-full cursor-pointer" />
             </div>
             <div class="form-control text-center my-3">
               <span class="styled-text text-grey">or continue with</span>
             </div>
             <div class="form-control flex justify-center gap-10">
-              <a href="" class="border border-gray p-2 rounded font-bold text-red"
+              <a href="" class="border border-gray p-2 rounded text-red"
                 ><i class="lab la-google-plus-g"></i>
                 <span>Google</span></a
               >
               <a
                 href=""
-                class="border border-gray p-2 rounded font-bold text-facebookBlue"
+                class="border border-gray p-2 rounded text-facebookBlue"
                 ><i class="lab la-facebook-f"></i
                 ><span class="">Facebook</span></a
               >

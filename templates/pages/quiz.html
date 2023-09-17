@@ -5,59 +5,7 @@
     <title>Quiz</title>
 {% endblock %}
 
-<!-- Custom Navigation Menu-->
-{% block nav %}
-  <!-- Quiz Navigation Menu -->
-  <nav class="bg-white z-20 bg-white w-full">
-    <div class="flex justify-between px-4 py-5">
-      <a href="/" class="my-auto w-32"
-        ><img src="static/img/logo.png" alt=""
-      /></a>
-      <ul class="hidden md:flex md:justify-center gap-5 my-auto">
-        <li class="my-auto"><a href="/">Home</a></li>
-        <li>
-          <form action="" class="flex gap-2">
-            <input
-              type="text"
-              placeholder="Search"
-              class="border-2 border-gray focus:outline-none rounded-md px-2 py-1"
-            />
-            <input
-              type="submit"
-              value="search"
-              class="rounded-sm px-2 py-1 bg-primaryMaroon text-white"
-            />
-          </form>
-        </li>
-        <li class="my-auto">
-          <a
-            href="/create-quiz"
-            class="bg-primaryMaroon px-2 py-1 text-white rounded-sm"
-            ><span class="hidden md:inline-block">Create Quiz</span>
-            <i class="las la-plus"></i
-          ></a>
-        </li>
-      </ul>
-      <ul class="flex justify-center gap-5 my-auto">
-        <li class="my-auto">
-          <button class="noticeToggle" >
-            <i class="las la-bell text-2xl"></i>
-          </button>
-        </li>
-        <li class="my-auto">
-          <a href="/coming-soon"
-            ><i class="las la-sign-out-alt text-2xl "></i
-          ></a>
-        </li>
-        <li class="my-auto md:hidden relative">
-          <button class="toggle_btn text-2xl" id="toggle_btn">
-            <i class="las la-bars mt-1"></i>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-{% endblock %}
+  
 <!-- Dropdown -->
 {% block all_menu %}
   <li class="m-3"><a href="/index">Home</a></li>
@@ -71,68 +19,31 @@
 {% endblock %}
 <!-- Body -->
 {% block body %}
-  <!-- Notifications -->
-  <div
-    class="fixed right-0 top-0 bg-white notifications w-8/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
-    id="notificationDiv"
-  >
-    <div class="flex justify-between block my-3">
-      <span class="my-auto inline-block font-bold md:text-2xl"
-        >Notifications</span
-      >
-      <button class="my-auto md:text-2xl font-bold noticeToggle">
-        <i class="las la-arrow-right"></i>
-      </button>
-    </div>
-    <div class="notices mt-4">
-      <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
-        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
-          ><img src="static/img/notice.png" alt="" class=""
-        /></span>
-
-        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
-          >Congratulations! You've earned a new achievement: "Master of
-          Quizzes."</span
-        >
-      </div>
-      <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
-        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
-          ><img src="static/img/notice.png" alt="" class=""
-        /></span>
-        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
-          >Our summer sale is here! Enjoy up to 50% off on selected items.
-          Limited time offer, shop now!</span
-        >
-      </div>
-    </div>
-  </div>
   <!-- Quiz section -->
   <section class="py-10 px-4">
     <div>
-      <h1 class="text-3xl font-bold">Science</h1>
-      <div class="quizzes flex justify-between flex-wrap mt-10">
+      <h1 class="inline-block pb-2 text-3xl font-bold border-b-2 border-clifford">Sciences</h1>
+      <div class="quizzes flex gap-5 mt-6">
         <!-- ================ -->
-        <div class="quiz_div w-6/12 md:w-3/12 shadow-lg p-3">
-          <div class="flex justify-center">
-            <div class="quiz-img w-3/5">
-              <img src="static/img/bch.jpg" alt="" class="w-full" />
-            </div>
-          </div>
+        <a href="{{ url_for('quiz_info') }}" class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12  p-3">
           <div class="quiz-main">
-            <h2 class="quiz-heading mt-4 text-base">Biochemistry</h2>
+            <h2 class="quiz-heading mt-4 text-2xl font-bold">Biochemistry</h2>
             <p class="quiz-body my-3 text-sm">
               Challenge yourself to do a Biochemistry quiz. This pack contains
-              textbooks, material to test you.
+              textbooks, material to test knowledge in biochemistry.
             </p>
-            <div class="quiz-footer text-right mt-4">
-              <a
-                href="/select-quiz"
-                class="bg-sage py-2 px-4 rounded-lg inline-block cursor-pointer text-white"
-                >View Quiz <i class="las la-arrow-right"></i></a
-              >
-            </div>
           </div>
-        </div>
+        </a>
+        <!-- ================ -->
+        <a href="{{ url_for('quiz_info') }}" class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12  p-3">
+          <div class="quiz-main">
+            <h2 class="quiz-heading mt-4 text-2xl font-bold">Microbiology</h2>
+            <p class="quiz-body my-3 text-sm">
+              Challenge yourself to do a Microbiology quiz. This pack contains
+              textbooks, material to test knowledge in Microbiology.
+            </p>
+          </div>
+        </a>
         <!-- ================ -->
       </div>
     </div>

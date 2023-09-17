@@ -2,128 +2,100 @@
 
 <!-- Head -->
 {% block head %}
-  <title>Register</title>
-{% endblock %}
-
-<!-- Dropdown -->
-{% block all_menu %}
-  <li class="m-3"><a href="/index">Home</a></li>
-  <li class="m-3"><a href="/about">About us</a></li>
-  <li class="m-3"><a href="/login">Sign in</a></li>
-{% endblock %}
-
-<!-- Navigation Menu -->
-{% block nav %}
-  <nav class="shadow-lg bg-white">
-      <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
-        <a href="/" class="my-auto w-32"
-          ><img src="static/img/logo.png" alt=""
-        /></a>
-        <ul class="hidden md:flex md:justify-center gap-5 my-auto">
-          <li><a href="/">Home</a></li>
-          <li>
-            <a href="/login">Login</a>
-          </li>
-        </ul>
-        <ul class="flex justify-center gap-5">
-          <li class="my-auto md:hidden relative">
-            <button class="toggle_btn text-2xl" id="toggle_btn">
-              <i class="las la-bars mt-1"></i>
-            </button>
-        </li>
-        </ul>
-      </div>
-    <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden" id="all_menu">
-      <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
-      <ul class="mt-40 h-full text-center">
-        <li class="m-3"><a href="/">Home</a></li>
-        <li class="m-3"><a href="/about">About us</a></li>
-      </ul>
-    </div>
-    </nav>
+<title>Register</title>
 {% endblock %}
 
 <!-- Body -->
 {% block body %}
-  <section class="h-screen mt-20 place-items-center md:m-0 md:grid">
-      <div class="flex justify-center gap-20 flex-col md:flex-row">
-        <div class="input-div my-auto w-full px-6 md:px-0 md:w-1/5">
-          <h1 class="font-bold text-2xl">Sign Up</h1>
-          <div class="my-3">
-            <p>
-              Already have an account?
-              <a
-                href="/login"
-                class="underline text-primaryBlue text-[14px]"
-                >Sign in</a
-              >
-            </p>
-          </div>
-
-          <form action="" class="my-3">
-            <div class="form-control">
-              <label class="font-bold text-lg">Email Id</label>
-              <input
-                type="email"
-                class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
-                placeholder="johndoe@example.com"
-              />
-            </div>
-            <div class="form-control">
-              <label class="font-bold text-lg">Password</label>
-              <input
-                type="password"
-                class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
-                placeholder="Enter 6 Characters or more"
-              />
-            </div>
-            <div class="form-control my-3">
-              <div class="flex gap-2 text-xs text-darkerGrey">
-                <i class="las la-check my-auto"></i>
-                <span class="my-auto"
-                  >Password should be 6 characters or more</span
-                >
-              </div>
-              <div class="flex gap-2 text-xs text-darkerGrey">
-                <i class="las la-check my-auto"></i>
-                <span class="my-auto"
-                  >Password should contain numbers and letters</span
-                >
-              </div>
-              <div class="flex gap-2 text-xs text-darkerGrey">
-                <i class="las la-check my-auto"></i>
-                <span class="my-auto"
-                  >Password should not contain special characters</span
-                >
-              </div>
-            </div>
-            <div
-              class="form-control bg-primaryMaroon py-3 text-white rounded-sm"
-            >
-              <input type="submit" value="SIGN UP" class="w-full cursor-pointer" />
-            </div>
-            <div class="form-control text-center my-3">
-              <span class="styled-text text-grey">or continue with</span>
-            </div>
-            <div class="form-control flex justify-center gap-10">
-              <a href="" class="border border-gray p-2 rounded font-bold text-red"
-                ><i class="lab la-google-plus-g"></i>
-                <span class="text-red">Google</span></a
-              >
-              <a
-                href=""
-                class="border border-gray p-2 rounded font-bold text-facebookBlue"
-                ><i class="lab la-facebook-f"></i
-                ><span class="">Facebook</span></a
-              >
-            </div>
-          </form>
-        </div>
-        <div
-          class="image-div hidden md:block w-2/5 floating focus:outline-none"
-        >
-          <img src="static/img/signup.jpg" alt="" />
-        </div>
+<section class="mt-20">
+  <div class="flex justify-center gap-20 flex-col md:flex-row">
+    <div class="input-div my-auto w-full px-6 md:px-0 md:w-1/5">
+      <h1 class="font-bold text-2xl">Sign Up</h1>
+      <div class="my-3">
+        <p>
+          Already have an account?
+          <a href="/login" class="underline text-primaryBlue text-[14px]"
+            >Sign in</a
+          >
+        </p>
       </div>
-    </section>
+
+      <form action="" class="my-3" method="post">
+        <div class="form-control">
+          <label class="font-bold text-lg">Email Id</label>
+          <input
+            type="email"
+            name="email"
+            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
+            placeholder="johndoe@example.com"
+          />
+        </div>
+        <div class="form-control">
+          <label class="font-bold text-lg">Name</label>
+          <input
+            type="text"
+            name="name"
+            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="form-control">
+          <label class="font-bold text-lg">Date of birth</label>
+          <input
+            type="date"
+            name="dob"
+            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
+          />
+        </div>
+        <div class="form-control">
+          <label class="font-bold text-lg">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
+            placeholder="Enter 6 Characters or more"
+          />
+        </div>
+        <div class="form-control my-3">
+          <div class="flex gap-2 text-xs text-darkerGrey">
+            <i class="las la-check my-auto"></i>
+            <span class="my-auto">Password should be 6 characters or more</span>
+          </div>
+          <div class="flex gap-2 text-xs text-darkerGrey">
+            <i class="las la-check my-auto"></i>
+            <span class="my-auto"
+              >Password should contain numbers and letters</span
+            >
+          </div>
+          <div class="flex gap-2 text-xs text-darkerGrey">
+            <i class="las la-check my-auto"></i>
+            <span class="my-auto"
+              >Password should not contain special characters</span
+            >
+          </div>
+        </div>
+        <div class="form-control bg-primaryMaroon py-3 text-white rounded-sm">
+          <input
+            type="submit"
+            name="submit"
+            value="SIGN UP"
+            class="w-full cursor-pointer"
+          />
+        </div>
+        <div class="form-control text-center my-3">
+          <span class="styled-text text-grey">or continue with</span>
+        </div>
+        <div class="form-control flex justify-center gap-10">
+          <a href="" class="border border-gray py-1 px-6 rounded-full text-red w-full text-center"
+            ><i class="lab la-google-plus-g my-auto"></i>
+            <span class="text-red inline-block mt-1">Google</span></a
+          >
+        </div>
+      </form>
+    </div>
+    <div class="image-div hidden md:block w-2/5 floating focus:outline-none">
+      <img src="static/img/signup.jpg" alt="" />
+    </div>
+  </div>
+</section>
 {% endblock %}

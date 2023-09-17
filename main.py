@@ -7,60 +7,56 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///questions.db'
 db = SQLAlchemy(app)
 
 
+class Users(db.Model):
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    username = db.Column(db.String(50), nullable=False)
+    accttype = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    contact = db.Column(db.String(50), nullable=False)
+    dob = db.Column(db.String(20), nullable=False)
+    location = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+
+
 class Questions(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
-    question = db.Column(db.String(50), nullable=False)
-    correct_answer = db.Column(db.String(250), nullable=False)
-    incorrect_answer = db.Column(db.String(250), nullable=False)
+    author = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
+    subject = db.Column(db.String(50), nullable=False)
+    type = db.Column(db.String(50), nullable=False)
+    questiontype = db.Column(db.String(50), nullable=False)
+    questions = db.Column(db.String(200), nullable=False)
+    options = db.Column(db.String(200), nullable=False)
+    privacy = db.Column(db.String(50), nullable=False)
 
 
-# API Call
-@app.route('/api.mindspark/<int:amount>')
-def api():
-    pass
-
-
-@app.route('/addquestion', methods=['GET', 'POST'])
-def question():
-    if request.method == 'POST':
-        question_to_add = request.form['question']
-        correct_answer = request.form['c_answer']
-        incorrect_answer = request.form['ic_answer']
-        new_question = Questions(question=question_to_add, correct_answer=correct_answer,
-                                 incorrect_answer=incorrect_answer)
-        db.session.add(new_question)
-        db.session.commit()
-    return render_template('test.html')
-
+# with app.app_context():
+#     db.create_all()
 
 @app.route('/')
 def index():
-    return redirect(url_for('select_quiz'))
-    # return render_template('index.html')
-
-
-@app.route('/about')
-def about():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/about.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('index.html')
 
 
 @app.route('/create-quiz')
 def create_quiz():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/create-quiz.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/create-quiz.html')
 
 
 @app.route('/coming-soon')
 def coming_soon():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/coming_soon.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/coming_soon.html')
 
 
-@app.route('/dashboard')
-def dashboard():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/dashboard.html')
+@app.route('/dashboard/<username>')
+def dashboard(username):
+    user = Users.query.filter_by(username=username).first_or_404(description="No user with the provided username")
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/dashboard.html', user=user)
 
 
 @app.route('/endquiz')
@@ -74,6 +70,11 @@ def select_quiz():
     return render_template('pages/select_quiz.html')
 
 
+@app.route('/quiz-info')
+def quiz_info():
+    return render_template('pages/quiz_info.html')
+
+
 @app.route('/take-quiz', methods=['GET', 'POST'])
 def take_quiz():
     amount = request.form['amount']
@@ -83,31 +84,43 @@ def take_quiz():
         chapter = request.form['chapter']
         # quiz_type = request.form['type']
         quiz_data = get_quiz(amount, chapter)
-        return render_template('pages/spark.html', quiz_data=quiz_data, quiz_contents=amount)
+        return render_template('pages/take-quiz.html', quiz_data=quiz_data, quiz_contents=amount)
 
 
 @app.route('/quiz')
 def quiz():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/quiz.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/quiz.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/login.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/login.html')
 
 
 @app.route('/recover')
 def recover():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/recover.html')
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/recover.html')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return redirect(url_for('select_quiz'))
-    # return render_template('pages/register.html')
+    if request.method == 'POST':
+        email = request.form['email']
+        username = email.split('@')[0]
+        name = request.form['name']
+        dob = request.form['dob']
+        dob = request.form['dob']
+        password = request.form['password']
+        new_user = Users(username=username, name=name, accttype='Regular', contact=email, dob=dob, location='Not set',
+                         password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('dashboard', username=username))
+    # return redirect(url_for('select_quiz'))
+    return render_template('pages/register.html')
 
 
 @app.route("/<page>")

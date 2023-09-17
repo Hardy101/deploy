@@ -2,114 +2,6 @@
 {% block head %}
   <title>Quiz</title>
 {% endblock %}
-
-{% block nav %}
-  <nav class="bg-white z-20 bg-white w-full">
-      <div class="flex justify-between px-4 py-5">
-        <a href="/" class="my-auto w-32"
-          ><img src="static/img/logo.png" alt=""
-        /></a>
-        <ul class="hidden md:flex md:justify-center gap-5 my-auto">
-          <li class="my-auto"><a href="/">Home</a></li>
-          <li class="my-auto">
-            <a href="#" class="dropdown-toggle" id="dropdown-toggle"
-              >Categories <i class="las la-angle-down caret_icon"></i
-            ></a>
-            <div
-              class="dropdown-menu absolute top-24 rounded-md bg-white"
-              id="dropdown-menu"
-            >
-              <ul>
-                <li class="px-4 py-2 mt-2">
-                  <a href="" class="flex gap-2"
-                    ><img
-                      src="static/img/arts.png"
-                      class="my-auto"
-                      width="20"
-                      alt=""
-                    /><span class="my-auto">Arts and Humanities</span></a
-                  >
-                </li>
-                <li class="px-4 py-2">
-                  <a href="" class="flex gap-2"
-                    ><img
-                      src="static/img/science.png"
-                      class="my-auto"
-                      width="20"
-                      alt=""
-                    /><span class="my-auto">Science</span></a
-                  >
-                </li>
-                <li class="px-4 py-2">
-                  <a href="" class="flex gap-2"
-                    ><img
-                      src="static/img/social-science.png"
-                      class="my-auto"
-                      width="20"
-                      alt=""
-                    /><span class="my-auto">Social science</span></a
-                  >
-                </li>
-                <li class="px-4 py-2">
-                  <a href="" class="flex gap-2"
-                    ><img
-                      src="static/img/others.png"
-                      class="my-auto"
-                      width="20"
-                      alt=""
-                    /><span class="my-auto">Others</span></a
-                  >
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <a href="/quiz" class="my-auto"
-              ><span class="hidden md:inline-block">Quiz me!</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="/create-quiz"
-              class="bg-primaryMaroon px-3 py-2 text-white rounded-sm"
-              ><span class="hidden md:inline-block">Create Quiz</span>
-              <i class="las la-plus"></i
-            ></a>
-          </li>
-        </ul>
-        <ul class="flex justify-center gap-5 my-auto">
-          <li class="my-auto noticeToggle" >
-            <button><i class="las la-bell text-2xl"></i></button>
-          </li>
-          <li class="my-auto">
-            <a href="/coming-soon"
-              ><i class="las la-sign-out-alt text-2xl"></i
-            ></a>
-          </li>
-          <li class="my-auto md:hidden">
-            <button class="toggle_btn" id="toggle_btn">
-              <i class="las la-bars  text-2xl"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
-    <div class="all-menu fixed top-0 w-full h-screen bg-white md:hidden z-20" id="all_menu">
-      <button class="absolute top-10 right-10 text-3xl toggle_btn"><i class="las la-times"></i></button>
-      <ul class="mt-40 h-full text-center">
-        <li class="m-3"><a href="/">Home</a></li>
-        <li class="m-3"><a href="/about">About us</a></li>
-        <li class="m-3"><a href="#">Categories</a></li>
-        <li class="m-3"><a href="/quiz">Quiz Me!</a></li>
-        <li class="m-3"><a href="/create-quiz">Create quiz</a></li>
-        <li class="mt-16 mx-auto block text-center">
-           <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center">
-           <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
-        </li>
-      </ul>
-    </div>
-    </nav>
-{% endblock %}
-
 <!-- Body -->
 {% block body %}
 <!-- Notifications -->
@@ -154,24 +46,24 @@
     >
       <div class="flex justify-center flex-col gap-10 md:flex-row">
         <div class="user-info w-full order-last px-10 md:order-first md:w-2/5">
-          <span class="font-bold md:text-3xl">Peter Petrelli</span>
+          <span class="font-bold md:text-3xl">{{ user.name }}</span>
           <sup class="text-[10px] px-2 p bg-primaryBlue text-white md:text-xs"
-            >Premium</sup
+            >{{ user.accttype }}</sup
           >
-          <span class="block text-[12px] md:text-base">@eghordia130</span>
+          <span class="block text-[12px] md:text-base">@{{ user.username }}</span>
           <!-- User Info -->
           <div class="grid grid-cols-2 mt-3 text-xs md:text-base">
             <div>
               <span class="text-grey font-bold block mt-3">Location</span>
-              <span class="">Los angeles</span>
+              <span class="">{{ user.name }}</span>
             </div>
             <div>
               <span class="text-grey font-bold block mt-3">Contact</span>
-              <span>Eghordia130@gmail.com</span>
+              <span>{{ user.contact }}</span>
             </div>
             <div>
-              <span class="text-grey font-bold block mt-3">Address</span>
-              <span>20, teddybear street</span>
+              <span class="text-grey font-bold block mt-3">Date of birth</span>
+              <span>{{ user.dob }}</span>
             </div>
           </div>
           <h2 class="mt-6 font-semibold md:text-2xl">Actions</h2>
@@ -188,10 +80,12 @@
           </div>
         </div>
         <div class="user-photo mx-auto w-8/12 md:m-0 md:w-4/12">
-          <img src="static/img/profile.jpg" alt="" class="w-full" />
+          <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="" class="w-full" />
         </div>
       </div>
     </section>
+<div>
+</div>
   <!-- Authored Quizzes -->
   <section class="mt-20 md:mt-12">
       <div class="px-8 md:py-10 md:px-28">

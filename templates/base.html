@@ -12,318 +12,175 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/tailwindcss" href="" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <link
-      href="https://fonts.googleapis.com/css2?family=Arima&display=swap"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
     />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
     <script src="{{ url_for('static', filename='js/config.js') }}"></script>
     {% block head %}{% endblock %}
   </head>
-  <body class="relative">
-    <!--  Navigation Menu -->
+  <body class="relative ">
     {% block nav %}
-     <nav class="shadow-lg bg-white sticky top-0 z-20 bg-white">
-        <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
-          <a href="/" class="my-auto w-32"
-            ><img src="static/img/logo.png" alt=""
-          /></a>
-          <ul class="hidden md:flex md:justify-center gap-5 my-auto">
-            <li><a href="/fish">Home</a></li>
-            <li><a href="/about">About us</a></li>
-
-            <li>
-              <a href="#" class="dropdown-toggle" id="dropdown-toggle"
-                >Categories <i class="las la-angle-down caret_icon"></i
-              ></a>
-              <div
-                class="dropdown-menu absolute top-24 rounded-md bg-white"
-                id="dropdown-menu"
-              >
-                <div class="flex">
-                <ul class="border-r-2">
-                  <li class="mt-2 cat-ul">
-                    <a href="" class="flex gap-2 px-4 py-3 exams"
-                      ><img
-                        src="{{ url_for('static', filename='img/exam.png') }}"
-                        class="my-auto"
-                        width="20"
-                        alt=""
-                      /><span class="my-auto">Exams</span></a
-                    >
-                  </li>
-                  <li class="cat-ul">
-                    <a href="" class="flex gap-2 px-4 py-3 exams-p"
-                      ><img
-                        src="{{ url_for('static', filename='img/exam-p.png') }}"
-                        class="my-auto"
-                        width="20"
-                        alt=""
-                      /><span class="my-auto">Exams Practice</span></a
-                    >
-                  </li>
-                  <li class="cat-ul">
-                    <a href="" class="flex gap-2 px-4 py-3 arts"
-                      ><img
-                        src="{{ url_for('static', filename='img/arts.png') }}"
-                        class="my-auto"
-                        width="20"
-                        alt=""
-                      /><span class="my-auto">Arts and Humanities</span></a
-                    >
-                  </li>
-                  <li class="cat-ul">
-                    <a href="" class="flex gap-2 px-4 py-3 science"
-                      ><img
-                        src="{{ url_for('static', filename='img/science.png') }}"
-                        class="my-auto"
-                        width="20"
-                        alt=""
-                      /><span class="my-auto">Science</span></a
-                    >
-                  </li>
-                  <li class="cat-ul">
-                    <a href="" class="flex gap-2 px-4 py-3 social-science"
-                      ><img
-                        src="{{ url_for('static', filename='img/social-science.png') }}"
-                        class="my-auto"
-                        width="20"
-                        alt=""
-                      /><span class="my-auto">Social science</span></a
-                    >
-                  </li>
-                  <li class="cat-ul">
-                    <a href="" class="flex gap-2 px-4 py-3 others"
-                      ><img
-                        src="{{ url_for('static', filename='img/others.png') }}"
-                        class="my-auto"
-                        width="20"
-                        alt=""
-                      /><span class="my-auto">Others</span></a
-                    >
-                  </li>
-                </ul>
-                <ul class="exams-div detail-div">
-                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">JAMB</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">NECO</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">WAEC</span></a
-                    >
-                  </li>
-                </ul>
-                <ul class="exams-p-div detail-div hidden">
-                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Biochemistry</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Zoology</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Plant Biology</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Microbiology</span></a
-                    >
-                  </li>
-                </ul>
-                <ul class="science-div detail-div hidden">
-                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Biochemistry</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Zoology</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Plant Biology</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Microbiology</span></a
-                    >
-                  </li>
-                </ul>
-                <ul class="social-science-div hidden detail-div">
-                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Anthropology</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Economics</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Political Science</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Psychology</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Sociology</span></a
-                    >
-                  </li>
-                </ul>
-                <ul class="arts-div hidden detail-div">
-                  <li class="pl-10 pr-8 py-3 mt-2 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Art History</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Dance</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Design</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Film Studies</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Literature</span></a
-                    >
-                  </li>
-                  <li class="pl-10 pr-8 py-3 cat-ul">
-                    <a href="" class="flex gap-2"
-                      ><span class="my-auto">Music</span></a
-                    >
-                  </li>
-                </ul>
-                </div>
-
-              </div>
-            </li>
-            <li>
-              <a href="/quiz">Flash Cards</a>
-            </li>
-          </ul>
-          <ul class="flex justify-center gap-5">
-            <li class="hidden md:inline-block">
-              <a
-                href="/login"
-                class="px-10 py-2 rounded-sm inline-block"
-                ><span>Log in</span> <i class="las la-sign-in-alt my-auto"></i
-              ></a>
-            </li>
-            <li class="hidden md:inline-block">
-              <a
-                href="/register"
-                class="bg-primaryMaroon px-10 py-2 rounded-sm text-white inline-block"
-                ><span>Signup</span> <i class="las la-user-plus"></i
-              ></a>
-            </li>
-            <li class="my-auto inline-block md:hidden relative">
-              <button class="px-10 py-2 toggle_btn text-4xl" id="toggle_btn">
-                <i class="las la-bars mt-3"></i>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    {% endblock %}
-    <div class="all-menu hidden fixed top-0 w-full h-full bg-white animate__animated z-20 overflow-auto" id="all_menu">
-         <button class="absolute top-10 right-[9%] text-3xl close_btn"><i class="las la-times"></i></button>
-         <ul class="mt-28 h-full pl-10">
-         {% block all_menu %}{% endblock %}
+    <nav class="bg-white sticky top-0 z-20">
+      <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
+        <a href="/" class="my-auto w-32">MindSpark</a>
+        <ul class="hidden md:flex md:justify-center gap-5 my-auto">
+          <li>
+            <form action="" class="flex gap-2">
+              <input
+                type="text"
+                placeholder="Search"
+                class="border-2 border-gray focus:outline-none rounded-md px-2 py-1"
+              />
+              <input
+                type="submit"
+                value="search"
+                class="rounded-sm px-2 py-1 bg-primaryMaroon text-white"
+              />
+            </form>
+          </li>
         </ul>
-       </div>
+        <ul class="flex justify-center gap-5 my-auto">
+          <li class="my-auto">
+            <button class="sideMore">
+                <i class="las la-ellipsis-v text-2xl"></i>
+            </button>
+          </li>
+          <li class="my-auto">
+            <button class="noticeToggle">
+              <i class="las la-bell text-2xl"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Sidebar for more menu -->
+    <div class="sidemore text-white fixed right-0 top-0 bg-gray-700 w-8/12 h-[100%] z-30 md:w-5/12" id="sidemore">
+      <h2 class="text-2xl my-3 mx-2 pb-2 border-b flex justify-between">
+        <span>Menu</span>
+        <button class="my-auto text-3xl" id="closesidemore"><i class="las la-arrow-right"></i></button>
+      </h2>
+      <ul class="mx-2 leading-6">
+        <li><a href="{{ url_for('index') }}" class="py-1 px-3 mt-3 border-l-4 border-clifford flex gap-3">
+          <i class="las la-home inline-block my-auto text-2xl"></i>
+          <span class="inline-block my-auto">Home</span>
+          </a></li>
+        <li><a href="{{ url_for('quiz') }}" class="py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
+          <i class="lar la-file-alt my-auto text-2xl"></i>
+          <span class="inline-block my-auto">Quiz</span></a>
+          </li>
+        <li><a href="{{ url_for('coming_soon') }}" class="py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
+          <i class="lar la-images my-auto text-2xl"></i>
+          <span class="inline-block my-auto">Flashcards</span></a></li>
+        <li><a href="{{ url_for('create_quiz') }}" class="py-2 px-3 mt-2 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
+          <i class="las la-plus my-auto text-2xl"></i>
+          <span class="inline-block my-auto">Create Quiz</span></a></li>
+        <li><a href="{{ url_for('dashboard', username='eghordia130')}}" class="py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
+          <i class="las la-user my-auto text-2xl"></i>
+          <span class="inline-block my-auto">Profile</span></a></li>
+      </ul>
+
+      <div class="absolute bottom-0  w-full">
+        <ul class="m-3 text-center">
+          <li><a href="{{ url_for('login') }}" class="w-full block mb-3 py-1 rounded-full border border-gray-300">Sign in / up</a></li>
+          <li><a href="#" class="w-full block py-1 bg-clifford rounded-full">Log out</a></li>
+        </ul>
+      </div>
+    </div>
+    {% endblock %}
     <!-- Overlay -->
-    <div class="overlay hidden bg-[#000] opacity-30 fixed w-full h-full top-0 z-10 cursor-pointer"></div>
+    <div
+      class="overlay hidden bg-[#000] opacity-30 fixed w-full h-full top-0 z-20 cursor-pointer"
+    ></div>
+    <!-- Notifications -->
+    <div
+      class="fixed right-0 top-0 bg-white notifications w-8/12 h-[100%] py-2 px-4 md:px-2 z-30 md:w-5/12"
+      id="notificationDiv"
+    >
+      <div class="flex justify-between block my-3">
+        <span class="my-auto inline-block font-bold md:text-2xl"
+          >Notifications</span
+        >
+        <button class="my-auto md:text-2xl font-bold noticeToggle">
+          <i class="las la-arrow-right"></i>
+        </button>
+      </div>
+      <div class="notices mt-4">
+        <div
+          class="p-2 border-dashed border-b-2 cursor-pointer hover:bg-lightGrey"
+        >
+          <!-- <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+            ><img src="static/img/notice.png" alt="" class=""
+          /></span> -->
+          <span class="text-sm md:text-base my-auto"
+            >Congratulations! You've earned a new achievement: "Master of
+            Quizzes."</span
+          >
+        </div>
+        <div
+          class="p-2 border-dashed border-b-2 cursor-pointer hover:bg-lightGrey"
+        >
+          <span class="text-sm md:text-base"
+            >Our summer sale is here! Enjoy up to 50% off on selected items.
+            Limited time offer, shop now!</span
+          >
+        </div>
+      </div>
+    </div>
     {% block body %}{% endblock %}
     <!-- Footer -->
     {% block footer %}
     <footer class="bg-yellow py-3">
-        <div
-          class="parent-div flex justify-between px-10 gap-20 flex-wrap md:justify-center"
-        >
-          <div class="grid_1 flex flex-col">
-            <div class="font-bold my-2">Company</div>
-            <ul class="columnList">
-              <li>
-                <a href="/about">About</a>
-              </li>
-              <li>
-                <a href="/coming_soon">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="/coming_soon">Terms of Service</a>
-              </li>
-            </ul>
-          </div>
-          <div class="grid_2">
-            <div class="font-bold my-2">Connect</div>
-            <ul class="columnList">
-              <li><a href="#">Contact us</a></li>
-              <li>
-                <a href=""><i class="lab la-facebook-f"></i> Facebook</a>
-              </li>
-              <li>
-                <a href=""><i class="lab la-instagram"></i> Instagram</a>
-              </li>
-              <li>
-                <a href=""><i class="lab la-twitter"></i> Twitter</a>
-              </li>
-              <li>
-                <a href=""><i class="lab la-linkedin"></i> Linkedin</a>
-              </li>
-            </ul>
-          </div>
-          <div class="grid_3">
-            <div class="font-bold my-2">Features</div>
-            <ul class="columnList">
-              <li><a href="/quiz">Quiz</a></li>
-              <li><a href="">Quiz Generator</a></li>
-              <li>
-                <a href="">Random Quiz Picker</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="text-center mt-3">2023 Mind Spark Inc.</div>
-      </footer>
+      <div class="parent-div px-10">
+        <div class="font-bold my-2"><a href="/">MindSpark</a></div>
+        <ul class="flex gap-7 flex-row flex-wrap">
+          <li>
+            <a href="/home">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+          <li>
+            <a href="/about">Contact</a>
+          </li>
+          <li>
+            <a href="/coming_soon">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="/coming_soon">Terms of Service</a>
+          </li>
+        </ul>
+      </div>
+      <div class="px-10 mt-5 text-center md:text-left">
+        <p>&copy; MindSpark 2023</p>
+        <p class="my-3">
+          Need help? <a href="#" class="font-bold">Contact us</a>
+        </p>
+      </div>
+    </footer>
     {% endblock %}
     {% block script %}
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% endblock %}
+    <!-- cookie notification -->
+<!--    <div class="fixed bottom-0 w-full border border-t-2 bg-white z-10">-->
+<!--      <div class="flex justify-center gap-10 align-center py-2 px-4">-->
+<!--        <span class="inline-block w-3/5"-->
+<!--          >We use cookies to personalise your experience and to analyse our-->
+<!--          website traffic. By continuing to use our website, you consent to our-->
+<!--          cookies.</span>-->
+<!--        <div class="flex justify-center gap-5 w-2/5">-->
+<!--          <a href="#" class="border px-2 rounded-md inline-block my-auto">View cookie policy</a>-->
+<!--          <button class="border px-5 bg-primaryMaroon text-white rounded-md inline-block my-auto">Accept</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </body>
 </html>

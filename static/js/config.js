@@ -7,6 +7,8 @@ tailwind.config = {
         facebookBlue: "#1877F2",
         primaryMaroon: "#862B0D",
         grey: "#d1d1d1",
+        transparentGrey: "rgba(255, 255, 255, 0.4)",
+        lightGrey: "#eee",
         red: "#B70404",
         brown: "#FFF9C9",
         sage: "#B5C99A",

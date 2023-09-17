@@ -1,11 +1,3 @@
-// Loader for  fetching API
-//const isContentLoaded = document.querySelector('.questionDiv')
-//while (isContentLoaded){
-//   document.getElementById('loader').classList.remove('hidden');
-//}
-// document.addEventListener('DOMContentLoaded', () => {
-//      document.getElementById('loader').style.display = 'none';
-//  });
 // Go back to the previous page
 function goBack() {
   window.history.back();
@@ -93,43 +85,6 @@ if (document.getElementById("toggle_btn")) {
   });
 }
 
-// Categories Caret
-exam_toggle = document.querySelector('.exams-toggle')
-exam_menu = document.querySelector('.exams-menu')
-exam_practice_toggle = document.querySelector('.exam-p-toggle')
-exam_practice_menu = document.querySelector('.exam-p-menu')
-arts_toggle = document.querySelector('.arts-toggle')
-arts_menu = document.querySelector('.arts-menu')
-science_toggle = document.querySelector('.science-toggle')
-science_menu = document.querySelector('.science-menu')
-social_science_toggle = document.querySelector('.social-science-toggle')
-social_science_menu = document.querySelector('.social-science-menu')
-other_menu = document.querySelectorAll('.other-menu')
-
-function openMenu(menuToOpen){
-    other_menu.forEach((menu)=>{
-        menu.classList.add('h-0')
-    })
-    menuToOpen.classList.toggle('h-auto')
-}
-
-exam_toggle.addEventListener('click', (event)=>{
-    childElement = event.target.querySelector('i')
-    childElement.classList.toggle('caret-rotate')
-    openMenu(exam_menu)}
-    )
-exam_practice_toggle.addEventListener('click', (event)=>{
-    childElement = event.target.querySelector('i')
-    childElement.classList.toggle('caret-rotate')
-    openMenu(exam_practice_menu)})
-arts_toggle.addEventListener('click', ()=>{
-openMenu(arts_menu)})
-science_toggle.addEventListener('click', ()=>{
-openMenu(science_menu)})
-social_science_toggle.addEventListener('click', ()=>{
-openMenu(social_science_menu)})
-
-
 // Share Div
 share_links = document.querySelector('.share-div')
 share_btn = document.querySelector('.share')
@@ -162,7 +117,20 @@ if (document.querySelectorAll(".noticeToggle")) {
     });
   });
 }
-// When the background is clicked
+
+if (document.querySelector('.sideMore')){
+const sideDivButton = document.querySelector('.sideMore')
+const closeSideDivButton = document.querySelector('#closesidemore')
+const sideDiv = document.querySelector('#sidemore')
+
+closeSideDivButton.addEventListener('click', ()=> {
+    sideDiv.classList.remove('active')
+    toggleOverlay()
+})
+    sideDivButton.addEventListener("click", function () {
+      sideDiv.classList.toggle("active");
+      toggleOverlay()
+    })
 
 // Overlay Feature
 const overlay_div = document.querySelector('.overlay')
@@ -171,8 +139,11 @@ function toggleOverlay(){
 }
 overlay_div.addEventListener('click', ()=> {
     notificationDiv.classList.remove("active");
-    overlay_div.classList.add('hidden')
+    sideDiv.classList.remove('active')
+    toggleOverlay()
 })
+}
+
 // Placeholder Animation
 const inputFields = document.querySelectorAll(".quiz-input");
 
