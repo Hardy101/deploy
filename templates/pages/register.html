@@ -9,7 +9,7 @@
 {% block body %}
 <section class="mt-20">
   <div class="flex justify-center gap-20 flex-col md:flex-row">
-    <div class="input-div my-auto w-full px-6 md:px-0 md:w-1/5">
+    <div class="input-div my-auto w-full px-6 md:px-0 md:w-4/12">
       <h1 class="font-bold text-2xl">Sign Up</h1>
       <div class="my-3">
         <p>
@@ -21,40 +21,33 @@
       </div>
 
       <form action="" class="my-3" method="post">
+        {{ form.csrf_token }} 
+        {% if message %}
+        <div class="form-control my-2 px-2 py-1 text-clifford bg-lightRed flex">
+          <i class="las la-times-circle inline-block text-3xl my-auto"></i>
+          <span class="inline-block pl-2 my-auto font-bold text-sm">{{ message }}</span>
+        </div>
+        {% endif %}
         <div class="form-control">
-          <label class="font-bold text-lg">Email Id</label>
-          <input
-            type="email"
-            name="email"
-            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
-            placeholder="johndoe@example.com"
-          />
+          {{ form.email.label(class="font-bold text-lg") }} {{
+          form.email(class="border-2 rounded-sm border-gray p-2 block w-full
+          my-2 outline-none focus:border-clifford",
+          placeholder="johndoe@example.com") }}
         </div>
         <div class="form-control">
-          <label class="font-bold text-lg">Name</label>
-          <input
-            type="text"
-            name="name"
-            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
-            placeholder="John Doe"
-          />
+          {{ form.name.label(class="font-bold text-lg") }} {{
+          form.name(class="border-2 rounded-sm border-gray p-2 block w-full my-2
+          outline-none focus:border-clifford", placeholder="John Doe") }}
         </div>
         <div class="form-control">
-          <label class="font-bold text-lg">Date of birth</label>
-          <input
-            type="date"
-            name="dob"
-            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
-          />
+          {{ form.dob.label(class="font-bold text-lg") }} {{
+          form.dob(class="border-2 rounded-sm border-gray p-2 block w-full my-2
+          outline-none focus:border-clifford") }}
         </div>
         <div class="form-control">
-          <label class="font-bold text-lg">Password</label>
-          <input
-            type="password"
-            name="password"
-            class="border-2 rounded-sm border-gray p-2 block w-full my-2 outline-none focus:border-primaryMaroon"
-            placeholder="Enter 6 Characters or more"
-          />
+          {{ form.password.label(class="font-bold text-lg") }} {{
+          form.password(class="border-2 rounded-sm border-gray p-2 block w-full
+          my-2 outline-none focus:border-clifford", placeholder="*****") }}
         </div>
         <div class="form-control my-3">
           <div class="flex gap-2 text-xs text-darkerGrey">
@@ -74,26 +67,23 @@
             >
           </div>
         </div>
-        <div class="form-control bg-primaryMaroon py-3 text-white rounded-sm">
-          <input
-            type="submit"
-            name="submit"
-            value="SIGN UP"
-            class="w-full cursor-pointer"
-          />
+        <div class="form-control bg-clifford py-3 text-white rounded-full">
+          {{ form.submit(class="w-full cursor-pointer") }}
         </div>
         <div class="form-control text-center my-3">
           <span class="styled-text text-grey">or continue with</span>
         </div>
         <div class="form-control flex justify-center gap-10">
-          <a href="" class="border border-gray py-1 px-6 rounded-full text-red w-full text-center"
+          <a
+            href=""
+            class="border border-gray py-1 px-6 rounded-full text-red w-full text-center"
             ><i class="lab la-google-plus-g my-auto"></i>
             <span class="text-red inline-block mt-1">Google</span></a
           >
         </div>
       </form>
     </div>
-    <div class="image-div hidden md:block w-2/5 floating focus:outline-none">
+    <div class="image-div hidden md:block w-2/5 focus:outline-none">
       <img src="static/img/signup.jpg" alt="" />
     </div>
   </div>

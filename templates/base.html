@@ -12,9 +12,14 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/tailwindcss" href="" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -26,11 +31,11 @@
     <script src="{{ url_for('static', filename='js/config.js') }}"></script>
     {% block head %}{% endblock %}
   </head>
-  <body class="relative ">
+  <body class="relative">
     {% block nav %}
     <nav class="bg-white sticky top-0 z-20">
       <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
-        <a href="/" class="my-auto w-32">MindSpark</a>
+        <a href="/" class="my-auto kanit text-xl"><span class="p-2 bg-clifford text-white radius-1">Mind</span>Spark</a>
         <ul class="hidden md:flex md:justify-center gap-5 my-auto">
           <li>
             <form action="" class="flex gap-2">
@@ -42,7 +47,7 @@
               <input
                 type="submit"
                 value="search"
-                class="rounded-sm px-2 py-1 bg-primaryMaroon text-white"
+                class="rounded-sm px-2 py-1 bg-clifford text-white"
               />
             </form>
           </li>
@@ -50,7 +55,7 @@
         <ul class="flex justify-center gap-5 my-auto">
           <li class="my-auto">
             <button class="sideMore">
-                <i class="las la-ellipsis-v text-2xl"></i>
+              <i class="las la-ellipsis-v text-2xl"></i>
             </button>
           </li>
           <li class="my-auto">
@@ -62,35 +67,81 @@
       </div>
     </nav>
     <!-- Sidebar for more menu -->
-    <div class="sidemore text-white fixed right-0 top-0 bg-gray-700 w-8/12 h-[100%] z-30 md:w-5/12" id="sidemore">
+    <div
+      class="sidemore fixed right-0 rounded-lg top-0 bg-white w-8/12 h-[97%] z-30 md:w-5/12"
+      id="sidemore"
+    >
       <h2 class="text-2xl my-3 mx-2 pb-2 border-b flex justify-between">
         <span>Menu</span>
-        <button class="my-auto text-3xl" id="closesidemore"><i class="las la-arrow-right"></i></button>
+        <button class="my-auto text-3xl" id="closesidemore">
+          <i class="las la-arrow-right"></i>
+        </button>
       </h2>
       <ul class="mx-2 leading-6">
-        <li><a href="{{ url_for('index') }}" class="py-1 px-3 mt-3 border-l-4 border-clifford flex gap-3">
-          <i class="las la-home inline-block my-auto text-2xl"></i>
-          <span class="inline-block my-auto">Home</span>
-          </a></li>
-        <li><a href="{{ url_for('quiz') }}" class="py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
-          <i class="lar la-file-alt my-auto text-2xl"></i>
-          <span class="inline-block my-auto">Quiz</span></a>
-          </li>
-        <li><a href="{{ url_for('coming_soon') }}" class="py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
-          <i class="lar la-images my-auto text-2xl"></i>
-          <span class="inline-block my-auto">Flashcards</span></a></li>
-        <li><a href="{{ url_for('create_quiz') }}" class="py-2 px-3 mt-2 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
-          <i class="las la-plus my-auto text-2xl"></i>
-          <span class="inline-block my-auto">Create Quiz</span></a></li>
-        <li><a href="{{ url_for('dashboard', username='eghordia130')}}" class="py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford flex gap-3">
-          <i class="las la-user my-auto text-2xl"></i>
-          <span class="inline-block my-auto">Profile</span></a></li>
+        <li>
+          <a
+            href="{{ url_for('index') }}"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+          >
+            <i class="las la-home inline-block my-auto text-2xl"></i>
+            <span class="inline-block my-auto">Home</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="{{ url_for('quiz') }}"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+          >
+            <i class="lar la-file-alt my-auto text-2xl"></i>
+            <span class="inline-block my-auto">Quiz</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="{{ url_for('coming_soon') }}"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+          >
+            <i class="lar la-images my-auto text-2xl"></i>
+            <span class="inline-block my-auto">Flashcards</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="{{ url_for('create_quiz') }}"
+            class="flex gap-3 py-2 px-3 mt-2 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+          >
+            <i class="las la-plus my-auto text-2xl"></i>
+            <span class="inline-block my-auto">Create Quiz</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="{{ url_for('dashboard', username=current_user.username) }}"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+          >
+            <i class="las la-user my-auto text-2xl"></i>
+            <span class="inline-block my-auto">Profile</span></a
+          >
+        </li>
       </ul>
 
-      <div class="absolute bottom-0  w-full">
+      <div class="absolute bottom-0 w-full">
         <ul class="m-3 text-center">
-          <li><a href="{{ url_for('login') }}" class="w-full block mb-3 py-1 rounded-full border border-gray-300">Sign in / up</a></li>
-          <li><a href="#" class="w-full block py-1 bg-clifford rounded-full">Log out</a></li>
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{ url_for('logout') }}" class="w-full text-white block py-1 bg-clifford rounded-full"
+              >Log out</a
+            >
+          </li>
+          {% else %}
+          <li>
+            <a
+              href="{{ url_for('login') }}"
+              class="w-full block mb-3 py-1 rounded-full border border-gray-300"
+              >Sign in / up</a
+            >
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -101,7 +152,7 @@
     ></div>
     <!-- Notifications -->
     <div
-      class="fixed right-0 top-0 bg-white notifications w-8/12 h-[100%] py-2 px-4 md:px-2 z-30 md:w-5/12"
+      class="fixed right-0 top-0 rounded-lg bg-white notifications w-8/12 h-[97%] py-2 px-4 md:px-2 z-30 md:w-5/12"
       id="notificationDiv"
     >
       <div class="flex justify-between block my-3">
@@ -137,10 +188,12 @@
     {% block body %}{% endblock %}
     <!-- Footer -->
     {% block footer %}
-    <footer class="bg-yellow py-3">
-      <div class="parent-div px-10">
-        <div class="font-bold my-2"><a href="/">MindSpark</a></div>
-        <ul class="flex gap-7 flex-row flex-wrap">
+    <footer class="bg-gray-600 text-white py-3">
+      <div class="font-bold mb-5 mx-10 md:my-2"><a href="/">MindSpark</a></div>
+      <div
+        class="parent-div flex justify-center gap-10 px-10 md:justify-none md:gap-0 md:flex-col"
+      >
+        <ul class="flex gap-2 flex-col flex-wrap md:flex-row md:gap-5">
           <li>
             <a href="/home">Home</a>
           </li>
@@ -157,30 +210,29 @@
             <a href="/coming_soon">Terms of Service</a>
           </li>
         </ul>
-      </div>
-      <div class="px-10 mt-5 text-center md:text-left">
-        <p>&copy; MindSpark 2023</p>
-        <p class="my-3">
-          Need help? <a href="#" class="font-bold">Contact us</a>
-        </p>
+        <div class="my-auto md:mt-5 text-center md:text-left">
+          <p>&copy; MindSpark 2023</p>
+          <p class="my-3">
+            Need help? <a href="#" class="font-bold underline">Contact us</a>
+          </p>
+        </div>
       </div>
     </footer>
-    {% endblock %}
-    {% block script %}
+    {% endblock %} {% block script %}
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% endblock %}
     <!-- cookie notification -->
-<!--    <div class="fixed bottom-0 w-full border border-t-2 bg-white z-10">-->
-<!--      <div class="flex justify-center gap-10 align-center py-2 px-4">-->
-<!--        <span class="inline-block w-3/5"-->
-<!--          >We use cookies to personalise your experience and to analyse our-->
-<!--          website traffic. By continuing to use our website, you consent to our-->
-<!--          cookies.</span>-->
-<!--        <div class="flex justify-center gap-5 w-2/5">-->
-<!--          <a href="#" class="border px-2 rounded-md inline-block my-auto">View cookie policy</a>-->
-<!--          <button class="border px-5 bg-primaryMaroon text-white rounded-md inline-block my-auto">Accept</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div class="fixed bottom-0 w-full border border-t-2 bg-white z-10">-->
+    <!--      <div class="flex justify-center gap-10 align-center py-2 px-4">-->
+    <!--        <span class="inline-block w-3/5"-->
+    <!--          >We use cookies to personalise your experience and to analyse our-->
+    <!--          website traffic. By continuing to use our website, you consent to our-->
+    <!--          cookies.</span>-->
+    <!--        <div class="flex justify-center gap-5 w-2/5">-->
+    <!--          <a href="#" class="border px-2 rounded-md inline-block my-auto">View cookie policy</a>-->
+    <!--          <button class="border px-5 bg-clifford text-white rounded-md inline-block my-auto">Accept</button>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </body>
 </html>

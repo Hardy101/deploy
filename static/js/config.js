@@ -10,6 +10,7 @@ tailwind.config = {
         transparentGrey: "rgba(255, 255, 255, 0.4)",
         lightGrey: "#eee",
         red: "#B70404",
+        lightRed: "#f5b5b0",
         brown: "#FFF9C9",
         sage: "#B5C99A",
         yellow: "#FFC95F",

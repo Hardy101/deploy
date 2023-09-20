@@ -1,267 +1,386 @@
-{% extends 'base.html' %}
-{% block head %}
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-  <title>Create Quiz</title>
+{% extends 'base.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<title>Create Quiz</title>
 {% endblock %}
 
-  <!-- Navigation Menu -->
+<!-- Navigation Menu -->
 {% block nav %}
-  <nav>
-      <div class="flex flex-wrap justify-between px-2 md:px-10 py-5 text-xl">
-        <div class="my-auto flex gap-3">
-          <button onclick="goBack()"><i class="las la-angle-left"></i></button>
-          <div class="flex flex-col">
-            <span class="my-auto">Create Quiz</span>
-            <span class="text-grey">Peter Petrelli</span>
-          </div>
-        </div>
+<nav>
+  <div class="flex flex-wrap justify-between px-2 md:px-10 py-5 text-xl">
+    <div class="my-auto flex gap-3">
+      <button onclick="goBack()"><i class="las la-angle-left"></i></button>
+      <div class="flex flex-col">
+        <span class="my-auto">Create Quiz</span>
+        <span class="text-grey">{{ current_user.name }}</span>
+      </div>
+    </div>
 
-        <div class="flex gap-5 my-auto">
-          <button class="px-6 py-2 bg-clifford rounded-3xl text-white">
-            <i class="las la-eye font-bold my-auto"></i>
-            <span class="hidden md:inline-block">Preview</span>
+    <div class="flex gap-5 my-auto">
+      <button class="px-6 py-2 bg-clifford rounded-3xl text-white">
+        <i class="las la-eye font-bold my-auto"></i>
+        <span class="hidden md:inline-block">Preview</span>
+      </button>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+<!-- Notifications -->
+<div
+  class="fixed right-0 bg-white notifications w-10/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
+  id="notificationDiv"
+>
+  <div class="flex justify-between block my-3">
+    <span class="my-auto inline-block font-bold md:text-2xl"
+      >Notifications</span
+    >
+    <button class="my-auto md:text-2xl font-bold noticeToggle">
+      <i class="las la-arrow-right"></i>
+    </button>
+  </div>
+  <div class="notices mt-4">
+    <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
+      <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+        ><img src="../img/notice.png" alt="" class=""
+      /></span>
+
+      <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+        >Congratulations! You've earned a new achievement: "Master of
+        Quizzes."</span
+      >
+    </div>
+    <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
+      <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+        ><img src="../img/notice.png" alt="" class=""
+      /></span>
+      <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+        >Our summer sale is here! Enjoy up to 50% off on selected items. Limited
+        time offer, shop now!</span
+      >
+    </div>
+  </div>
+</div>
+<!-- Body -->
+{% block body %}
+<!-- Create Quiz Section -->
+<section class="p-5 grid place-items-center">
+  <div class="w-full md:w-2/5">
+    <!-- Pagination -->
+    <div class="flex gap-5 justify-between">
+      <!-- Step 1 -->
+      <div class="text-center">
+        <span class="py-1 px-3 rounded-full bg-clifford text-white">1</span>
+        <span class="mt-4 lg:m-0 block lg:inline-block">Basic Information</span>
+        <span class="hidden lg:inline-block"
+          ><i class="las la-angle-right"></i
+        ></span>
+      </div>
+      <!-- Step 2 -->
+      <div class="text-center">
+        <span class="py-1 px-3 rounded-full bg-clifford text-white">2</span>
+        <span class="mt-4 lg:m-0 block lg:inline-block">Questions</span>
+        <span class="hidden lg:inline-block"
+          ><i class="las la-angle-right"></i
+        ></span>
+      </div>
+      <!-- Step 3 -->
+      <div class="text-center">
+        <span class="py-1 px-3 rounded-full bg-clifford text-white">3</span>
+        <span class="mt-4 lg:m-0 block lg:inline-block">Settings</span>
+      </div>
+    </div>
+    <form
+      class="mt-10"
+      method="POST"
+      action="{{ url_for('create_quiz') }}"
+      enctype="multipart/form-data"
+    >
+      <!-- Step 1 -->
+      <div class="form-step animate__animated" id="step1">
+        <h2 class="text-center text-2xl font-semibold">Basic Information</h2>
+        <!-- Quiz Title -->
+        <div class="mt-3 relative">
+          {{ form.quiz_title.label(class="placeholder-label bg-white") }} {{
+          form.quiz_title(class="w-full mt-2 border rounded-md p-2 outline-none
+          focus:border-red quiz-input") }}
+        </div>
+        <!-- Quiz Description -->
+        <div class="mt-3 relative">
+          {{ form.quiz_desc.label(class="placeholder-label bg-white") }} {{
+          form.quiz_desc(class="w-full mt-2 border rounded-md p-2 outline-none
+          focus:border-red quiz-input") }}
+          <span class="block my-1 italic text-sm"
+            ><i class="las la-info-circle"></i> This field will be autogenerated
+            if left empty</span
+          >
+        </div>
+        <!-- Question Type -->
+        <div class="mt-3">
+          {{ form.question_type.label(class="block font-medium") }} {{
+          form.question_type(class="w-full mt-2 border rounded-md p-2
+          outline-none focus:border-red quiz-input") }}
+        </div>
+        <!-- Category -->
+        <div class="mt-3">
+          <label class="block font-medium">Category</label>
+          <select
+            class="w-full mt-2 border rounded-md p-2 outline-none focus:border-red"
+            name="category"
+          >
+            <option value="">Select a Category</option>
+            <option value="artsandhumanities">Arts and Humanities</option>
+            <option value="science">Science</option>
+            <option value="socialscience">Social Science</option>
+          </select>
+        </div>
+        <!-- Subject -->
+        <div class="mt-3">
+          <label class="block font-medium">Subject</label>
+          <select
+            class="w-full mt-2 border rounded-md p-2 outline-none focus:border-red"
+            name="subject"
+          >
+            <option value="">Select subject</option>
+            <option value="microbiology">Microbiology</option>
+            <option value="biochemistry">Biochemistry</option>
+            <option value="zoology">Zoology</option>
+          </select>
+        </div>
+        <div class="mt-3">
+          <button
+            type="button"
+            class="py-2 px-3 bg-clifford text-white rounded-md next-button"
+          >
+            Next <i class="las la-angle-double-right"></i>
           </button>
         </div>
       </div>
-    </nav>
-{% endblock %}
-  <!-- Notifications -->
-  <div
-      class="fixed right-0 bg-white notifications w-10/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
-      id="notificationDiv"
-    >
-      <div class="flex justify-between block my-3">
-        <span class="my-auto inline-block font-bold md:text-2xl"
-          >Notifications</span
-        >
-        <button class="my-auto md:text-2xl font-bold noticeToggle">
-          <i class="las la-arrow-right"></i>
-        </button>
-      </div>
-      <div class="notices mt-4">
-        <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
-          <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
-            ><img src="../img/notice.png" alt="" class=""
-          /></span>
-
-          <span class="inline-block w-4/5 my-auto text-sm md:text-base"
-            >Congratulations! You've earned a new achievement: "Master of
-            Quizzes."</span
-          >
-        </div>
-        <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
-          <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
-            ><img src="../img/notice.png" alt="" class=""
-          /></span>
-          <span class="inline-block w-4/5 my-auto text-sm md:text-base"
-            >Our summer sale is here! Enjoy up to 50% off on selected items.
-            Limited time offer, shop now!</span
-          >
-        </div>
-      </div>
-    </div>
-  <!-- Body -->
-{% block body %}
-  <!-- Create Quiz Section -->
-  <section class="p-5 grid place-items-center">
-    <div class="w-full md:w-2/5">
-      <!-- Pagination -->
-      <div class="flex gap-5 justify-between">
-        <!-- Step 1 -->
-        <div class="text-center">
-          <span class="py-1 px-3 rounded-full bg-clifford text-white">1</span>
-          <span class="mt-4 lg:m-0 block lg:inline-block"
-            >Basic Information</span
-          >
-          <span class="hidden lg:inline-block"
-            ><i class="las la-angle-right"></i
-          ></span>
-        </div>
-        <!-- Step 2 -->
-        <div class="text-center">
-          <span class="py-1 px-3 rounded-full bg-clifford text-white">2</span>
-          <span class="mt-4 lg:m-0 block lg:inline-block">Questions</span>
-          <span class="hidden lg:inline-block"
-            ><i class="las la-angle-right"></i
-          ></span>
-        </div>
-        <!-- Step 3 -->
-        <div class="text-center">
-          <span class="py-1 px-3 rounded-full bg-clifford text-white">3</span>
-          <span class="mt-4 lg:m-0 block lg:inline-block">Settings</span>
-        </div>
-      </div>
-      <form class="mt-10">
-        <!-- Step 1 -->
-        <div class="form-step animate__animated" id="step1">
-          <h2 class="text-center text-2xl">Basic Information</h2>
-          <!-- Quiz Title -->
-          <div class="mt-3 relative">
-            <label class="placeholder-label bg-white">Quiz Title</label>
-            <input
-              type="text"
-              class="w-full mt-2 border rounded-md p-2 outline-none focus:border-red quiz-input"
-              placeholder=""
-            />
-          </div>
-          <!-- Quiz Description -->
-          <div class="mt-3 relative">
-            <label class="placeholder-label bg-white">Quiz Description</label>
-            <input
-              type="text"
-              class="w-full mt-2 border rounded-md p-2 outline-none focus:border-red quiz-input"
-              placeholder=""
-            />
-            <span class="block my-1 italic text-sm"
-              ><i class="las la-info-circle"></i> This field will be
-              autogenerated if left empty</span
+      <!-- Step 2 -->
+      <div class="form-step animate__animated hidden" id="step2">
+        <h2 class="text-center text-2xl font-semibold">Questions</h2>
+        <span class="inline-block mt-2 text-sm"
+          >If you're unfamiliar with our upload guidelines, please take a moment
+          to
+          <a class="underline"
+            >read this<i class="las la-external-link-alt"></i></a
+        ></span>
+        <div class="my-5">
+          <label class="block font-medium my-2">Upload Questions</label>
+          <div class="bg-gray-100 rounded-md p-2">
+            <label
+              class="block w-full p-2 border border-dashed border-gray-400 flex flex-col text-center justify-center"
+              for="file-input"
+              id="question-file"
             >
-          </div>
-          <!-- Question Type -->
-          <div class="mt-3">
-            <label class="block">Answer Type</label>
-            <select
-              class="w-full mt-2 border rounded-md p-2 outline-none focus:border-red"
-            >
-              <option value="">Select a Type</option>
-              <option value="multiple-choice">Multiple-choice</option>
-              <option value="true/false">True/False</option>
-              <option value="both">Both</option>
-            </select>
-          </div>
-          <div class="mt-3">
-            <label class="block">Category</label>
-            <select
-              class="w-full mt-2 border rounded-md p-2 outline-none focus:border-red"
-            >
-              <option value="">Select a Category</option>
-              <option value="artsandhumanities">Arts and Humanities</option>
-              <option value="science">Science</option>
-              <option value="socialscience">Social Science</option>
-            </select>
-          </div>
-          <div class="mt-3">
-            <button
-              type="button"
-              class="py-2 px-3 bg-clifford text-white rounded-md next-button"
-            >
-              Next <i class="las la-angle-double-right"></i>
-            </button>
-          </div>
-        </div>
-        <!-- Step 2 -->
-        <div class="form-step animate__animated hidden" id="step2">
-          <h2 class="text-center text-2xl">Questions</h2>
-          <span>Not Familiar with our upload guidelines? <a class="underline">read this <i class="las la-external-link-alt"></i></a></span>
-          <div class="my-5">
-            <label class="block text-xl my-2">Upload Questions</label>
-            <div class="bg-gray-100 rounded-md p-2">
-              <label class="block w-full p-2 border border-dashed border-gray-400 flex flex-col text-center justify-center" for="file-input"
-              onclick="activateButton()"
+              <i
+                class="las la-cloud-upload-alt text-gray-400 text-7xl"
+                id="question-cloud"
+              ></i>
+              <span class="text-base" id="label-input"
+                >Choose a file (pdf)</span
               >
-                <i class="las la-cloud-upload-alt text-gray-400 text-7xl" id="question-cloud"></i>
-                <span class="text-base" id="label-input">Choose a file (pdf)</span>
-              </label>
-              <input type="file" class="block w-full p-2 rounded-sm hidden" id="file-input">
-            </div>
-            <div class="text-right mt-3">
-              <button type="button" onclick="updateLabel()"
-                      class="px-4 py-1 w-full text-white bg-green rounded-3xl hidden" id="confirmBtn">
-                Confirm File</button>
-            </div>
-
+            </label>
+            <input
+              type="file"
+              name="question-input"
+              class="block w-full p-2 rounded-sm hidden"
+              id="file-input"
+            />
           </div>
-          <div class="my-5">
-            <label class="block text-xl my-2">Upload Answers</label>
-            <div class="bg-gray-100 p-2 rounded-md">
-              <label class="block w-full p-2 border border-dashed border-gray-400 flex flex-col text-center justify-center" for="answer-input">
-                <i class="las la-cloud-upload-alt text-gray-400 text-7xl"></i>
-                <span class="text-base">Choose a file (pdf)</span>
-              </label>
-              <input type="file" class="block w-full p-2 rounded-sm hidden" id="answer-input">
-            </div>
-          </div>
-          <!-- Navigation Buttons -->
-          <div class="mt-3 flex justify-between">
+          <div class="text-right mt-3">
             <button
               type="button"
-              class="py-2 px-3 bg-clifford text-white rounded-md previous-button"
+              class="px-4 py-1 w-full text-white bg-green rounded-3xl hidden"
+              id="confirmBtn"
             >
-              <i class="las la-angle-double-left"></i> Previous
-            </button>
-            <button
-              type="button"
-              class="py-2 px-3 bg-clifford text-white rounded-md next-button"
-            >
-              Next <i class="las la-angle-double-right"></i>
+              Confirm File
             </button>
           </div>
         </div>
-        <!-- Step 3 -->
-        <div class="form-step animate__animated hidden" id="step3">
-          <h2 class="text-center text-2xl">Step 3</h2>
-          <h3 class="mt-3 font-bold text-xl">Settings</h3>
-          <div class="mt-3">
-            <label class="font-bold">Time for Each question</label>
-            <div class="flex gap-2 mt-2">
-              <input
-                class="w-auto border rounded-md p-2 outline-none focus:border-red"
-                type="number"
-                placeholder="0"
-              />
-              <span class="my-auto font-bold">sec</span>
-            </div>
-          </div>
-          <div class="mt-3">
-            <label>Quiz Privacy</label>
-            <select
-              name=""
-              id=""
-              class="block w-full mt-2 border rounded-md p-2 outline-none focus:border-red"
+        <div class="my-5">
+          <label class="block font-medium my-2">Upload Answers</label>
+          <div class="bg-gray-100 p-2 rounded-md">
+            <label
+              class="block w-full p-2 border border-dashed border-gray-400 flex flex-col text-center justify-center"
+              for="answer-input"
+              id="answer-label"
             >
-              <option value="private">Private</option>
-              <option value="public">Public</option>
-            </select>
+              <i
+                class="las la-cloud-upload-alt text-gray-400 text-7xl"
+                id="answer-cloud"
+              ></i>
+              <span class="text-base" id="answer-label-input"
+                >Choose a file (pdf)</span
+              >
+            </label>
+            <input
+              type="file"
+              name="answer-input"
+              class="block w-full p-2 rounded-sm hidden"
+              id="answer-input"
+            />
           </div>
-          <div class="mt-3 flex justify-between">
+          <div class="text-right mt-3">
             <button
               type="button"
-              class="py-2 px-3 bg-clifford text-white rounded-md previous-button"
+              class="px-4 py-1 w-full text-white bg-green rounded-3xl hidden"
+              id="confirmBtnAnswer"
             >
-              <i class="las la-angle-double-left"></i> Previous
-            </button>
-            <button
-              type="button"
-              class="py-2 px-3 bg-clifford text-white rounded-md previous-button"
-            >
-              Publish <i class="las la-upload font-bold my-auto"></i>
+              Confirm File
             </button>
           </div>
         </div>
-      </form>
-    </div>
-  </section>
-{% endblock %}
-{% block script %}
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        <!-- Navigation Buttons -->
+        <div class="mt-3 flex justify-between">
+          <button
+            type="button"
+            class="py-2 px-3 bg-clifford text-white rounded-md previous-button"
+          >
+            <i class="las la-angle-double-left"></i> Previous
+          </button>
+          <button
+            type="button"
+            class="py-2 px-3 bg-clifford text-white rounded-md next-button"
+          >
+            Next <i class="las la-angle-double-right"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="form-step animate__animated hidden" id="step3">
+        <h2 class="text-center text-2xl font-semibold">Settings</h2>
+        <div class="mt-3">
+          <label class="font-medium">Time for Quiz Completion</label>
+          <div class="flex gap-2 mt-2">
+            <input
+              class="w-full border rounded-md p-2 outline-none focus:border-red"
+              name="time"
+              type="number"
+              placeholder="0"
+            />
+            <span class="my-auto">sec</span>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label class="font-medium">Quiz Privacy</label>
+          <select
+            name="privacy"
+            id=""
+            class="block w-full mt-2 border rounded-md p-2 outline-none focus:border-red"
+          >
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+          </select>
+        </div>
+        <div class="mt-3 flex justify-between">
+          <button
+            type="button"
+            class="py-2 px-3 bg-clifford text-white rounded-md previous-button"
+          >
+            <i class="las la-angle-double-left"></i> Previous
+          </button>
+          <button
+            type="submit"
+            class="py-2 px-3 bg-clifford text-white rounded-md"
+          >
+            Publish <i class="las la-upload font-bold my-auto"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %} {% block script %}
 <script>
-  function activateButton(){
-    const confirmBtn = document.getElementById('confirmBtn');
-    confirmBtn.classList.remove('hidden')
-    }
-  function updateLabel() {
-    const fileInput = document.getElementById('file-input');
-    const fileLabel = document.getElementById('label-input');
-    const cloud_img = document.getElementById('question-cloud');
-    if (fileInput.files.length > 0) {
-      const fileName = fileInput.files[0].name;
-      cloud_img.classList.add('hidden')
-      fileLabel.textContent = `Selected file: ${fileName}`;
-      confirmBtn.classList.add('hidden')
+  function goBack() {
+    window.history.back();
+  }
+  // Placeholder Animation
+  const inputFields = document.querySelectorAll(".quiz-input");
+
+  function handleInputFocus() {
+    const label = this.parentNode.querySelector(".placeholder-label");
+    if (this.value) {
+      label.classList.add("placeholder-active");
+      label.classList.remove("placeholder-not-active");
+    } else {
+      label.classList.remove("placeholder-active");
+      label.classList.add("placeholder-not-active");
     }
   }
+
+  // Add event listeners to each input field
+  inputFields.forEach((input) => {
+    input.addEventListener("input", handleInputFocus);
+  });
+  // Form Transition Effect
+  if (document.querySelector(".form-step")) {
+    const formSteps = document.querySelectorAll(".form-step");
+    const nextButtons = document.querySelectorAll(".next-button");
+    const previousButtons = document.querySelectorAll(".previous-button");
+    let currentStep = 0;
+
+    function navigateToStep(offset) {
+      const nextStep = currentStep + offset;
+      if (nextStep >= 0 && nextStep < formSteps.length) {
+        formSteps[currentStep].classList.add("hidden");
+        formSteps[nextStep].classList.remove("hidden");
+        formSteps[nextStep].classList.add("animate__fadeInLeft");
+        currentStep = nextStep;
+      }
+    }
+
+    nextButtons.forEach((button) => {
+      button.addEventListener("click", () => navigateToStep(1));
+    });
+
+    previousButtons.forEach((button) => {
+      button.addEventListener("click", () => navigateToStep(-1));
+    });
+  }
+</script>
+<script>
+  function activateButton(btnId) {
+    const confirmBtn = document.getElementById(btnId);
+    confirmBtn.classList.remove("hidden");
+  }
+
+  const questionLabel = document.getElementById("question-file");
+  const answerLabel = document.getElementById("answer-label");
+  questionLabel.addEventListener("click", function () {
+    setTimeout(() => activateButton("confirmBtn"), 1500);
+  });
+  answerLabel.addEventListener("click", function () {
+    setTimeout(() => activateButton("confirmBtnAnswer"), 1500);
+  });
+  function updateLabel(file, label, img, btn) {
+    const fileInput = document.getElementById(file);
+    const fileLabel = document.getElementById(label);
+    const cloudImg = document.getElementById(img);
+
+    if (fileInput.files.length > 0) {
+      const fileName = fileInput.files[0].name;
+      cloudImg.classList.add("hidden");
+      fileLabel.textContent = `Selected file: ${fileName}`;
+      btn.classList.add("hidden");
+    }
+  }
+
+  const confirmBtn = document.getElementById("confirmBtn");
+  const confirmBtnAnswer = document.getElementById("confirmBtnAnswer");
+
+  confirmBtn.addEventListener("click", function () {
+    updateLabel("file-input", "label-input", "question-cloud", confirmBtn);
+  });
+  confirmBtnAnswer.addEventListener("click", function () {
+    updateLabel(
+      "answer-input",
+      "answer-label-input",
+      "answer-cloud",
+      confirmBtnAnswer
+    );
+  });
 </script>
 {% endblock %}

@@ -19,46 +19,21 @@
         </div>
         <div class="my-5">
             <ul class="divide-y px-4 py-2 rounded-md bg-gray-100">
+                {% for quiz in all_quiz %}
                 <li class="py-2 flex justify-between gap-2 flex-wrap">
                     <p>
-                        <span class="block text-xl">Biochemistry - Metabolism of Amino acids</span>
-                        <span class="italic block text-sm">By <a>Eghosa</a></span>
+                        <span class="block text-xl">{{ quiz.name }}</span>
+                        <span class="italic block text-sm">By <a>{{ quiz.author }}</a></span>
                         <span class="text-sm">19 sept, 2023</span>
                     </p>
                     <span class="flex gap-5">
-                    <a href="{{ url_for('select_quiz') }}" class="bg-green text-white py-1 px-5 rounded-sm my-auto">Take quiz</a>
+                    <a href="{{ url_for('select_quiz', quiz_id=quiz.id) }}" class="bg-green text-white py-1 px-5 rounded-sm my-auto">Take quiz</a>
                     <a href="#" class="bg-green text-white px-5 rounded-sm my-auto">
                         <i class="las la-download text-2xl"></i>
                     </a>
                     </span>
                 </li>
-                <li class="py-2 flex justify-between gap-2 flex-wrap">
-                    <p>
-                        <span class="block text-xl">Biochemistry - Metabolism of Lipids</span>
-                        <span class="italic block text-sm">By <a>Mindspark</a></span>
-                        <span class="text-sm">19 sept, 2023</span>
-                    </p>
-
-                    <span class="flex gap-5">
-                    <a href="{{ url_for('select_quiz') }}" class="bg-green text-white py-1 px-5 rounded-sm my-auto">Take quiz</a>
-                    <a href="#" class="bg-green text-white px-5 rounded-sm my-auto">
-                        <i class="las la-download text-2xl"></i>
-                    </a>
-                    </span>
-                </li>
-                <li class="py-2 flex justify-between gap-2 flex-wrap">
-                    <p>
-                        <span class="block text-xl">Biochemistry - Glycolysis</span>
-                        <span class="italic block text-sm">By <a>Esther</a></span>
-                        <span class="text-sm">19 sept, 2023</span>
-                    </p>
-                    <span class="flex gap-5">
-                    <a href="{{ url_for('select_quiz') }}" class="bg-green text-white py-1 px-5 rounded-sm my-auto">Take quiz</a>
-                    <a href="#" class="bg-green text-white px-5 rounded-sm my-auto">
-                        <i class="las la-download text-2xl"></i>
-                    </a>
-                    </span>
-                </li>
+                {% endfor %}
             </ul>
         </div>
     </div>

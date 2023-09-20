@@ -1,111 +1,127 @@
-{% extends 'base.html' %}
-{% block head %}
-  <title>Quiz</title>
+{% extends 'base.html' %} {% block head %}
+<title>Quiz</title>
 {% endblock %}
 <!-- Body -->
 {% block body %}
 <!-- Notifications -->
-  <div
-    class="fixed right-0 top-0 bg-white notifications w-8/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
-    id="notificationDiv"
-  >
-    <div class="flex justify-between block my-3">
-      <span class="my-auto inline-block font-bold md:text-2xl"
-        >Notifications</span
-      >
-      <button class="my-auto md:text-2xl font-bold noticeToggle">
-        <i class="las la-arrow-right"></i>
-      </button>
-    </div>
-    <div class="notices mt-4">
-      <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
-        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
-          ><img src="static/img/notice.png" alt="" class=""
-        /></span>
+<div
+  class="fixed right-0 top-0 bg-white notifications w-8/12 h-[100%] py-2 px-4 md:px-2 z-20 md:w-5/12"
+  id="notificationDiv"
+>
+  <div class="flex justify-between block my-3">
+    <span class="my-auto inline-block font-bold md:text-2xl"
+      >Notifications</span
+    >
+    <button class="my-auto md:text-2xl font-bold noticeToggle">
+      <i class="las la-arrow-right"></i>
+    </button>
+  </div>
+  <div class="notices mt-4">
+    <div class="flex justify-around gap-3 mt-3 md:gap-5 md:justify-center">
+      <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+        ><img src="static/img/notice.png" alt="" class=""
+      /></span>
 
-        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
-          >Congratulations! You've earned a new achievement: "Master of
-          Quizzes."</span
-        >
-      </div>
-      <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
-        <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
-          ><img src="static/img/notice.png" alt="" class=""
-        /></span>
-        <span class="inline-block w-4/5 my-auto text-sm md:text-base"
-          >Our summer sale is here! Enjoy up to 50% off on selected items.
-          Limited time offer, shop now!</span
-        >
-      </div>
+      <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+        >Congratulations! You've earned a new achievement: "Master of
+        Quizzes."</span
+      >
+    </div>
+    <div class="flex justify-around gap-3 mt-3 md:justify-center md:gap-5">
+      <span class="my-auto w-2/12 p-2 rounded-full bg-sage md:w-1/12"
+        ><img src="static/img/notice.png" alt="" class=""
+      /></span>
+      <span class="inline-block w-4/5 my-auto text-sm md:text-base"
+        >Our summer sale is here! Enjoy up to 50% off on selected items. Limited
+        time offer, shop now!</span
+      >
     </div>
   </div>
-  <!-- Profile Section -->
-  <section
-      class="profile pt-12 md:pt-20 grid place-items-center"
-      id="profile"
-    >
-      <div class="flex justify-center flex-col gap-10 md:flex-row">
-        <div class="user-info w-full order-last px-10 md:order-first md:w-2/5">
-          <span class="font-bold md:text-3xl">{{ user.name }}</span>
-          <sup class="text-[10px] px-2 p bg-primaryBlue text-white md:text-xs"
-            >{{ user.accttype }}</sup
-          >
-          <span class="block text-[12px] md:text-base">@{{ user.username }}</span>
-          <!-- User Info -->
-          <div class="grid grid-cols-2 mt-3 text-xs md:text-base">
-            <div>
-              <span class="text-grey font-bold block mt-3">Location</span>
-              <span class="">{{ user.name }}</span>
-            </div>
-            <div>
-              <span class="text-grey font-bold block mt-3">Contact</span>
-              <span>{{ user.contact }}</span>
-            </div>
-            <div>
-              <span class="text-grey font-bold block mt-3">Date of birth</span>
-              <span>{{ user.dob }}</span>
-            </div>
-          </div>
-          <h2 class="mt-6 font-semibold md:text-2xl">Actions</h2>
-          <div class="mt-3 text-xs md:text-base">
-            <a href="/coming-soon">Edit Profile <i class="las la-edit"></i></a>
-          </div>
-          <div class="mt-3 text-xs md:text-base">
-            <a href="/recover"
-              >Change Password <i class="las la-key"></i
-            ></a>
-          </div>
-          <div class="mt-3 text-red text-xs md:text-base">
-            <a href="/coming-soon">Delete Account <i class="las la-trash"></i></a>
-          </div>
-        </div>
-        <div class="user-photo mx-auto w-8/12 md:m-0 md:w-4/12">
-          <img src="{{ url_for('static', filename='img/profile.jpg') }}" alt="" class="w-full" />
-        </div>
-      </div>
-    </section>
-<div>
 </div>
-  <!-- Authored Quizzes -->
-  <section class="mt-20 md:mt-12">
-      <div class="px-8 md:py-10 md:px-28">
-        <h2 class="text-3xl">Authored Quizzes</h2>
-        <div class="quizzes">
-          <h2 class="text-center my-12 text-4xl text-[#A8A196]">
-            Quizzes you create will show up here
-          </h2>
+<!-- Profile Section -->
+<section class="profile pt-12 md:pt-20 grid place-items-center" id="profile">
+  <div class="flex justify-center flex-col gap-10 md:flex-row">
+    <div class="user-info w-full order-last px-10 md:order-first md:w-2/5">
+      <span class="font-bold md:text-3xl">{{ user.name }}</span>
+      <sup class="text-[10px] px-2 p bg-primaryBlue text-white md:text-xs"
+        >{{ user.accttype }}</sup
+      >
+      <span class="block text-[12px] md:text-base">@{{ user.username }}</span>
+      <!-- User Info -->
+      <div class="grid grid-cols-2 mt-3 text-xs md:text-base">
+        <div>
+          <span class="text-grey font-bold block mt-3">Location</span>
+          <span class="">{{ user.location }}</span>
+        </div>
+        <div>
+          <span class="text-grey font-bold block mt-3">Contact</span>
+          <span>{{ user.contact }}</span>
+        </div>
+        <div>
+          <span class="text-grey font-bold block mt-3">Date of birth</span>
+          <span>{{ user.dob }}</span>
         </div>
       </div>
-    </section>
-  <!-- Favourited Quizzes -->
-  <section class="">
-      <div class="px-8 md:py-10 md:px-28">
-        <h2 class="text-3xl">Favourited Quizzes</h2>
-        <div class="quizzes">
-          <h2 class="text-center my-12 text-4xl text-[#A8A196]">
-            Your favourite quizzes will show up here
-          </h2>
+      <h2 class="mt-6 font-semibold md:text-2xl">Actions</h2>
+      <div class="mt-3 text-xs md:text-base">
+        <a href="/coming-soon">Edit Profile <i class="las la-edit"></i></a>
+      </div>
+      <div class="mt-3 text-xs md:text-base">
+        <a href="/recover">Change Password <i class="las la-key"></i></a>
+      </div>
+      <div class="mt-3 text-red text-xs md:text-base">
+        <a href="{{ url_for('delete_acct', acct_id= user.id) }}"
+          >Delete Account <i class="las la-trash"></i
+        ></a>
+      </div>
+    </div>
+    <div class="user-photo mx-auto w-8/12 md:m-0 md:w-4/12">
+      <img
+        src="{{ url_for('static', filename='img/profile.jpg') }}"
+        alt=""
+        class="w-full"
+      />
+    </div>
+  </div>
+</section>
+<div></div>
+<!-- Authored Quizzes -->
+<section class="mt-20 md:mt-12">
+  <div class="px-8 md:py-10 md:px-28">
+    <h2 class="text-3xl">Authored Quizzes</h2>
+    {% if quizzes|length == 0 %}
+    <h2 class="text-center my-12 text-4xl text-[#A8A196]">
+      Quizzes you create will show up here
+    </h2>
+    {% else %}
+     <div class="quizzes flex gap-5 mt-6">
+      {% for quiz in quizzes %}
+      <div
+        class="text-center quiz_div w-6/12 md:w-4/12"
+      >
+        <div class="quiz-main bg-gray-100 rounded-lg  py-1 mb-2 px-1">
+          <h2 class="quiz-heading mt-4 text-xl font-bold">{{ quiz.name }}</h2>
+          <p class="quiz-body my-3 text-sm">{{ quiz.desc }}</p>
+        </div>
+        <div class="quiz-action flex justify-between text-sm">
+          <a href="#" class="text-clifford underline font-bold bg-lightRed rounded-md p-2">Delete Quiz</a>
+          <a href="#" class="font-bold underline bg-sage rounded-md p-2">Hide Quiz</a>
         </div>
       </div>
-    </section>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+<!-- Favourited Quizzes -->
+<section class="">
+  <div class="px-8 md:py-10 md:px-28">
+    <h2 class="text-3xl">Favourited Quizzes</h2>
+    <div class="quizzes">
+      <h2 class="text-center my-12 text-4xl text-[#A8A196]">
+        Your favourite quizzes will show up here
+      </h2>
+    </div>
+  </div>
+</section>
 {% endblock %}

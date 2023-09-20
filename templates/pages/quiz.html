@@ -2,50 +2,67 @@
 
 <!-- Head Tag -->
 {% block head %}
-    <title>Quiz</title>
+<title>Quiz</title>
 {% endblock %}
 
-  
 <!-- Dropdown -->
 {% block all_menu %}
-  <li class="m-3"><a href="/index">Home</a></li>
-  <li class="m-3"><a href="#">Categories <i class="las la-angle-down"></i></a></li>
-  <li class="m-3"><a href="/create-quiz">Create Quiz</a></li>
-  <li class="m-3"><a href="/dashboard">Account</a></li>
-  <li class="mt-16 mx-auto block text-center">
-     <input type="text" placeholder="Type Something..." class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center hover:border-b-primaryMaroon">
-     <input type="submit" value="Search" class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm">
-  </li>
+<li class="m-3"><a href="/index">Home</a></li>
+<li class="m-3">
+  <a href="#">Categories <i class="las la-angle-down"></i></a>
+</li>
+<li class="m-3"><a href="/create-quiz">Create Quiz</a></li>
+<li class="m-3"><a href="/dashboard">Account</a></li>
+<li class="mt-16 mx-auto block text-center">
+  <input
+    type="text"
+    placeholder="Type Something..."
+    class="block py-2 w-1/2 mx-auto border-b border-grey outline-none text-center hover:border-b-primaryMaroon"
+  />
+  <input
+    type="submit"
+    value="Search"
+    class="block py-2 mt-5 bg-primaryMaroon w-1/2 mx-auto text-white rounded-sm"
+  />
+</li>
 {% endblock %}
 <!-- Body -->
 {% block body %}
-  <!-- Quiz section -->
-  <section class="py-10 px-4">
-    <div>
-      <h1 class="inline-block pb-2 text-3xl font-bold border-b-2 border-clifford">Sciences</h1>
-      <div class="quizzes flex gap-5 mt-6">
-        <!-- ================ -->
-        <a href="{{ url_for('quiz_info') }}" class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12  p-3">
-          <div class="quiz-main">
-            <h2 class="quiz-heading mt-4 text-2xl font-bold">Biochemistry</h2>
-            <p class="quiz-body my-3 text-sm">
-              Challenge yourself to do a Biochemistry quiz. This pack contains
-              textbooks, material to test knowledge in biochemistry.
-            </p>
-          </div>
-        </a>
-        <!-- ================ -->
-        <a href="{{ url_for('quiz_info') }}" class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12  p-3">
-          <div class="quiz-main">
-            <h2 class="quiz-heading mt-4 text-2xl font-bold">Microbiology</h2>
-            <p class="quiz-body my-3 text-sm">
-              Challenge yourself to do a Microbiology quiz. This pack contains
-              textbooks, material to test knowledge in Microbiology.
-            </p>
-          </div>
-        </a>
-        <!-- ================ -->
-      </div>
+<!-- Quiz section -->
+<section class="py-10 px-4">
+  <div>
+    <h1 class="inline-block pb-2 text-3xl font-bold border-b-2 border-clifford">
+      Sciences
+    </h1>
+    <div class="quizzes flex gap-5 mt-6">
+      <!-- ================ -->
+      <a
+        href="{{ url_for('quiz_info') }}"
+        class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12 p-3"
+      >
+        <div class="quiz-main">
+          <h2 class="quiz-heading mt-4 text-2xl font-bold">Biochemistry</h2>
+          <p class="quiz-body my-3 text-sm">
+            Challenge Yourself with the Biochemistry Quiz and Discover the
+            Intricacies of Molecular Science!
+          </p>
+        </div>
+      </a>
+      <!-- ================ -->
+      <a
+        href="{{ url_for('quiz_info') }}"
+        class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12 p-3"
+      >
+        <div class="quiz-main">
+          <h2 class="quiz-heading mt-4 text-2xl font-bold">Microbiology</h2>
+          <p class="quiz-body my-3 text-sm">
+            Ready to Dive into the World of Microbiology? Click to Take the
+            Microbiology Quiz and Explore the Tiny Marvels of Science!
+          </p>
+        </div>
+      </a>
+      <!-- ================ -->
     </div>
-  </section>
+  </div>
+</section>
 {% endblock %}

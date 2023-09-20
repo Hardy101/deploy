@@ -7,17 +7,15 @@
 <!-- Body -->
 {% block body %}
 <!-- Hero Section -->
-<section id="hero" class="py-5 text-center relative mb-10">
+<section id="hero" class="py-5 relative mb-10">
   <div class="flex justify-center flex-wrap">
     <div
       class="text-hero md:order-first order-last md:w-1/2 px-4 md:px-0 relative z-10 m-auto"
     >
-      <h1
-        class="text-2xl md:text-4xl py-3 font-bold text-primaryMaroon mb-4 text-center"
-      >
+      <h1 class="text-2xl font-medium py-3 text-clifford mb-4 md:text-4xl">
         Make big subjects easier to digest with flashcards and practice tests
       </h1>
-      <p class="md:text-xl">
+      <p class="">
         Whether you're a student seeking academic excellence or a lifelong
         learner hungry for knowledge, our interactive learning resources are
         designed to empower you every step of the way. Join us today and embark
@@ -28,7 +26,7 @@
         <a
           href="#about"
           onclick="smoothScroll('#about')"
-          class="px-5 py-3 mt-6 rounded-sm bg-primaryMaroon text-white inline-block"
+          class="px-7 py-3 mt-6 rounded-3xl bg-clifford text-white inline-block"
           >Start Learning Today! <i class="las la-graduation-cap"></i>
         </a>
       </div>
@@ -57,7 +55,9 @@
         clip-rule="evenodd"
       ></path>
     </svg>
-    <h2 class="mt-3 mb-5 text-3xl">Pursuing excellence through education</h2>
+    <h2 class="mt-3 mb-5 text-3xl font-medium">
+      Pursuing excellence through education
+    </h2>
     <p class="md:w-5/12">
       At MindSpark, we are dedicated to the pursuit of excellence through
       education. Our mission is to empower students with the tools and knowledge
@@ -72,8 +72,9 @@
       class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-grey shadow-2 rounded-2xl"
     >
       <div class="group overflow-hidden relative text-left py-16 md:w-4/12">
-        <p class="relative px-7 z-20">
-          <span class="text-xl mb-3 font-bold block group-hover:text-clifford"
+        <p class="relative px-7 z-[3]">
+          <span
+            class="text-xl mb-3 font-semibold block group-hover:text-clifford"
             >Comprehensive Quiz Library</span
           >
           <span
@@ -81,23 +82,31 @@
             topics to cater to different learning needs.
           </span>
         </p>
-        <div class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-10"></div>
-        <div class="bg-image-1 z-1"></div>
+        <div
+          class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-[2]"
+        ></div>
+        <div class="bg-image-1 z-[1]"></div>
       </div>
       <div class="group overflow-hidden relative text-left py-16 md:w-4/12">
-        <p class="relative px-7 z-20">
-          <span class="text-xl mb-3 font-bold block group-hover:text-clifford">Practice Tests</span>
+        <p class="relative px-7 z-[3]">
+          <span
+            class="text-xl mb-3 font-semibold block group-hover:text-clifford"
+            >Practice Tests</span
+          >
           <span
             >Take simulated practice tests that mimic real exam conditions to
             assess your knowledge and prepare effectively.</span
           >
         </p>
-        <div class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-10"></div>
-        <div class="bg-image-2 z-1"></div>
+        <div
+          class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-[2]"
+        ></div>
+        <div class="bg-image-2 z-[1]"></div>
       </div>
       <div class="group overflow-hidden relative text-left py-16 md:w-4/12">
-        <p class="relative px-7 z-20">
-          <span class="text-xl mb-3 font-bold block group-hover:text-clifford"
+        <p class="relative px-7 z-[3]">
+          <span
+            class="text-xl mb-3 font-semibold block group-hover:text-clifford"
             >Social Learning Community</span
           >
           <span
@@ -105,19 +114,26 @@
             discuss topics, and collaborate on study materials.</span
           >
         </p>
-        <div class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-10"></div>
-        <div class="bg-image-3 z-1"></div>
+        <div
+          class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-[2]"
+        ></div>
+        <div class="bg-image-3 z-[1]"></div>
       </div>
       <div class="group overflow-hidden relative text-left py-16 md:w-4/12">
-        <p class="relative px-7 z-20">
-          <span class="text-xl mb-3 font-bold block group-hover:text-clifford">Article Search</span>
+        <p class="relative px-7 z-[3]">
+          <span
+            class="text-xl mb-3 font-semibold block group-hover:text-clifford"
+            >Article Search</span
+          >
           <span
             >Search numerous articles with the help of various article
             databases.</span
           >
         </p>
-        <div class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-10"></div>
-        <div class="bg-image-4 z-1"></div>
+        <div
+          class="absolute top-0 w-full h-full left-0 bg-[#fff] opacity-70 z-[2]"
+        ></div>
+        <div class="bg-image-4 z-[1]"></div>
       </div>
     </div>
   </div>
@@ -126,11 +142,11 @@
 <section id="learn" class="py-8 md:py-16">
   <div class="px-5 flex flex-col md:flex-row">
     <div class="w-full md:w-1/2 my-auto">
-      <h2 class="text-4xl font-bold">Start Learning with MindSpark</h2>
-      <p class="text-xl">Gain access to tools for academic excellence</p>
+      <h2 class="text-3xl font-medium">Start Learning with MindSpark</h2>
+      <p class="mt-2">Gain access to tools for academic excellence</p>
       <a
         href="#"
-        class="inline-block mt-6 px-4 py-2 text-white bg-green rounded-xl"
+        class="inline-block mt-6 px-4 py-2 text-white bg-green rounded-3xl"
         >Start Learning.</a
       >
     </div>
@@ -140,8 +156,8 @@
           class="relative shadow-2 rounded-2xl pl-4 md:pl-7 pt-4 pb-10 w-full my-10 overflow-hidden"
         >
           <h2 class="text-xl md:text-2xl mb-2">Flash cards</h2>
-          <p class="text-xl md:text-2xl font-bold">
-            60 <span class="text-primaryMaroon">+</span>
+          <p class="text-xl md:text-2xl font-medium">
+            60 <span class="text-clifford">+</span>
           </p>
           <img
             src="static/img/flashcard.png"
@@ -152,8 +168,8 @@
           class="relative shadow-2 rounded-2xl pl-7 pt-4 pb-10 w-full my-10 overflow-hidden"
         >
           <h2 class="text-xl md:text-2xl mb-2">Quiz</h2>
-          <p class="text-xl md:text-2xl font-bold">
-            20 <span class="text-primaryMaroon">+</span>
+          <p class="text-xl md:text-2xl font-medium">
+            20 <span class="text-clifford">+</span>
           </p>
           <img
             src="static/img/quiz.png"
@@ -164,8 +180,8 @@
           class="relative shadow-2 rounded-2xl pl-7 pt-4 pb-10 w-full my-10 overflow-hidden"
         >
           <h2 class="text-xl md:text-2xl mb-2">Article Search</h2>
-          <p class="text-xl md:text-2xl font-bold">
-            30 <span class="text-primaryMaroon">+</span>
+          <p class="text-xl md:text-2xl font-medium">
+            30 <span class="text-clifford">+</span>
           </p>
           <img
             src="static/img/article.png"
@@ -178,9 +194,9 @@
           class="relative shadow-2 rounded-2xl pl-7 pt-4 pb-10 w-full my-10 overflow-hidden"
         >
           <h2 class="text-xl md:text-2xl mb-2">Past Questions</h2>
-          <p class="text-xl md:text-2xl font-bold">
+          <p class="text-xl md:text-2xl font-medium">
             40
-            <span class="text-primaryMaroon">+</span>
+            <span class="text-clifford">+</span>
           </p>
           <img
             src="static/img/exam-2.png"
@@ -191,8 +207,8 @@
           class="relative shadow-2 rounded-2xl pl-4 pt-4 pb-10 w-full my-10 overflow-hidden"
         >
           <h2 class="text-xl md:text-2xl mb-2">Competitions</h2>
-          <p class="text-xl md:text-2xl font-bold">
-            <span class="text-primaryMaroon">+</span>
+          <p class="text-xl md:text-2xl font-medium">
+            <span class="text-clifford">+</span>
           </p>
           <img
             src="static/img/trophy.png"

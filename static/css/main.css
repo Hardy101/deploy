@@ -5,6 +5,9 @@
   font-family: renogare;
   src: url(RenogareSoft-Regular.ttf);
 }
+.kanit{
+font-family: 'Kanit', sans-serif;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -16,7 +19,7 @@ input[type="checkbox"] {
   background: #862b0d;
 }
 body {
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 /* DropDown Menu for Categories and all-menu for Mobile View Navigation Menu */
 .dropdown-menu {
@@ -165,6 +168,7 @@ body {
 #notificationDiv,
 #sidemore {
   right: -570px;
+  margin: 10px;
   transition: right 0.3s ease-in-out;
 }
 /* #sidemore, #sidemore.active*/
@@ -198,6 +202,9 @@ body {
   box-shadow: 5px 5px 0px 1px rgba(0, 0, 0, 1);
   -webkit-box-shadow: 5px 5px 0px 1px rgba(0, 0, 0, 1);
   -moz-box-shadow: 5px 5px 0px 1px rgba(0, 0, 0, 1);
+}
+.radius-1{
+border-radius: 55% 45% 32% 68% / 56% 30% 70% 44% ;
 }
 .shadow-1 {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
