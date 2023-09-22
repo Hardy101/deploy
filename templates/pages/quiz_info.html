@@ -9,18 +9,19 @@
 {% block body %}
 <section>
     <div class="mx-6 py-10">
-        <h2 class="text-2xl">Biochemistry</h2>
+        <h2 class="text-2xl">{{ subject[0] .upper() }}{{ subject[1:] }}</h2>
         <div class="text-base italic">
             <a href="{{ url_for('index') }}">Home</a>
             <i class="las la-angle-right"></i>
             <a href="{{ url_for('quiz') }}">Quiz</a>
             <i class="las la-angle-right"></i>
-            <span>Biochemistry</span>
+            <span>{{ subject }}</span>
         </div>
         <div class="my-5">
             <ul class="divide-y px-4 py-2 rounded-md bg-gray-100">
                 {% for quiz in all_quiz %}
-                <li class="py-2 flex justify-between gap-2 flex-wrap">
+                    {% if quiz.subject == subject %}
+                <li class="py-2 flex flex-col justify-between gap-2 lg:flex-row">
                     <p>
                         <span class="block text-xl">{{ quiz.name }}</span>
                         <span class="italic block text-sm">By <a>{{ quiz.author }}</a></span>
@@ -33,6 +34,7 @@
                     </a>
                     </span>
                 </li>
+                {% endif %}
                 {% endfor %}
             </ul>
         </div>

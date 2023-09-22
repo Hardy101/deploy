@@ -34,15 +34,15 @@
     <h1 class="inline-block pb-2 text-3xl font-bold border-b-2 border-clifford">
       Sciences
     </h1>
-    <div class="quizzes flex gap-5 mt-6">
+    <div class="quizzes flex flex-wrap gap-5 mt-6">
       <!-- ================ -->
       <a
-        href="{{ url_for('quiz_info') }}"
-        class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12 p-3"
+        href="{{ url_for('quiz_info', subject='biochemistry') }}"
+        class="quiz w-auto shadow-4 rounded-lg md:w-3/12 p-3"
       >
         <div class="quiz-main">
           <h2 class="quiz-heading mt-4 text-2xl font-bold">Biochemistry</h2>
-          <p class="quiz-body my-3 text-sm">
+          <p class="quiz-body my-3">
             Challenge Yourself with the Biochemistry Quiz and Discover the
             Intricacies of Molecular Science!
           </p>
@@ -50,8 +50,8 @@
       </a>
       <!-- ================ -->
       <a
-        href="{{ url_for('quiz_info') }}"
-        class="text-center quiz_div bg-gray-100 rounded-lg w-6/12 md:w-3/12 p-3"
+        href="{{ url_for('quiz_info', subject='microbiology') }}"
+        class="quiz_div w-auto shadow-4 rounded-lg md:w-3/12 p-3"
       >
         <div class="quiz-main">
           <h2 class="quiz-heading mt-4 text-2xl font-bold">Microbiology</h2>

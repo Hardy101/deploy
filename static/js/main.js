@@ -141,4 +141,20 @@ overlay_div.addEventListener("click", () => {
 });
 
 
+const studyToolsToggle = document.getElementById('studyToolsToggle')
+const studyToolsDropdown = document.getElementById('studyToolsDropdown')
+const toolsToggle = document.getElementById('toolsToggle')
+const toolsDropdown = document.getElementById('toolsDropdown')
+
+
+studyToolsToggle.addEventListener('click', function() {
+        studyToolsDropdown.classList.toggle('h-0');
+        studyToolsDropdown.classList.toggle('h-auto');
+        studyToolsDropdown.classList.toggle('bg-gray-100');
+});
+toolsToggle.addEventListener('click', function() {
+        toolsDropdown.classList.toggle('h-0');
+        toolsDropdown.classList.toggle('h-auto');
+        toolsDropdown.classList.toggle('bg-gray-100');
+});
 

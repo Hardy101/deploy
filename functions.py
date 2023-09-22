@@ -7,8 +7,6 @@ def hash_password(password):
     return hashed_password
 
 
-
-
 def extract_text(pdf):
     text = ""
     pdf_reader = PyPDF2.PdfReader(pdf)

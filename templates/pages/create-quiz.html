@@ -11,7 +11,7 @@
 <nav>
   <div class="flex flex-wrap justify-between px-2 md:px-10 py-5 text-xl">
     <div class="my-auto flex gap-3">
-      <button onclick="goBack()"><i class="las la-angle-left"></i></button>
+      <a href="{{ url_for('quiz') }}" class="my-auto"><i class="las la-angle-left"></i></a>
       <div class="flex flex-col">
         <span class="my-auto">Create Quiz</span>
         <span class="text-grey">{{ current_user.name }}</span>
@@ -97,6 +97,17 @@
       action="{{ url_for('create_quiz') }}"
       enctype="multipart/form-data"
     >
+        {% if message %}
+        <div class="form-control my-2 px-2 py-1 text-clifford bg-[#f5b5b0] flex">
+          <i class="las la-times-circle inline-block text-3xl my-auto"></i>
+          <span class="inline-block pl-2 my-auto font-bold text-sm">{{ message }}</span>
+        </div>
+        {% elif message_200 %}
+        <div class="form-control my-2 px-2 py-1 text-[#72a882] bg-[#b6f0c7] flex">
+          <i class="lar la-check-circle inline-block text-3xl my-auto"></i>
+          <span class="inline-block pl-2 my-auto font-bold text-sm">{{ message_200 }}</span>
+        </div>
+        {% endif %}
       <!-- Step 1 -->
       <div class="form-step animate__animated" id="step1">
         <h2 class="text-center text-2xl font-semibold">Basic Information</h2>

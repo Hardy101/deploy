@@ -40,7 +40,7 @@
 </div>
 <!-- Profile Section -->
 <section class="profile pt-12 md:pt-20 grid place-items-center" id="profile">
-  <div class="flex justify-center flex-col gap-10 md:flex-row">
+  <div class="flex justify-between flex-col gap-10 md:flex-row">
     <div class="user-info w-full order-last px-10 md:order-first md:w-2/5">
       <span class="font-bold md:text-3xl">{{ user.name }}</span>
       <sup class="text-[10px] px-2 p bg-primaryBlue text-white md:text-xs"
@@ -50,15 +50,15 @@
       <!-- User Info -->
       <div class="grid grid-cols-2 mt-3 text-xs md:text-base">
         <div>
-          <span class="text-grey font-bold block mt-3">Location</span>
+          <span class="font-medium block mt-3">Location</span>
           <span class="">{{ user.location }}</span>
         </div>
         <div>
-          <span class="text-grey font-bold block mt-3">Contact</span>
+          <span class="font-medium block mt-3">Contact</span>
           <span>{{ user.contact }}</span>
         </div>
         <div>
-          <span class="text-grey font-bold block mt-3">Date of birth</span>
+          <span class="font-medium block mt-3">Date of birth</span>
           <span>{{ user.dob }}</span>
         </div>
       </div>
@@ -87,24 +87,25 @@
 <div></div>
 <!-- Authored Quizzes -->
 <section class="mt-20 md:mt-12">
-  <div class="px-8 md:py-10 md:px-28">
+  <div class="px-8 py-10 md:px-10">
     <h2 class="text-3xl">Authored Quizzes</h2>
     {% if quizzes|length == 0 %}
     <h2 class="text-center my-12 text-4xl text-[#A8A196]">
       Quizzes you create will show up here
     </h2>
     {% else %}
-     <div class="quizzes flex gap-5 mt-6">
+     <div class="quizzes flex gap-5 flex-wrap mt-6">
       {% for quiz in quizzes %}
       <div
-        class="text-center quiz_div w-6/12 md:w-4/12"
+        class="text-center quiz_div w-full md:w-4/12"
       >
         <div class="quiz-main bg-gray-100 rounded-lg  py-1 mb-2 px-1">
           <h2 class="quiz-heading mt-4 text-xl font-bold">{{ quiz.name }}</h2>
           <p class="quiz-body my-3 text-sm">{{ quiz.desc }}</p>
         </div>
         <div class="quiz-action flex justify-between text-sm">
-          <a href="#" class="text-clifford underline font-bold bg-lightRed rounded-md p-2">Delete Quiz</a>
+          <a href="{{ url_for('delete_quiz', quiz_id=quiz.id) }}"
+             class="text-clifford underline font-bold bg-lightRed rounded-md p-2">Delete Quiz</a>
           <a href="#" class="font-bold underline bg-sage rounded-md p-2">Hide Quiz</a>
         </div>
       </div>

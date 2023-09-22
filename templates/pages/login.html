@@ -33,19 +33,21 @@
           my-2 outline-none focus:border-primaryMaroon",
           placeholder="johndoe@example.com") }}
         </div>
-        <div class="form-control">
+        <div class="form-control relative">
           <div class="flex justify-between">
-            {{ form.password.label(class="font-bold text-lg") }}
+            {{ form.password.label(class="password font-bold text-lg") }}
             <a
               href="/recover"
               class="underline text-primaryBlue text-[14px] my-auto"
               >Forgot Password?</a
             >
           </div>
-
-          {{ form.password(class="border-2 rounded-sm border-gray p-2 block
+          <div class="relative">
+            {{ form.password(class="border-2 rounded-sm border-gray p-2 block
           w-full my-2 outline-none focus:border-primaryMaroon",
           placeholder="Enter 6 characters or more") }}
+          <button type="button" class="absolute right-[5px] top-[1px] text-4xl toggleEye"><i class="las la-eye"></i></button>
+          </div>
         </div>
         <div class="form-control my-3 flex gap-2">
           <input type="checkbox" name="" id="" /> <span>Remember Me</span>
@@ -76,4 +78,11 @@
     </div>
   </div>
 </section>
+<script>
+  password_field = document.querySelector('.password');
+  btnToggle = document.querySelector('.toggleEye');
+  btnToggle.addEventListeners('click', function(){
+    password_field.classList
+  })
+</script>
 {% endblock %}
