@@ -27,6 +27,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
@@ -34,26 +35,23 @@
     <script src="{{ url_for('static', filename='js/config.js') }}"></script>
     {% block head %}{% endblock %}
   </head>
-  <body class="relative">
+  <body class="relative no-scrollbar overflow-y-auto">
     {% block nav %}
     <nav class="bg-white sticky top-0 z-20">
       <div class="flex justify-between md:justify-around gap-20 px-4 py-5">
         <a href="/" class="my-auto kanit text-xl"
           ><span class="p-2 bg-clifford text-white radius-1">Mind</span>Spark</a
         >
-        <ul class="hidden md:flex md:justify-center gap-5 my-auto">
-          <li>
+        <ul class="hidden w-2/5 md:flex md:justify-center gap-5 my-auto">
+          <li class="w-full">
             <form action="" class="flex gap-2">
               <input
                 type="text"
-                placeholder="Search"
-                class="border-2 border-gray focus:outline-none rounded-md px-2 py-1"
+                placeholder="Click to search or Ctrl K"
+                class="w-full border border-gray outline-none rounded-sm py-3 placeholder:text-center text-center"
+                id="navSearch"
               />
-              <input
-                type="submit"
-                value="search"
-                class="rounded-sm px-2 py-1 bg-clifford text-white"
-              />
+
             </form>
           </li>
         </ul>
@@ -72,9 +70,10 @@
         </ul>
       </div>
     </nav>
+    <!--  Search  -->
     <!-- Sidebar for more menu -->
     <div
-      class="sidemore fixed right-0 rounded-lg top-0 bg-white w-8/12 h-[97%] z-30 md:w-5/12"
+      class="sidemore fixed rounded-lg top-0 bg-white w-8/12 h-[97%] z-30 md:w-5/12 overflow-hidden"
       id="sidemore"
     >
       <h2 class="text-2xl my-3 mx-2 pb-2 border-b flex justify-between">
@@ -87,20 +86,20 @@
         <li>
           <a
             href="{{ url_for('index') }}"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
           >
-            <i class="las la-home inline-block my-auto text-2xl"></i>
+            <i class="uil uil-estate inline-block my-auto text-2xl text-gray-600"></i>
             <span class="inline-block my-auto">Home</span>
           </a>
         </li>
         <li class="relative">
           <a
             href="{{ url_for('index') }}"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            class="sidebarlink flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
             onclick="event.preventDefault()"
             id="studyToolsToggle"
           >
-            <i class="las la-pen my-auto text-2xl"></i>
+            <i class="uil uil-pen  my-auto text-2xl"></i>
             <span class="inline-block my-auto">Study tools</span>
             <button class="my-auto mr-10 absolute right-0 text-3xl">
               <i class="lar la-plus-square"></i>
@@ -109,7 +108,7 @@
           <ul class="h-0 overflow-hidden transition" id="studyToolsDropdown">
             <li>
               <a href="{{ url_for('quiz') }}" class="flex gap-3 py-2 px-3 mt-3">
-                <i class="lar la-file-alt my-auto text-2xl"></i>
+                <i class="uil uil-file-question my-auto text-2xl"></i>
                 <span class="inline-block my-auto">Quiz</span></a
               >
             </li>
@@ -118,7 +117,7 @@
                 href="{{ url_for('coming_soon') }}"
                 class="flex gap-3 py-2 px-3 mt-3"
               >
-                <i class="lar la-images my-auto text-2xl"></i>
+                <i class="uil uil-images  my-auto text-2xl"></i>
                 <span class="inline-block my-auto">Flashcards</span></a
               >
             </li>
@@ -127,7 +126,7 @@
         <li class="relative">
           <a
             href="{{ url_for('index') }}"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            class="sidebarlink flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
             onclick="event.preventDefault()"
             id="toolsToggle"
           >
@@ -139,17 +138,23 @@
           </a>
           <ul class="h-0 overflow-hidden transition" id="toolsDropdown">
             <li>
-              <a href="#" class="flex gap-3 py-2 px-3 mt-3">
-                <i class="las la-book-reader my-auto text-2xl"></i>
+              <a href="{{ url_for('book_search') }}" class="flex gap-3 py-2 px-3 mt-3">
+                <i class="uil uil-book-reader my-auto text-2xl"></i>
                 <span class="inline-block my-auto">Book search</span></a
               >
             </li>
             <li>
+              <a href="{{ url_for('article_search') }}" class="flex gap-3 py-2 px-3 mt-3">
+                <i class="uil uil-file-search-alt my-auto text-2xl text-black"></i>
+                <span class="inline-block my-auto">Article search</span></a
+              >
+            </li>
+            <li>
               <a
-                href="{{ url_for('coming_soon') }}"
+                href="{{ url_for('gpa') }}"
                 class="flex gap-3 py-2 px-3 mt-3"
               >
-                <i class="las la-calculator my-auto text-2xl"></i>
+                <i class="uil uil-calculator-alt my-auto text-2xl"></i>
                 <span class="inline-block my-auto">CGPA Calculator</span></a
               >
             </li>
@@ -179,16 +184,16 @@
         <li>
           <a
             href="{{ url_for('create_quiz') }}"
-            class="flex gap-3 py-2 px-3 mt-2 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            class="flex gap-3 py-2 px-3 mt-2 mt-3 border-l-4 border-transparent hover:bg-gray-100"
           >
-            <i class="las la-plus my-auto text-2xl"></i>
+            <i class="uil uil-plus my-auto text-2xl text-gray-600"></i>
             <span class="inline-block my-auto">Create Quiz</span></a
           >
         </li>
         <li>
           <a
             href="{{ url_for('dashboard', username=current_user.username) }}"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
           >
             <i class="las la-user my-auto text-2xl"></i>
             <span class="inline-block my-auto">Profile</span></a
@@ -197,7 +202,7 @@
         <li>
           <a
             href="#"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
           >
             <i class="las la-users my-auto text-2xl"></i>
             <span class="inline-block my-auto">Community</span></a
@@ -205,8 +210,8 @@
         </li>
         <li>
           <a
-            href="#"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            href="{{ url_for('help_page') }}"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
           >
             <i class="las la-question-circle my-auto text-2xl"></i>
             <span class="inline-block my-auto">Help</span></a
@@ -214,8 +219,8 @@
         </li>
         <li>
           <a
-            href="#"
-            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:border-clifford hover:bg-gray-100"
+            href="{{ url_for('feedback') }}"
+            class="flex gap-3 py-2 px-3 mt-3 border-l-4 border-transparent hover:bg-gray-100"
           >
             <i class="las la-comment my-auto text-2xl"></i>
             <span class="inline-block my-auto">Feedback</span></a
@@ -252,7 +257,7 @@
     ></div>
     <!-- Notifications -->
     <div
-      class="fixed right-0 top-0 rounded-lg bg-white notifications w-8/12 h-[97%] py-2 px-4 md:px-2 z-30 md:w-5/12"
+      class="fixed top-0 rounded-lg bg-white notifications w-8/12 h-[97%] py-2 px-4 md:px-2 z-30 md:w-5/12 overflow-hidden"
       id="notificationDiv"
     >
       <h2 class="text-2xl my-3 mx-2 pb-2 border-b flex justify-between">

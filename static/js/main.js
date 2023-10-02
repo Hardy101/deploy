@@ -9,6 +9,7 @@ function smoothScroll(target) {
     behavior: "smooth",
   });
 }
+
 let isOpen = false;
 // Dropdown Toggle Function
 if (document.getElementById("dropdown-toggle")) {
@@ -140,6 +141,11 @@ overlay_div.addEventListener("click", () => {
   toggleOverlay();
 });
 
+// Search Bar
+const searchinput = document.getElementById('navSearch')
+searchinput.addEventListener('focus', function(){
+    toggleOverlay()
+})
 
 const studyToolsToggle = document.getElementById('studyToolsToggle')
 const studyToolsDropdown = document.getElementById('studyToolsDropdown')
@@ -158,3 +164,9 @@ toolsToggle.addEventListener('click', function() {
         toolsDropdown.classList.toggle('bg-gray-100');
 });
 
+const sidebarlinks = document.querySelectorAll('.sidebarlink')
+sidebarlinks.forEach((link)=>{
+    link.addEventListener('click', function(){
+        link.classList.toggle('active')
+    })
+})

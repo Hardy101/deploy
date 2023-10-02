@@ -1,20 +1,19 @@
 from flask import Flask, render_template, url_for, request, redirect, jsonify
-from get_quiz_t import get_quiz
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from wtforms import StringField, EmailField, DateField, PasswordField, SubmitField, SelectField
-from wtforms.validators import DataRequired, Email, Length, InputRequired
+from wtforms.validators import Length, InputRequired
 from werkzeug.security import check_password_hash
 
 from PyPDF2.errors import PdfReadError
-from functions import extract_text, user_exists, hash_password
+from functions import extract_text, user_exists, hash_password, get_quiz
 
 app = Flask(__name__)
 app.secret_key = b'secret_key_1004'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///questions.db'
-app.config['SQLALCHEMY_BINDS'] = {'questions': 'sqlite:///questions.db'}
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mindspark.db'
+app.config['SQLALCHEMY_BINDS'] = {'mindspark': 'sqlite:///mindspark.db'}
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
@@ -51,7 +50,7 @@ class Users(db.Model, UserMixin):
 
 
 class Questions(db.Model):
-    __bind_key__ = 'questions'
+    __bind_key__ = 'mindspark'
     id = db.Column(db.Integer, unique=True, primary_key=True)
     author = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(50), nullable=False)
@@ -61,14 +60,13 @@ class Questions(db.Model):
     question_type = db.Column(db.String(50), nullable=False)
     questions = db.Column(db.String(200), nullable=False)
     options = db.Column(db.String(200), nullable=False)
-    time = db.Column(db.String(10), nullable=False)
     privacy = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         column_dict = {column.name: getattr(self, column.name) for column in self.__table__.columns}
         return column_dict
 
-    def __init__(self, author, name, category, desc, subject, question_type, questions, options, time, privacy):
+    def __init__(self, author, name, category, desc, subject, question_type, questions, options, privacy):
         self.author = author
         self.name = name
         self.category = category
@@ -77,7 +75,6 @@ class Questions(db.Model):
         self.question_type = question_type
         self.questions = questions
         self.options = options
-        self.time = time
         self.privacy = privacy
 
 
@@ -98,10 +95,19 @@ def api():
     return jsonify(all_questions)
 
 
-@app.route('/')
-def index():
-    # return redirect(url_for('select_quiz'))
-    return render_template('index.html')
+@app.route('/article-search')
+def article_search():
+    return render_template('pages/article-search.html')
+
+
+@app.route('/book-search')
+def book_search():
+    return render_template('pages/book-search.html')
+
+
+@app.route('/coming-soon')
+def coming_soon():
+    return render_template('pages/coming_soon.html')
 
 
 @app.route('/create-quiz', methods=['GET', 'POST'])
@@ -114,13 +120,12 @@ def create_quiz():
         subject = request.form['subject']
         question_type = request.form['question_type']
         category = request.form['category']
-        time = request.form['time']
         privacy = request.form['privacy']
         try:
             question_text = extract_text(request.files['question-input'])
             option_text = extract_text(request.files['answer-input'])
             new_question = Questions(current_user.username, title, category, desc, subject, question_type,
-                                     question_text, option_text, time, privacy)
+                                     question_text, option_text, privacy)
             db.session.add(new_question)
             db.session.commit()
         except PdfReadError:  # Correctly catch the PdfReadError
@@ -129,12 +134,6 @@ def create_quiz():
             return render_template('pages/create-quiz.html', form=form,
                                    message_200='Quiz Successfully created!')
     return render_template('pages/create-quiz.html', form=form)
-
-
-@app.route('/coming-soon')
-def coming_soon():
-    # return redirect(url_for('select_quiz'))
-    return render_template('pages/coming_soon.html')
 
 
 @app.route('/dashboard/<username>')
@@ -146,52 +145,54 @@ def dashboard(username):
     return render_template('pages/dashboard.html', user=user, quizzes=user_quizzes)
 
 
+@app.route('/delete/<int:acct_id>', methods=['GET', 'POST'])
+@login_required
+def delete_acct(acct_id):
+    user = db.get_or_404(Users, acct_id)
+    db.session.delete(user)
+    db.session.commit()
+    logout_user()
+    return redirect(url_for('index'))
+
+
+@app.route('/delete_quiz/<int:quiz_id>', methods=['GET', 'POST'])
+@login_required
+def delete_quiz(quiz_id):
+    quiz_to_delete = db.get_or_404(Questions, quiz_id)
+    db.session.delete(quiz_to_delete)
+    db.session.commit()
+    return redirect(url_for('dashboard', username=current_user.username))
+
+
 @app.route('/endquiz')
 @login_required
 def endquiz():
-    # return redirect(url_for('select_quiz'))
     return render_template('pages/endquiz.html')
 
 
-@app.route('/select-quiz/<int:quiz_id>')
-@login_required
-def select_quiz(quiz_id):
-    selected_quiz = db.get_or_404(Questions, quiz_id)
-    # all_quiz = db.session.execute(db.select(Questions).order_by(Questions.id)).scalars()
-    return render_template('pages/select_quiz.html', quiz=selected_quiz)
+@app.route('/feedback')
+def feedback():
+    return render_template('pages/feedback.html')
 
 
-@app.route('/quiz-info/<subject>')
-@login_required
-def quiz_info(subject):
-    all_quiz = db.session.execute(db.select(Questions).order_by(Questions.id)).scalars()
-    return render_template('pages/quiz_info.html', all_quiz=all_quiz, subject=subject)
+@app.route('/gpa')
+def gpa():
+    return render_template('pages/cgpa.html')
 
 
-@app.route('/take-quiz', methods=['GET', 'POST'])
-@login_required
-def take_quiz():
-    amount = request.form['amount']
-    if not amount or int(amount) < 1:
-        return redirect(url_for('notfound', page='notfound'))
-    else:
-        chapter = request.form['chapter']
-        # quiz_type = request.form['type']
-        quiz_data = get_quiz(amount, chapter)
-        return render_template('pages/take-quiz.html', quiz_data=quiz_data, quiz_contents=amount)
+@app.route('/help')
+def help_page():
+    return render_template('pages/help.html')
 
 
-@app.route('/quiz')
-@login_required
-def quiz():
-    # return redirect(url_for('select_quiz'))
-    return render_template('pages/quiz.html')
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = MyForm()
-
     if request.method == 'POST':
         email = request.form['email'].lower()
         password = request.form['password']
@@ -202,7 +203,6 @@ def login():
                 raise ValueError("Please enter a valid email")
 
             username = email.split('@')[0]
-            hashed_password = hash_password(password)
 
             # Validator 3 - Existing User
             user = Users.query.filter_by(contact=email).first()
@@ -213,6 +213,7 @@ def login():
                 raise ValueError("Your password is incorrect!")
 
             login_user(user)
+            # return redirect(url_for(next=request.endpoint))
             return redirect(url_for('dashboard', username=username))
 
         except ValueError as e:
@@ -220,8 +221,32 @@ def login():
         except Exception as e:
             return render_template('pages/login.html', form=form,
                                    message="An error has occurred. Please check your details and try again")
-
     return render_template('pages/login.html', form=form)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+
+@app.route('/quiz')
+@login_required
+def quiz():
+    return render_template('pages/quiz.html')
+
+
+@app.route('/quiz-info/<subject>')
+@login_required
+def quiz_info(subject):
+    all_quiz = db.session.execute(db.select(Questions).order_by(Questions.id)).scalars()
+    return render_template('pages/quiz_info.html', all_quiz=all_quiz, subject=subject)
+
+
+@app.route("/<page>")
+def notfound(page):
+    return render_template('pages/notFound.html')
 
 
 @app.route('/recover')
@@ -256,35 +281,24 @@ def register():
     return render_template('pages/register.html', form=form)
 
 
-@app.route("/logout")
+@app.route('/select-quiz/<int:quiz_id>')
 @login_required
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
+def select_quiz(quiz_id):
+    selected_quiz = db.get_or_404(Questions, quiz_id)
+    # all_quiz = db.session.execute(db.select(Questions).order_by(Questions.id)).scalars()
+    return render_template('pages/select_quiz.html', quiz=selected_quiz)
 
 
-@app.route('/delete/<int:acct_id>', methods=['GET', 'POST'])
+@app.route('/take-quiz', methods=['GET', 'POST'])
 @login_required
-def delete_acct(acct_id):
-    user = db.get_or_404(Users, acct_id)
-    db.session.delete(user)
-    db.session.commit()
-    logout_user()
-    return redirect(url_for('index'))
-
-
-@app.route('/delete_quiz/<int:quiz_id>', methods=['GET', 'POST'])
-@login_required
-def delete_quiz(quiz_id):
-    quiz_to_delete = db.get_or_404(Questions, quiz_id)
-    db.session.delete(quiz_to_delete)
-    db.session.commit()
-    return redirect(url_for('dashboard', username=current_user.username))
-
-
-@app.route("/<page>")
-def notfound(page):
-    return render_template('pages/notFound.html')
+def take_quiz():
+    amount = request.form['amount']
+    if not amount or int(amount) < 1:
+        return redirect(url_for('notfound', page='notfound'))
+    else:
+        # quiz_type = request.form['type']
+        quiz_data = get_quiz(amount)
+        return render_template('pages/take-quiz.html', quiz_data=quiz_data, quiz_contents=amount)
 
 
 if __name__ == "__main__":

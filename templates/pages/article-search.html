@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% block head %}
+<title>Search</title>
+{% endblock %} {% block body %}
+<section class="relative mb-10">
+  <div class="relative hero-div z-10">
+    <div
+      class="hero-parent relative flex justify-center bg-clifford rounded-2xl py-20 mx-5"
+    >
+      <div
+        class="absolute top-0 w-full h-full bg-color rounded-2xl bg-gradient-to-t from-clifford"
+      ></div>
+      <div
+        class="absolute -bottom-5 p-3 rounded-lg overflow-hidden shadow-3 bg-white"
+      >
+        <form class="">
+          <div class="form-control pl-10 relative text-gray-400">
+            <button type="button" class="absolute left-1 top-2 md:top-3">
+              <i class="las la-search"></i>
+            </button>
+            <input
+              type="text"
+              placeholder="Search for Articles"
+              class="py-1 text-sm border-b-2 outline-none"
+            />
+            <input
+              type="submit"
+              value="Search"
+              class="md:ml-5 text-sm rounded-lg py-1 px-3 bg-clifford text-white font-semibold border border-transparent
+               cursor-pointer hover:border-clifford hover:text-clifford hover:bg-white md:py-3 px-10"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Search Results -->
+<section>
+  <div class="py-10 px-5">
+    <h2 class="text-3xl font-bold">
+      Search results: <span class="text-clifford">1</span>
+    </h2>
+    <div class="books-parent-div my-10 flex gap-5 justify-between">
+      <div
+        class="book rounded-md w-full flex gap-5 flex-row my-auto shadow-4 cursor-pointer lg:w-auto"
+      >
+        <div class="w-4/12 flex justify-center align-center">
+          <i class="uil uil-file-info-alt inline-block text-7xl my-auto"></i>
+        </div>
+        <div class="w-7/12 py-2">
+          <h2 class="font-bold text-xl">Contribution of bacteria to water supply</h2>
+          <span class="block text-sm"
+            ><span class="text-gray-500">Author:</span> Scott Schleden</span
+          >
+          <p class="text-sm">
+            <span class="text-gray-500 und">Source:</span>
+            <span class="">Science direct</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

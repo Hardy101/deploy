@@ -11,12 +11,27 @@
 html {
   scroll-behavior: smooth;
 }
+ /*.no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+}*/
+::-webkit-scrollbar{width:7px;border-left:1px solid #E6ECF8;}
+::-webkit-scrollbar-thumb{background-color:#da373d;border-radius:4px;}
+.bg-gradient-red{
+background: rgb(218,55,61);
+background: linear-gradient(90deg, rgba(218,55,61,1) 20%, rgba(255,120,126,1) 100%);
+}
 input[type="checkbox"] {
   accent-color: #862b0d;
 }
 ::selection {
   color: #fff;
-  background: #862b0d;
+  background: #da373d;
 }
 body {
   font-family: "Montserrat", sans-serif;
@@ -38,6 +53,10 @@ body {
   display: none;
   animation: slideFadeOut 0.3s ease-in-out;
   animation-fill-mode: forwards;
+}
+.sidebarlink.active{
+ border-left: 4px solid #da373d;
+ background-color: rgb(243 244 246);
 }
 /* CSS */
 .animate__fadeInDown {
@@ -167,7 +186,7 @@ body {
 /* Notifications */
 #notificationDiv,
 #sidemore {
-  right: -570px;
+  right: -590px;
   margin: 10px;
   transition: right 0.3s ease-in-out;
 }
@@ -220,6 +239,11 @@ body {
 .shadow-4 {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.bg-library {
+  background: url("../img/gpa.jpg");
+  background-size: cover;
+  background-position: left;
 }
 .bg-image-1 {
   position: absolute;

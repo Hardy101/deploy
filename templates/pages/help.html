@@ -1,0 +1,107 @@
+{% extends 'base.html' %} {% block head %}
+<title>Help</title>
+{% endblock %} {% block body %}
+<section class="p-10">
+  <div>
+    <div class="firstDiv mx-auto mb-10 w-5/12 py-2 px-5 rounded-2xl shadow-4">
+      <h2 class="text-2xl font-semibold">How can we help?</h2>
+      <form class="my-5">
+        <div class="form-control">
+          <input
+            placeholder="Search help articles"
+            class="block w-full py-1 px-2 rounded-sm border outline-none"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="flex gap-10 justify-center">
+      <!-- Popular articles -->
+      <div class="mt-5 py-2 px-5 shadow-4 w-2/5 rounded-2xl my-auto">
+        <h2 class="text-2xl font-semibold mb-5">Popular articles</h2>
+
+        <ul>
+          <li>
+            <a href="#" class="underline italic text-lightRed"
+              >How to buy leaves</a
+            >
+          </li>
+          <li>
+            <a href="#" class="underline italic text-lightRed"
+              >How to participate in referral programme</a
+            >
+          </li>
+          <li>
+            <a href="#" class="underline italic text-lightRed"
+              >How to participate in referral programme</a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- FAQ -->
+      <div class="faqs mt-5 py-2 shadow-4 w-3/5 rounded-2xl">
+        <h2 class="text-2xl font-bold px-5 mt-3">FAQ's</h2>
+        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
+          <span class="block text-sm font-semibold">What is the quiz app?</span>
+          <span class="text-sm"
+            >The quiz app is a mobile application designed for users to engage
+            in educational and entertaining quizzes on a wide range of topics.
+            It offers an interactive way to test...</span
+          >
+        </p>
+        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
+          <span class="block text-sm font-semibold"
+            >What are leaves in the context of this app?</span
+          >
+          <span class="text-sm"
+            >In this app, "leaves" are the digital tokens that users use to
+            purchase various services and features. Think of leaves as your
+            virtual currency within the app.</span
+          >
+        </p>
+        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
+          <span class="block text-sm font-semibold"
+            >How do I obtain leaves?</span
+          >
+          <span class="text-sm"
+            >You can obtain leaves through several methods: Purchase leaves
+            through in-app transactions, Earn leaves by participating in app
+            activities, such as completing quizzes or referring friends,Receive
+            leaves as rewards or bonuses from the app, especially for loyal
+            users.</span
+          >
+        </p>
+        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
+          <span class="block text-sm font-semibold"
+            >How do I compete with friends?</span
+          >
+          <span class="text-sm"
+            >To compete with friends, you can challenge them directly through
+            the app by selecting a quiz and inviting them to participate. You
+            can...</span
+          >
+        </p>
+        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
+          <span class="block text-sm font-semibold"
+            >How can I contact customer support?</span
+          >
+          <span class="text-sm"
+            >If you have any questions, concerns, or technical issues, you can
+            contact our customer support team via email. We strive to provide
+            timely and helpful assistance to all users.</span
+          >
+        </p>
+        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
+          <span class="block text-sm font-semibold"
+            >Can I share my quiz results on social media?</span
+          >
+          <span class="text-sm"
+            >Yes, you can share your quiz results on popular social media
+            platforms directly from the app. Share your achievements, challenge
+            friends, and engage with your social network.</span
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
