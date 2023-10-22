@@ -1,0 +1,77 @@
+{% extends 'dashboard/base.html' %}
+
+<!-- Head -->
+{% block head %}
+<title>Dashboard</title>
+{% endblock %}
+
+<!-- Body -->
+{% block body %}
+<div class="w-full">
+  <div class="welcome bg-white rounded-2xl py-3 px-4">
+    <h2 class="text-2xl">
+      Welcome back,
+      <span class="font-semibold">{{ current_user.name }}!</span>
+    </h2>
+    <p class="mt-3">
+      <span class="text-clifford">20</span> new users have joined and 5 new
+      quizzes have been created.
+    </p>
+  </div>
+  <div class="flex gap-5 mt-5 flex-col md:flex-row">
+    <div
+      class="new-users my-auto w-full md:w-1/2 bg-white rounded-2xl py-3 px-4"
+    >
+      <div class="flex justify-between">
+        <span class="block text-xl font-semibold">New users</span>
+        <a href="#" class="block my-auto">View all</a>
+      </div>
+      <div>
+        <p class="flex gap-3 justify-between text-sm mt-5">
+          <span
+            class="inline-block my-auto text-green font-bold px-4 py-1 rounded-2xl bg-gray-100"
+            >verified</span
+          >
+          <span class="inline-block my-auto">Eghordia</span>
+          <img
+            src="{{ url_for('static', filename='img/profile.jpg') }}"
+            alt=""
+            class="rounded-full"
+            width="40"
+          />
+        </p>
+        <p class="flex gap-3 justify-between text-sm mt-5">
+          <span
+            class="inline-block my-auto text-clifford font-bold px-4 py-1 rounded-2xl bg-gray-100"
+            >not verified</span
+          >
+          <span class="inline-block my-auto">Kiki daniels</span>
+          <img
+            src="{{ url_for('static', filename='img/profile.jpg') }}"
+            alt=""
+            class="rounded-full"
+            width="40"
+          />
+        </p>
+      </div>
+    </div>
+    <div class="new-quizzes md:w-1/2 bg-white rounded-2xl py-3 px-4">
+      <div class="flex justify-between">
+        <span class="block text-xl font-semibold">New quizzes</span>
+        <a href="#" class="block my-auto">View all</a>
+      </div>
+
+      <div>
+        <p class="flex gap-3 justify-between mt-5">
+          <span
+            class="inline-block my-auto text-primaryBlue font-bold px-4 py-1 rounded-2xl bg-gray-100"
+            >MCB</span
+          >
+          <span class="inline-block my-auto">Eghordia</span>
+          <span class="inline-block my-auto">23-01-2023</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% set active_page = 'dashboard' %}

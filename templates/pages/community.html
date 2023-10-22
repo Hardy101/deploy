@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block head %}
+<title>Search</title>
+{% endblock %} {% block body %}
+
+<section>
+  <div class="my-16">
+    <div class="w-auto my-10 flex justify-center">
+      <div class="shadow-3 px-8 py-4">
+        <h1 class="text-3xl text-left font-bold">
+          Stay Connected with Mindspark
+        </h1>
+        <p class="text-left font-semibold text-gray-400">
+          Join our vibrant community on social media to keep the learning and
+          fun going! <br />
+          Follow us, share your achievements, and stay updated with the latest
+          quizzes and exciting content.<br />
+          Connect with us today:
+        </p>
+        <div class="flex gap-10 mt-10 text-center justify-center">
+          <a href="#" class="inline-block">
+            <img
+              src="{{ url_for('static', filename='img/facebook.png') }}"
+              width="100"
+              class="inline-block"
+            />
+          </a>
+          <a href="#" class="inline-block">
+            <img
+              src="{{ url_for('static', filename='img/telegram.png') }}"
+              width="100"
+              class="inline-block"
+            />
+          </a>
+          <a href="#" class="inline-block">
+            <img
+              src="{{ url_for('static', filename='img/whatsapp.png') }}"
+              width="100"
+              class="inline-block"
+            />
+          </a>
+          <a href="#" class="inline-block">
+            <img
+              src="{{ url_for('static', filename='img/gmail.png') }}"
+              width="100"
+              class="inline-block"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

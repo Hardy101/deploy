@@ -37,7 +37,6 @@ const exams_button = document.querySelector(".exams");
 const exams_div = document.querySelector(".exams-div");
 const exams_practice_button = document.querySelector(".exams-p");
 const exams_practice_div = document.querySelector(".exams-p-div");
-
 if (document.querySelector(".science")) {
   function showDept(divToShow) {
     detail_div.forEach((div) => {
@@ -88,7 +87,7 @@ if (document.getElementById("toggle_btn")) {
 
 // Share Div
 share_links = document.querySelector(".share-div");
-share_btn = document.querySelector(".share");
+share_btn = document.querySelector("#shareBtn");
 let isShareDivVisible = false;
 if (document.querySelector(".share-div")) {
   share_btn.addEventListener("click", () => {
@@ -141,32 +140,25 @@ overlay_div.addEventListener("click", () => {
   toggleOverlay();
 });
 
-// Search Bar
-const searchinput = document.getElementById('navSearch')
-searchinput.addEventListener('focus', function(){
-    toggleOverlay()
-})
+const studyToolsToggle = document.getElementById("studyToolsToggle");
+const studyToolsDropdown = document.getElementById("studyToolsDropdown");
+const toolsToggle = document.getElementById("toolsToggle");
+const toolsDropdown = document.getElementById("toolsDropdown");
 
-const studyToolsToggle = document.getElementById('studyToolsToggle')
-const studyToolsDropdown = document.getElementById('studyToolsDropdown')
-const toolsToggle = document.getElementById('toolsToggle')
-const toolsDropdown = document.getElementById('toolsDropdown')
-
-
-studyToolsToggle.addEventListener('click', function() {
-        studyToolsDropdown.classList.toggle('h-0');
-        studyToolsDropdown.classList.toggle('h-auto');
-        studyToolsDropdown.classList.toggle('bg-gray-100');
+studyToolsToggle.addEventListener("click", function () {
+  studyToolsDropdown.classList.toggle("h-0");
+  studyToolsDropdown.classList.toggle("h-auto");
+  studyToolsDropdown.classList.toggle("bg-gray-100");
 });
-toolsToggle.addEventListener('click', function() {
-        toolsDropdown.classList.toggle('h-0');
-        toolsDropdown.classList.toggle('h-auto');
-        toolsDropdown.classList.toggle('bg-gray-100');
+toolsToggle.addEventListener("click", function () {
+  toolsDropdown.classList.toggle("h-0");
+  toolsDropdown.classList.toggle("h-auto");
+  toolsDropdown.classList.toggle("bg-gray-100");
 });
 
-const sidebarlinks = document.querySelectorAll('.sidebarlink')
-sidebarlinks.forEach((link)=>{
-    link.addEventListener('click', function(){
-        link.classList.toggle('active')
-    })
-})
+const sidebarlinks = document.querySelectorAll(".sidebarlink");
+sidebarlinks.forEach((link) => {
+  link.addEventListener("click", function () {
+    link.classList.toggle("active");
+  });
+});

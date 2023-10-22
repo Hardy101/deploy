@@ -1,115 +1,204 @@
 {% extends 'base.html' %}
 <!-- Head -->
 {% block head %}
-  <title>Spark</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-  <style>
-        .fade-out {
-          animation: fadeOut 0.5s ease-in-out forwards;
-        }
-
-        .fade-in {
-          animation: fadeIn 0.5s ease-in-out forwards;
-        }
-
-        @keyframes fadeOut {
-          from {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          to {
-            opacity: 0;
-            transform: translateY(100%);
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-100%);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      </style>
+<title>Spark</title>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 {% endblock %}
 <!-- Custom Navigation -->
 {% block nav %}
 <!-- Loader -->
-<div class="loader fixed top-0 w-full h-full z-40 bg-[#FDFDFD] grid place-items-center hidden" id="loader">
-  <img src="{{ url_for('static', filename='img/loader.gif') }}" class="">
+<div
+  class="loader fixed top-0 w-full h-full z-40 bg-[#FDFDFD] grid place-items-center hidden"
+  id="loader"
+>
+  <img src="{{ url_for('static', filename='img/loader.gif') }}" class="" />
 </div>
-  <nav>
-      <div class="flex flex-wrap justify-center gap-20 px-4 py-5 text-xl">
-        <div class="flex gap-2 my-auto">
-            <span class="border-r-2 pr-3">CSC 220</span>
-<!--            <div class="inline-block border-r-2 pr-3">Timer: 0:00<span id="timer hidden"></span></div>-->
-            <div class=" border-r-2 pr-3">
-                <span>Question: </span>
-                <span class="question_num">1</span>
-                <span>/</span>
-                <span class="total_que_num"></span>
-            </div>
-            <div class="inline-block">Score: <span id="score">0</span></div>
-
-        </div>
-        <div class="flex gap-5">
-        <button
-        class="px-6 py-2 bg-primaryBlue rounded-3xl text-white btn_prev"
-        >
-            <i class="las la-arrow-left"></i>
-            <span>Previous Question</span>
-        </button>
-        <button
-        class="px-6 py-2 bg-primaryBlue rounded-3xl text-white btn_next"
-        >
-            <span>Next Question</span>
-            <i class="las la-long-arrow-alt-right"></i>
-        </button>
-        </div>
+<nav id="nav">
+  <div class="flex flex-wrap justify-center gap-20 px-4 py-5 text-xl">
+    <div class="flex gap-2 my-auto">
+      <span class="border-r-2 pr-3">CSC 220</span>
+      <!--            <div class="inline-block border-r-2 pr-3">Timer: 0:00<span id="timer hidden"></span></div>-->
+      <div class="border-r-2 pr-3">
+        <span>Question: </span>
+        <span class="question_num">1</span>
+        <span>/</span>
+        <span class="total_que_num"></span>
       </div>
-    </nav>
+      <div class="inline-block">Score: <span id="score">0</span></div>
+    </div>
+    <div class="flex gap-5">
+      <button
+        class="px-5 flex py-2 bg-primaryBlue rounded-3xl text-white btn_prev"
+      >
+        <!--            <i class="las la-arrow-left"></i>-->
+        <span class="text-sm md:text-base">Previous Question</span>
+      </button>
+      <button
+        class="px-5 flex py-2 bg-primaryBlue rounded-3xl text-white btn_next"
+      >
+        <span class="text-sm md:text-base">Next Question</span>
+        <!--            <i class="las la-long-arrow-alt-right"></i>-->
+      </button>
+    </div>
+  </div>
+</nav>
 {% endblock %}
 
-  <!-- Body -->
+<!-- Body -->
 {% block body %}
-<section class="grid place-items-center pb-14 md:p-0 md:h-screen">
-      {% for question_data in quiz_data %}
-      <div class="questionDiv animate__animated hidden flex gap-20 justify-center flex-col lg:px-10 md:flex-row" id="question">
-      <div
-        class="relative p-5 my-10 mx-auto text-4xl w-10/12 bg-brown rounded-xl dialog md:my-auto md:w-1/2"
+<section class="grid place-items-center pb-14 md:p-0 md:h-screen" id="main_div"
+>
+  {% for question_data in quiz_data %}
+  <div
+    class="questionDiv animate__animated animate__fadeIn hidden flex gap-20 justify-center flex-col lg:px-10 md:flex-row"
+    id="question"
+  >
+    <div
+      class="relative p-5 my-10 mx-auto text-4xl w-10/12 bg-brown rounded-xl md:my-auto md:w-1/2"
+    >
+      <span class="absolute top-3 left-3 text-grey text-xl question_num"
+        >1</span
       >
-        <span class="absolute top-3 left-3 text-grey text-xl question_num">1</span>
-        <h2 class="my-auto p-5">{{ question_data.question }}</h2>
+      <h2 class="my-auto p-5 break-words">{{ question_data.question }}</h2>
+    </div>
+    <div class="option-div mx-auto my-auto w-10/12 md:w-1/2">
+      <ul id="parent-elem" data-id="{{ question_data.is_correct }}">
+        {% for option in question_data.options %}
+        <li
+          data-answer="{% if option == question_data.options[question_data.is_correct] %}true{% endif %}"
+          class="list{{ question_data.idx }}"
+        >
+          <button
+            class="text-center w-full p-2 my-2 border-2 border-gray rounded-3xl btn"
+            id="btn"
+          >
+            {{ option }}
+          </button>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="w-10/12 mx-auto md:w-1/2 bg-[#eee] mt-6 text-center">
+    <button
+      class="px-6 py-2 bg-clifford rounded-3xl block text-white w-full"
+      id="endquiz"
+    >
+      <span class="my-auto">End Quiz</span>
+    </button>
+  </div>
+</section>
+<section class="hidden py-16" id="score_div"
+>
+  <div class="mx-5 flex flex-col gap-10 justify-center md:flex-row">
+    <div class="firstDiv w-full md:w-1/2">
+      <div
+        class="score text-center mb-10 bg-[#539165] text-white w-40 h-40 pt-14 rounded-full mx-auto"
+      >
+        <span>Your score</span> <br />
+        <span>
+          <span id="net_score">0</span><span>%</span>
+        </span>
       </div>
-      <div class="option-div mx-auto my-auto w-10/12 md:w-1/2">
-        <ul id="parent-elem" data-id="{{ question_data.is_correct }}">
-          {% for option in question_data.options %}
-          <li data-answer="{% if option == question_data.options[question_data.is_correct] %}true{% endif %}" class="list{{ question_data.idx }}">
-            <button
-              class="text-center w-full p-2 my-2 border-2 border-gray rounded-3xl btn"
-              id="btn"
-            >
-              {{ option }}
-            </button>
-          </li>
-          {% endfor %}
-        </ul>
+      <div
+        class="bg-gray-100 flex justify-center flex-wrap align-center justify-center gap-4 py-4 mb-10 rounded-2xl"
+      >
+        <p class="inline-block w-4/12 relative flex flex-col">
+          <span
+            class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white"
+            >100%</span
+          >
+          <span class="block text-center mt-3">Completion</span>
+        </p>
+        <p class="inline-block w-4/12 relative flex flex-col">
+          <span
+            class="inline-block text-center px-4 py-1 rounded-3xl bg-primaryBlue font-bold mx-auto text-white"
+            id="total_que_count"
+            >0</span
+          >
+          <span class="block text-center mt-3">Total Question</span>
+        </p>
+        <p class="inline-block w-4/12 relative flex flex-col">
+          <span
+            class="inline-block text-center px-4 py-1 rounded-3xl bg-brightGreen font-bold mx-auto text-white"
+            id="correct_answer"
+            >19</span
+          >
+          <span class="block text-center mt-3">Correct</span>
+        </p>
+        <p class="inline-block w-4/12 relative flex flex-col">
+          <span
+            class="inline-block text-center px-4 py-1 rounded-3xl bg-red font-bold mx-auto text-white"
+            id="wrong_answer"
+            >1</span
+          >
+          <span class="block text-center mt-3">Wrong</span>
+        </p>
       </div>
+      <div
+        class="moreoptions bg-gray-100 rounded-2xl p-5 grid grid-cols-3 gap-4 text-center relative"
+      >
+        <div
+          class="share-div hidden w-40 flex justify-center gap-3 absolute top-[-60%] right-0 bg-white shadow-share rounded-md text-2xl py-2 animate__animated"
+        >
+          <a><i class="lab la-facebook"></i></a>
+          <a href="https://www.twitter.com/"><i class="lab la-twitter"></i></a>
+          <a href="https://www.instagram.com/"
+            ><i class="lab la-instagram"></i
+          ></a>
+          <a><i class="las la-link"></i></a>
+        </div>
+        <!-- ======== -->
+        <a
+          href="/index"
+          class="home flex gap-3 justify-center my-auto p-2 rounded-2xl bg-white"
+        >
+          <span class="my-auto">Home</span>
+        </a>
+        <!-- ======== -->
+        <a
+          href="/select-quiz"
+          class="retake flex gap-3 justify-center my-auto p-2 rounded-2xl bg-white"
+        >
+          <span class="my-auto">Retake</span>
+        </a>
+        <!-- ======== -->
+        <button
+          class="share flex gap-3 justify-center my-auto p-2 rounded-2xl cursor-pointer bg-white"
+          id="shareBtn"
+        >
+          <span class="my-auto">Share</span>
+        </button>
+        <!-- ======== -->
+      </div>
+    </div>
+
+    <div
+      class="secondDiv flex flex-col gap-6 my-auto shadow-3 w-full md:w-1/2 py-5 rounded-2xl bg-gray-100"
+    >
+      {% for question_data in quiz_data %}
+      <div class="w-full flex gap-5 justify-between px-5">
+        <span class="inline-block font-semibold underline my-auto"
+          >QUESTION {{question_data.id }}</span
+        >
+        <p class="flex flex-col">
+          <span
+            >{{ question_data.question }}</span
+          >
+          <span class="mt-3">
+            <span class="font-bold">Answer: </span>
+            {{ question_data.options[question_data.is_correct] }}
+          </span>
+        </p>
       </div>
       {% endfor %}
-    <div class="w-1/2 bg-[#eee] mt-6 text-center">
-        <a href="/endquiz" id="nextPageLink" class="px-6 py-2 bg-green rounded-3xl block text-white w-full">
-            <span class="my-auto">End Quiz</span>
-            <i class="las la-check font-bold my-auto pl-1"></i>
-        </a>
     </div>
-  </section>
+  </div>
+</section>
 <!-- Jump to (For Exam) -->
 <!--<section id="jumpto">
         <div class="flex justify-center flex-wrap text-xl">

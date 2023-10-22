@@ -1,0 +1,221 @@
+{% extends 'dashboard/base.html' %}
+
+<!-- Head -->
+{% block head %}
+<title>Users</title>
+{% endblock %}
+
+<!-- Body -->
+{% block body %}
+<div class="relative w-full order-2 md:order-1">
+  <!--    <h2 class="text-2xl font-semibold my-3">Notifications Manager</h2>-->
+  <div class="relative w-full rounded-2xl bg-white py-3 px-4">
+    <h2 class="mb-3 text-2xl font-bold">
+      <input
+        class="w-full border border-transparent focus:border focus:border-gray-200 outline-none"
+        placeholder="Untitled"
+        value="Untitled"
+        id="title"
+      />
+    </h2>
+    <form>
+      <div class="form-control flex gap-10 border-b pb-10">
+        <div class="my-auto w-2/5">
+          <span class="block font-bold mb-1">Details</span>
+          <span class="block text-sm text-gray-400">
+            Add a title and description to your notification, this should be
+            concise and attractive for users if you want to redirect them to the
+            right place.</span
+          >
+        </div>
+        <div class="my-auto w-3/5">
+          <span class="block font-bold text-gray-500 text-sm mb-2"
+            ><span class="text-clifford">*</span>Title</span
+          >
+          <input
+            class="block border px-2 py-1 w-full outline-none rounded-md mb-3"
+            name="title"
+            id="notificationTitle"
+          />
+          <span class="block font-bold text-gray-500 text-sm my-2"
+            ><span class="text-clifford">*</span>Message</span
+          >
+          <textarea
+            class="block border px-2 py-1 w-full outline-none rounded-md"
+            name="msg"
+          >
+          </textarea>
+        </div>
+      </div>
+      <div class="form-control flex gap-10 border-b py-10">
+        <div class="my-auto w-2/5">
+          <span class="block font-bold mb-1">Target</span>
+          <span class="block text-sm text-gray-400">
+            The target is the people who will receive the notification. Several
+            options are available and let you define precisely to whom you'll
+            send it</span
+          >
+        </div>
+        <div class="my-auto w-3/5">
+          <select
+            class="block border px-2 py-1 w-full outline-none rounded-md mb-3"
+            name="target"
+          >
+            <option>All users</option>
+            <option>Regular users</option>
+            <option>Premium users</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-control flex gap-10 py-10">
+        <div class="my-auto w-2/5">
+          <span class="block font-bold mb-1">Sending Method</span>
+          <span class="block text-sm text-gray-400">
+            For planned notification, it will be sent according to the event
+            time zone.</span
+          >
+        </div>
+        <div class="my-auto w-3/5">
+          <div class="time-action flex gap-5 mb-4">
+            <button
+              class="text-left w-full px-3 py-1 rounded-md border border-green"
+              type="button"
+            >
+              <i class="uil uil-circle text-green"></i> Planned
+            </button>
+            <button
+              class="text-left w-full px-3 py-1 rounded-md border"
+              type="button"
+            >
+              <i class="uil uil-circle"></i> Immediate
+            </button>
+          </div>
+          <div class="scheduled-time-date grid grid-cols-2">
+            <span class="block font-bold text-gray-500 text-sm mb-2"
+              ><span class="text-clifford">*</span> Sending date</span
+            >
+            <span class="block font-bold text-gray-500 text-sm mb-2"
+              ><span class="text-clifford">*</span> Sending time</span
+            >
+            <input
+              type="date"
+              class="text-left w-full px-3 py-1 rounded-md border"
+            />
+            <input
+              type="time"
+              class="text-left w-full px-3 py-1 rounded-md border"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="relative w-full rounded-2xl bg-white py-3 px-4 mt-5">
+    <div>
+      <p class="my-2 border-b-2 pb-3">
+        <span><span class="font-bold">to: </span>eghordia130</span>
+        <span class="ml-5"
+          ><span class="font-bold">from: </span>19/10/2023</span
+        >
+        <span class="block text-gray-500 text-sm"
+          >You've won master of quizzes</span
+        >
+      </p>
+      <p class="my-2">
+        <span><span class="font-bold">to: </span>petersdaniels</span>
+        <span class="ml-5"
+          ><span class="font-bold">from: </span>19/10/2023</span
+        >
+        <span class="block text-gray-500 text-sm"
+          >You've won master of quizzes</span
+        >
+      </p>
+      <button
+        class="block w-full bg-primaryBlue rounded-md py-1 text-white mt-5"
+        id="openNotificationManager"
+      >
+        Manage Notifications
+      </button>
+    </div>
+  </div>
+</div>
+<div
+  class="fixed hidden left-0 w-full parent-div-notification-manager z-10"
+  id="notificationManager"
+>
+  <div
+    class="overlay fixed top-0 w-full h-full bg-black opacity-30 cursor-pointer z-20"
+    id="overlay"
+  ></div>
+  <div class="relative bg-white rounded-md w-8/12 mx-auto p-5 z-30">
+    <h2 class="text-2xl font-semibold">Manage Notifications</h2>
+    <div>
+      <div class="my-2 border-b-2 pb-3 flex justify-between">
+        <form class="my-auto w-3/5">
+          <span><span class="font-bold">to: </span>all</span>
+          <span class="ml-5"
+            ><span class="font-bold">from: </span>19/10/2023</span
+          >
+          <input
+            value="Competition available!"
+            name="title"
+            class="block w-full font-bold p-1 border outline-none mb-1"
+          />
+          <textarea
+            class="block w-full text-gray-500 text-sm p-1 border outline-none"
+            name="msg"
+          >
+Competition is now available</textarea
+          >
+          <button
+            type="button"
+            class="bg-[#4CAF50] mt-3 text-white font-bold rounded-sm py-1 px-4"
+          >
+            Done
+          </button>
+        </form>
+        <div class="my-auto">
+          <button class="inline-block text-2xl text-[#4CAF50] mr-3">
+            <i class="uil uil-edit-alt"></i>
+          </button>
+          <button class="inline-block text-2xl text-clifford">
+            <i class="uil uil-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="text-right">
+      <button
+        class="inline-block text-white bg-clifford py-1 px-4 rounded-sm font-bold"
+        id="closeNotificationManager"
+      >
+        <span class="inline-block my-auto">Close</span>
+        <i class="uil uil-times inline-block my-auto"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+  title = document.getElementById("title");
+  notificationTitle = document.getElementById("notificationTitle");
+
+  notificationTitle.addEventListener("input", function () {
+    notificationTitle_value = notificationTitle.value;
+    title.value = notificationTitle_value;
+  });
+
+  const notification_div = document.getElementById("notificationManager");
+  const overlay = document.getElementById("notificationManager");
+  const open_btn = document.getElementById("openNotificationManager");
+  const close_btn = document.getElementById("closeNotificationManager");
+
+  open_btn.addEventListener("click", function () {
+    document.body.classList.add("overflow-hidden");
+    notification_div.classList.remove("hidden");
+  });
+  close_btn.addEventListener("click", function () {
+    document.body.classList.remove("overflow-hidden");
+    notification_div.classList.add("hidden");
+  });
+</script>
+{% endblock %} {% set active_page = 'notifications' %}

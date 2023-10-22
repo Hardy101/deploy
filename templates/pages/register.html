@@ -21,11 +21,12 @@
       </div>
 
       <form action="" class="my-3" method="post">
-        {{ form.csrf_token }} 
-        {% if message %}
+        {{ form.csrf_token }} {% if message %}
         <div class="form-control my-2 px-2 py-1 text-clifford bg-lightRed flex">
           <i class="las la-times-circle inline-block text-3xl my-auto"></i>
-          <span class="inline-block pl-2 my-auto font-bold text-sm">{{ message }}</span>
+          <span class="inline-block pl-2 my-auto font-bold text-sm"
+            >{{ message }}</span
+          >
         </div>
         {% endif %}
         <div class="form-control">
@@ -39,15 +40,39 @@
           form.name(class="border-2 rounded-sm border-gray p-2 block w-full my-2
           outline-none focus:border-clifford", placeholder="John Doe") }}
         </div>
-        <div class="form-control">
+        <div class="form-control relative">
+          <div class="flex justify-between">
+            {{ form.password.label(class="password font-bold text-lg") }}
+            <a
+              href="/recover"
+              class="underline text-primaryBlue text-[14px] my-auto"
+              >Forgot Password?</a
+            >
+          </div>
+          <div class="relative">
+            {{ form.password(class="border-2 rounded-sm border-gray p-2 block
+            w-full my-2 outline-none focus:border-clifford", placeholder="Enter
+            6 characters or more") }}
+            <button
+              type="button"
+              class="absolute right-[5px] top-2 text-sm bg-clifford text-white py-1 px-2 rounded-sm"
+              id="showPassword"
+            >
+              Show Password
+            </button>
+            <button
+              type="button"
+              class="hidden absolute right-[5px] top-2 text-sm bg-clifford text-white py-1 px-2 rounded-sm"
+              id="hidePassword"
+            >
+              Hide Password
+            </button>
+          </div>
+        </div>
+        <div class="form-control relative">
           {{ form.dob.label(class="font-bold text-lg") }} {{
           form.dob(class="border-2 rounded-sm border-gray p-2 block w-full my-2
-          outline-none focus:border-clifford") }}
-        </div>
-        <div class="form-control">
-          {{ form.password.label(class="font-bold text-lg") }} {{
-          form.password(class="border-2 rounded-sm border-gray p-2 block w-full
-          my-2 outline-none focus:border-clifford", placeholder="*****") }}
+          outline-none focus:border-clifford", placeholder="John Doe") }}
         </div>
         <div class="form-control my-3">
           <div class="flex gap-2 text-xs text-darkerGrey">
@@ -88,4 +113,20 @@
     </div>
   </div>
 </section>
+<script>
+  password = document.getElementById("password");
+  show_password = document.getElementById("showPassword");
+  hide_password = document.getElementById("hidePassword");
+
+  show_password.addEventListener("click", function () {
+    password.type = "text";
+    show_password.classList.toggle("hidden");
+    hide_password.classList.toggle("hidden");
+  });
+  hide_password.addEventListener("click", function () {
+    password.type = "password";
+    show_password.classList.toggle("hidden");
+    hide_password.classList.toggle("hidden");
+  });
+</script>
 {% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'dashboard/base.html' %}
+
+<!-- Head -->
+{% block head %}
+<title>Users</title>
+{% endblock %}
+
+<!-- Body -->
+{% block body %}
+<div class="w-full order-2 md:order-1">
+  <h2 class="text-2xl font-semibold my-3">User List</h2>
+  <div class="relative w-full rounded-2xl bg-white py-3 px-4">
+    <div class="overflow-x-scroll">
+      <table
+        class="w-full border-separate border-spacing-x-0 border-spacing-y-2 px-3"
+      >
+        <thead>
+          <tr class="text-center text-gray-400">
+            <th class="px-2">#</th>
+            <th class="px-2">Name</th>
+            <th class="px-2">Email</th>
+            <th class="px-2">Plan</th>
+            <th class="px-2">Date joined</th>
+            <th class="px-2">Account type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- First Entry -->
+          {% for user in all_users %}
+          <tr class="tr-user text-center" id="crs-1">
+            <td class="px-2 py-2 ...">{{ user.id }}</td>
+            <td class="px-2 py-2">{{ user.name }}</td>
+            <td class="px-2 py-1 underline">
+              <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+            </td>
+            <td class="px-2 py-2">{{ user.acct_plan }}</td>
+            <td class="px-2 py-2">{{ user.date_joined }}</td>
+            <td class="px-2 py-2">{{ user.acct_type }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="rounded-2xl bg-white py-3 px-4 mt-5">
+    <h2 class="font-semibold">Actions</h2>
+    <span>{{ message }}</span>
+
+    <form class="mt-3" method="post">
+      <div class="form-control w-full">
+        <select class="py-2 border-b-2 w-full outline-none" id="userSelect">
+          {% for user in all_users %}
+          <option
+            value="{{user.id}}"
+            data-plan="{{ user.acct_plan }}"
+            data-type="{{ user.acct_type }}"
+          >
+            {{ user.name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="action-btn-div mt-5 text-white">
+        <button
+          class="bg-primaryBlue rounded-2xl mt-2 border-2xl px-4 py-1 font-bold"
+          formaction="{{ url_for('upgrade_user_plan', user_id=1) }}"
+          id="actionBtnUpgrade"
+          name="actionBtnUpgrade"
+        >
+          Upgrade Plan
+        </button>
+        <button
+          class="hidden bg-yellow rounded-2xl mt-2 border-2xl px-4 py-1 font-bold"
+          formaction="{{ url_for('downgrade_user_plan', user_id=1) }}"
+          id="actionBtnDowngrade"
+          name="actionBtnDowngrade"
+        >
+          Downgrade Plan
+        </button>
+        <button
+          class="mt-2 bg-green rounded-2xl border-2xl px-4 py-1 font-bold"
+          formaction="{{ url_for('upgrade_user_type', user_id=1) }}"
+          id="upgradeUserType"
+          name="upgradeUserType"
+        >
+          Upgrade User
+        </button>
+        <button
+          class="hidden mt-2 bg-yellow rounded-2xl border-2xl px-4 py-1 font-bold"
+          formaction="{{ url_for('downgrade_user_type', user_id=1) }}"
+          id="downgradeUserType"
+          name="downgradeUserType"
+        >
+          Downgrade User
+        </button>
+        <button
+          class="mt-2 bg-clifford rounded-2xl border-2xl px-4 py-1 font-bold"
+          formaction="{{ url_for('delete_acct', acct_id=1) }}"
+          id="deleteUserBtn"
+          name="deleteUserBtn"
+        >
+          Delete Account
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const user_select = document.getElementById("userSelect");
+  function UpdateUserButtons() {
+    const upgrade_button = document.getElementById("actionBtnUpgrade");
+    const upgrade_type_button = document.getElementById("upgradeUserType");
+    const downgrade_button = document.getElementById("actionBtnDowngrade");
+    const downgrade_type_button = document.getElementById("downgradeUserType");
+    const deleteUserBtn = document.getElementById("deleteUserBtn");
+
+    const selected_value = user_select.value;
+    const selectedOption = user_select.options[user_select.selectedIndex];
+    const selectedPlan = selectedOption.getAttribute("data-plan");
+    const selectedType = selectedOption.getAttribute("data-type");
+    if (selectedPlan == "premium") {
+      upgrade_button.classList.add("hidden");
+      downgrade_button.classList.remove("hidden");
+    } else if (selectedPlan == "regular") {
+      upgrade_button.classList.remove("hidden");
+      downgrade_button.classList.add("hidden");
+    }
+    if (selectedType == "moderator") {
+      upgrade_type_button.classList.add("hidden");
+      downgrade_type_button.classList.remove("hidden");
+    } else if (selectedType == "user") {
+      upgrade_type_button.classList.remove("hidden");
+      downgrade_type_button.classList.add("hidden");
+    }
+    upgrade_button.formAction = `/upgrade-user-plan/${selected_value}`;
+    upgrade_type_button.formAction = `/upgrade-user-type/${selected_value}`;
+    downgrade_button.formAction = `/downgrade-user-plan/${selected_value}`;
+    downgrade_type_button.formAction = `/downgrade-user-type/${selected_value}`;
+    deleteUserBtn.formAction = `/delete/${selected_value}`;
+  }
+  UpdateUserButtons();
+  user_select.addEventListener("change", UpdateUserButtons);
+</script>
+{% endblock %} {% set active_page = 'users' %}

@@ -3,101 +3,45 @@
 {% endblock %} {% block body %}
 <section class="p-10">
   <div>
-    <div class="firstDiv mx-auto mb-10 w-5/12 py-2 px-5 rounded-2xl shadow-4">
-      <h2 class="text-2xl font-semibold">How can we help?</h2>
-      <form class="my-5">
-        <div class="form-control">
-          <input
-            placeholder="Search help articles"
-            class="block w-full py-1 px-2 rounded-sm border outline-none"
-          />
-        </div>
-      </form>
+    <div class="header my-10 text-center">
+      <h1 class="text-3xl font-bold">Contact Us</h1>
+      <span>Have any questions, Let us know how we can help.</span>
     </div>
-    <div class="flex gap-10 justify-center">
-      <!-- Popular articles -->
-      <div class="mt-5 py-2 px-5 shadow-4 w-2/5 rounded-2xl my-auto">
-        <h2 class="text-2xl font-semibold mb-5">Popular articles</h2>
-
-        <ul>
-          <li>
-            <a href="#" class="underline italic text-lightRed"
-              >How to buy leaves</a
-            >
-          </li>
-          <li>
-            <a href="#" class="underline italic text-lightRed"
-              >How to participate in referral programme</a
-            >
-          </li>
-          <li>
-            <a href="#" class="underline italic text-lightRed"
-              >How to participate in referral programme</a
-            >
-          </li>
-        </ul>
+    <div class="body flex flex-col md:flex-row gap-10 justify-center">
+      <div
+        class="social-media w-full my-auto rounded-xl px-4 py-6 border-t-4 border-primaryMaroon shadow-3 md:w-4/12"
+      >
+        <h2 class="font-semibold mb-3 text-xl">Social media</h2>
+        <p class="text-sm font-semibold text-gray-400">
+          Follow us on our social media pages and join the conversation for
+          quick updates, news, and direct messaging.
+        </p>
+        <p class="text-center mt-7">
+          <a
+            href="#"
+            class="text-sm text-primaryMaroon font-semibold py-2 px-5 border border-primaryMaroon rounded-full hover:text-white hover:bg-primaryMaroon"
+          >
+            Visit community Page</a
+          >
+        </p>
       </div>
-      <!-- FAQ -->
-      <div class="faqs mt-5 py-2 shadow-4 w-3/5 rounded-2xl">
-        <h2 class="text-2xl font-bold px-5 mt-3">FAQ's</h2>
-        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
-          <span class="block text-sm font-semibold">What is the quiz app?</span>
-          <span class="text-sm"
-            >The quiz app is a mobile application designed for users to engage
-            in educational and entertaining quizzes on a wide range of topics.
-            It offers an interactive way to test...</span
-          >
+      <div
+        class="support w-full my-auto rounded-xl px-4 py-6 border-t-4 border-green shadow-3 md:w-4/12"
+      >
+        <h2 class="font-semibold mb-3 text-xl">Help & Support</h2>
+        <p class="text-sm font-semibold text-gray-400">
+          Reach out to us via our social media handles to get your questions
+          answered promptly. We're here to help!
         </p>
-        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
-          <span class="block text-sm font-semibold"
-            >What are leaves in the context of this app?</span
+        <p class="text-center text-sm font-semibold text-green mt-7">
+          <a
+            href="#"
+            class="inline-block py-2 px-5 border border-green rounded-full hover:text-white hover:bg-green"
           >
-          <span class="text-sm"
-            >In this app, "leaves" are the digital tokens that users use to
-            purchase various services and features. Think of leaves as your
-            virtual currency within the app.</span
+            Visit Support Page</a
           >
-        </p>
-        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
-          <span class="block text-sm font-semibold"
-            >How do I obtain leaves?</span
-          >
-          <span class="text-sm"
-            >You can obtain leaves through several methods: Purchase leaves
-            through in-app transactions, Earn leaves by participating in app
-            activities, such as completing quizzes or referring friends,Receive
-            leaves as rewards or bonuses from the app, especially for loyal
-            users.</span
-          >
-        </p>
-        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
-          <span class="block text-sm font-semibold"
-            >How do I compete with friends?</span
-          >
-          <span class="text-sm"
-            >To compete with friends, you can challenge them directly through
-            the app by selecting a quiz and inviting them to participate. You
-            can...</span
-          >
-        </p>
-        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
-          <span class="block text-sm font-semibold"
-            >How can I contact customer support?</span
-          >
-          <span class="text-sm"
-            >If you have any questions, concerns, or technical issues, you can
-            contact our customer support team via email. We strive to provide
-            timely and helpful assistance to all users.</span
-          >
-        </p>
-        <p class="faq pt-3 px-5 hover:bg-gray-100 cursor-pointer">
-          <span class="block text-sm font-semibold"
-            >Can I share my quiz results on social media?</span
-          >
-          <span class="text-sm"
-            >Yes, you can share your quiz results on popular social media
-            platforms directly from the app. Share your achievements, challenge
-            friends, and engage with your social network.</span
+          <a href="{{ url_for('feedback') }}" class="block mt-2 text-[11px]"
+            >SUBMIT A REQUEST</a
           >
         </p>
       </div>

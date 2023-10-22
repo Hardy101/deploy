@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html' %}
+
+<!-- Head -->
+{% block head %}
+<title>Dashboard</title>
+{% endblock %}
+
+<!-- Body -->
+{% block body %}
+<div class="w-full">
+  <h2 class="text-2xl font-semibold my-3">Support</h2>
+  <div class="flex px-4 gap-5 shadow-4 py-2 rounded-2xl bg-white mb-5">
+    <span class="pending-toggle questions-btn text-clifford cursor-pointer"
+      >Pending</span
+    >
+    <span class="approved-toggle questions-btn cursor-pointer">Replied</span>
+  </div>
+  <div
+    class="relative animate__animated animate__fadeInUp bg-white rounded-2xl py-2 px-4"
+  >
+    {% for support in all_support %} {% if support.type == 'support' %}
+    <div
+      class="{{support.status}} border-b pb-3"
+      id="{{support.status}}-{{support.id}}"
+    >
+      <span class="block font-bold text-sm text-gray-500"
+        >@{{ support.username }}</span
+      >
+      <span class="block font-bold text">{{ support.title }}</span>
+      <span class="block text-sm">{{ support.msg }}</span>
+      <form class="hidden" id="response-1" action="">
+        <input
+          class="block w-full mt-3 rounded-sm p-1 border outline-none"
+          name="reply"
+        />
+        <button
+          type="submit"
+          class="bg-[#4CAF50] mt-3 text-white font-bold rounded-sm py-1 px-4 text-sm"
+        >
+          Done <i class="uil uil-check"></i>
+        </button>
+      </form>
+      <button
+        type="button"
+        class="bg-primaryBlue mt-3 text-white font-bold rounded-sm py-1 px-4 text-sm"
+        id="reply-button-1"
+      >
+        Reply <i class="uil uil-corner-up-left-alt"></i>
+      </button>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+</div>
+<script>
+  const response = document.getElementById("response-1");
+  const reply_btn = document.getElementById("reply-button-1");
+  function toggle_reply() {
+    response.classList.toggle("hidden");
+    reply_btn.classList.toggle("hidden");
+  }
+  reply_btn.addEventListener("click", toggle_reply);
+</script>
+{% endblock %} {% set active_page = 'support' %}

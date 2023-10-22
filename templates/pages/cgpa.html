@@ -24,19 +24,26 @@
               <th class="px-2"></th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="bg-gray-200">
+          <tbody id="table-body">
+            <!-- First Entry -->
+            <tr class="bg-gray-200" id="crs-1">
               <td class="px-2 py-2 ...">1</td>
               <td class="px-2 py-2">
                 <input
                   type="text"
                   value="AEB211"
                   class="outline-clifford w-full"
+                  id="crs-name-1"
                   disabled
                 />
               </td>
               <td class="px-2 py-2 ...">
-                <select name="" id="" class="w-full p-2" disabled>
+                <select
+                  name=""
+                  id="crs-grade-select-1"
+                  class="w-full p-2"
+                  disabled
+                >
                   <option value="">A</option>
                   <option value="">B</option>
                   <option value="">C</option>
@@ -46,7 +53,12 @@
                 </select>
               </td>
               <td class="px-2 py-1 ...">
-                <select name="" id="" class="w-full p-2" disabled>
+                <select
+                  name=""
+                  id="crs-credit-select-1"
+                  class="w-full p-2"
+                  disabled
+                >
                   <option value="">1</option>
                   <option value="">2</option>
                   <option value="">3</option>
@@ -56,54 +68,12 @@
               <td
                 class="px-2 py-2 flex flex-col md:flex-row gap-3 justify-center align-center"
               >
-                <button class="flex">
+                <button class="flex" id="edit-course-1">
                   <i
                     class="uil uil-edit-alt px-4 py-1 text-white rounded-full bg-primaryBlue"
                   ></i>
                 </button>
-                <button class="flex">
-                  <i
-                    class="uil uil-minus bg-red px-4 py-1 text-white rounded-full"
-                  ></i>
-                </button>
-              </td>
-            </tr>
-            <tr class="bg-gray-200">
-              <td class="px-2 py-2 ...">2</td>
-              <td class="px-2 py-2">
-                <input
-                  type="text"
-                  value="CHM211"
-                  class="outline-clifford w-full"
-                />
-              </td>
-              <td class="px-2 py-2 ...">
-                <select name="" id="" class="w-full p-2">
-                  <option value="">A</option>
-                  <option value="">B</option>
-                  <option value="">C</option>
-                  <option value="">D</option>
-                  <option value="">E</option>
-                  <option value="">F</option>
-                </select>
-              </td>
-              <td class="px-2 py-1 ...">
-                <select name="" id="" class="w-full p-2">
-                  <option value="">1</option>
-                  <option value="">2</option>
-                  <option value="">3</option>
-                  <option value="">4</option>
-                </select>
-              </td>
-              <td
-                class="px-2 py-2 flex flex-col md:flex-row gap-3 justify-center align-center"
-              >
-                <button class="flex">
-                  <i
-                    class="uil uil-edit-alt px-4 py-1 text-white rounded-full bg-primaryBlue"
-                  ></i>
-                </button>
-                <button class="flex">
+                <button class="flex" id="clear-course-1">
                   <i
                     class="uil uil-minus bg-red px-4 py-1 text-white rounded-full"
                   ></i>
@@ -113,7 +83,10 @@
           </tbody>
         </table>
         <div class="w-full border-t-2 p-3 bg-gray-100 text-right mt-5">
-          <button class="bg-green px-4 py-2 text-white rounded-3xl">
+          <button
+            class="bg-green px-4 py-2 text-white rounded-3xl"
+            id="addCourse"
+          >
             Add Course
           </button>
         </div>
@@ -121,22 +94,23 @@
       </div>
       <div class="w-full md:w-2/5 bg-white rounded-2xl overflow-hidden my-auto">
         <h2 class="text-2xl font-semibold my-3 px-3">Current GPA</h2>
-        <span class="inline-block text-gray-400 text-xl mb-3 px-3">GPA</span>
+        <span class="inline-block text-gray-400 text-xl mb-3 px-3"
+          >GPA = <span class="font-bold">--</span></span
+        >
 
         <div class="grid grid-cols-1 divide-y px-3">
-          <p class="pt-2 pb-1">Cumulative GPA</p>
-          <span class="pt-2 pb-1">Fall</span>
-          <span class="pt-2 pb-1">Spring</span>
+          <p class="pt-2 pb-1 flex gap-5 justify-between">
+            <span>Cumulative GPA</span>
+            <span>--</span>
+          </p>
+          <!--          <span class="pt-2 pb-1">Fall</span>-->
+          <!--          <span class="pt-2 pb-1">Spring</span>-->
         </div>
         <div class="w-full bg-gray-100 border-t-2 py-3 px-3 text-right mt-5">
-          <button
-            class="px-4 py-2 text-red border border-red rounded-3xl"
-          >
+          <button class="px-4 py-2 text-red border border-red rounded-3xl">
             Clear All
           </button>
-          <button
-            class="px-4 py-2 text-green border border-green rounded-3xl"
-          >
+          <button class="px-4 py-2 text-green border border-green rounded-3xl">
             Calculate GPA
           </button>
         </div>
@@ -144,4 +118,61 @@
     </div>
   </div>
 </section>
+<script>
+  const tableBody = document.getElementById("table-body");
+  const addRowButton = document.getElementById("addCourse");
+  let rowNum = 1;
+
+  addRowButton.addEventListener("click", function () {
+    console.log(rowNum);
+    // Create a new table row element
+    const newRow = document.createElement("tr");
+    newRow.className = "bg-gray-200";
+    newRow.id = "crs-" + (rowNum + 1);
+
+    // Create and append the table data elements to the new row
+    newRow.innerHTML = `
+          <td class="px-2 py-2 ...">${rowNum + 1}</td>
+          <td class="px-2 py-2">
+            <input type="text" value="course" class="outline-clifford w-full">
+          </td>
+          <td class="px-2 py-2 ...">
+            <select name="" id="crs-grade-select-${
+              rowNum + 1
+            }" class="w-full p-2">
+              <option value="">A</option>
+              <option value="">B</option>
+              <option value="">C</option>
+              <option value="">D</option>
+              <option value="">E</option>
+              <option value="">F</option>
+            </select>
+          </td>
+          <td class="px-2 py-1 ...">
+            <select name="" id="crs-credit-select-${
+              rowNum + 1
+            }" class="w-full p-2">
+              <option value="">1</option>
+              <option value="">2</option>
+              <option value="">3</option>
+              <option value="">4</option>
+            </select>
+          </td>
+          <td class="px-2 py-2 flex flex-col md:flex-row gap-3 justify-center align-center">
+            <button class="flex" id="edit-course-${rowNum + 1}">
+              <i class="uil uil-edit-alt px-4 py-1 text-white rounded-full bg-primaryBlue"></i>
+            </button>
+            <button class="flex" id="edit-course-${rowNum + 2}">
+              <i class="uil uil-minus bg-red px-4 py-1 text-white rounded-full"></i>
+            </button>
+          </td>
+        `;
+
+    // Append the new row to the table body
+    tableBody.appendChild(newRow);
+
+    // Increment the row number
+    rowNum += 1;
+  });
+</script>
 {% endblock %}

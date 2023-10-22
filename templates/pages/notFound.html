@@ -11,12 +11,15 @@
 <!-- Body -->
 {% block body %}
 <section class="h-screen grid place-items-center text-center bg-grey">
-    <div>
-        <h1 class="text-[10rem] leading-none text-primaryMaroon">404</h1>
-        <h2 class="font-bold text-3xl mb-4">Page not found</h2>
-        <a class="block text-2xl px-1 py-3 rounded-md bg-primaryMaroon text-white cursor-pointer shadow-btn" onclick="goBack()"><i class="las la-undo"></i> Go back</a>
-    </div>
+  <div>
+    <h1 class="text-[10rem] leading-none text-primaryMaroon">404</h1>
+    <h2 class="font-bold text-3xl mb-4">Page not found</h2>
+    <a
+      class="block text-2xl px-1 py-3 rounded-md bg-primaryMaroon text-white cursor-pointer shadow-btn"
+      onclick="goBack()"
+      ><i class="las la-undo"></i> Go back</a
+    >
+  </div>
 </section>
 <!-- Footer -->
-{% block footer %}{% endblock %}
-{% endblock %}
+{% block footer %}{% endblock %} {% endblock %}

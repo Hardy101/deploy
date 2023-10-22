@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, jsonify
+from flask import Flask, render_template, url_for, request, redirect, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 from flask_wtf import FlaskForm
@@ -8,7 +8,7 @@ from wtforms.validators import Length, InputRequired
 from werkzeug.security import check_password_hash
 
 from PyPDF2.errors import PdfReadError
-from functions import extract_text, user_exists, hash_password, get_quiz
+from functions import extract_text, user_exists, hash_password, get_quiz, get_today_date
 
 app = Flask(__name__)
 app.secret_key = b'secret_key_1004'
@@ -27,7 +27,7 @@ class MyForm(FlaskForm):
     email = EmailField('Email Id', validators=[InputRequired()])
     dob = DateField('Date of birth', validators=[InputRequired()])
     password = PasswordField('Password', validators=[InputRequired(), Length(min('6'))])
-    quiz_title = StringField('Quiz Title', validators=[InputRequired()])
+    quiz_title = StringField('Details', validators=[InputRequired()])
     quiz_desc = StringField('Quiz Description', validators=[InputRequired()])
     question_type = SelectField('Question Type', choices=[('', 'Select type'), ('multiple-choice', 'Multiple-choice'),
                                                           ('true/false', 'True/False')], validators=[InputRequired()])
@@ -40,13 +40,18 @@ class MyForm(FlaskForm):
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     username = db.Column(db.String(50), nullable=False)
-    accttype = db.Column(db.String(50), nullable=False)
-    name = db.Column(db.String(50), nullable=False)
-    contact = db.Column(db.String(50), nullable=False)
+    acct_plan = db.Column(db.String(50), nullable=False)
+    acct_type = db.Column(db.String(50), nullable=False)
+    date_joined = db.Column(db.String(50), nullable=False)
     dob = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    quiz = db.Column(db.String(500), nullable=True)
+
+    def to_dict(self):
+        column_dict = {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return column_dict
 
 
 class Questions(db.Model):
@@ -78,13 +83,65 @@ class Questions(db.Model):
         self.privacy = privacy
 
 
-# with app.app_context():
-#     db.create_all()
+class Notifications(db.Model):
+    __bind_key__ = 'mindspark'
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    author = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
+    msg = db.Column(db.String(50), nullable=False)
+    target = db.Column(db.String(100), nullable=False)
+    method = db.Column(db.String(50), nullable=False)
+    send_date = db.Column(db.String(50), nullable=True)
+    send_time = db.Column(db.String(200), nullable=True)
+
+
+class Support(db.Model):
+    __bind_key__ = 'mindspark'
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    username = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
+    msg = db.Column(db.String(50), nullable=False)
+    type = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(50), nullable=False)
+    response = db.Column(db.String(200), nullable=True)
+    reply_date = db.Column(db.String(50), nullable=True)
+    reply_user = db.Column(db.String(50), nullable=True)
+
+    def to_dict(self):
+        column_dict = {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return column_dict
+
+    def __init__(self, username, email, title, msg, status, type, response, reply_date, reply_user):
+        self.username = username
+        self.email = email
+        self.title = title
+        self.msg = msg
+        self.type = type
+        self.status = status
+        self.response = response
+        self.reply_date = reply_date
+        self.reply_user = reply_user
+
+
+with app.app_context():
+    db.create_all()
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return Users.query.get(user_id)
+
+
+@app.route('/add-feedback/<int:user_id>', methods=['GET', 'POST'])
+def add_feedback(user_id):
+    if request.method == 'POST':
+        msg = request.form['msg']
+        feedback_question = db.get_or_404(Support, user_id)
+        feedback_question.msg = msg
+        feedback_question.status = 'replied'
+        db.session.commit()
+        return redirect(url_for('feedback_page'))
 
 
 @app.route('/api')
@@ -95,19 +152,14 @@ def api():
     return jsonify(all_questions)
 
 
-@app.route('/article-search')
-def article_search():
-    return render_template('pages/article-search.html')
-
-
-@app.route('/book-search')
-def book_search():
-    return render_template('pages/book-search.html')
-
-
 @app.route('/coming-soon')
 def coming_soon():
     return render_template('pages/coming_soon.html')
+
+
+@app.route('/community')
+def community():
+    return render_template('pages/community.html')
 
 
 @app.route('/create-quiz', methods=['GET', 'POST'])
@@ -136,13 +188,10 @@ def create_quiz():
     return render_template('pages/create-quiz.html', form=form)
 
 
-@app.route('/dashboard/<username>')
+@app.route('/dashboard')
 @login_required
-def dashboard(username):
-    # user_quizzes = db.session.execute(db.Select(Questions).filter_by(author=username)).scalars()
-    user_quizzes = db.session.query(Questions).filter_by(author=username).all()
-    user = Users.query.filter_by(username=username).first_or_404(description="No user with the provided username")
-    return render_template('pages/dashboard.html', user=user, quizzes=user_quizzes)
+def dashboard():
+    return render_template('dashboard/dashboard.html')
 
 
 @app.route('/delete/<int:acct_id>', methods=['GET', 'POST'])
@@ -161,7 +210,27 @@ def delete_quiz(quiz_id):
     quiz_to_delete = db.get_or_404(Questions, quiz_id)
     db.session.delete(quiz_to_delete)
     db.session.commit()
-    return redirect(url_for('dashboard', username=current_user.username))
+    return redirect(url_for('profile', username=current_user.username))
+
+
+@app.route('/downgrade-user-plan/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def downgrade_user_plan(user_id):
+    user = db.get_or_404(Users, user_id)
+    if user:
+        user.acct_plan = 'regular'
+        db.session.commit()
+    return redirect(url_for('users_page'))
+
+
+@app.route('/downgrade-user-type/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def downgrade_user_type(user_id):
+    user = db.get_or_404(Users, user_id)
+    if user:
+        user.acct_type = 'user'
+        db.session.commit()
+    return redirect(url_for('users_page'))
 
 
 @app.route('/endquiz')
@@ -170,12 +239,32 @@ def endquiz():
     return render_template('pages/endquiz.html')
 
 
-@app.route('/feedback')
+@app.route('/feedback', methods=['GET', 'POST'])
+@login_required
 def feedback():
+    if request.method == 'POST':
+        username = current_user.username
+        title = request.form['title']
+        msg = request.form['msg']
+        email = request.form['email']
+        support_type = 'feedback'
+        new_support = Support(username=username, email=email, title=title, msg=msg, type=support_type,
+                              status='pending', response='--', reply_date='--', reply_user='--')
+        db.session.add(new_support)
+        db.session.commit()
     return render_template('pages/feedback.html')
 
 
+@app.route('/feedback-page')
+@login_required
+def feedback_page():
+    all_feedback_file = db.session.execute(db.select(Support).order_by(Support.id)).fetchall()
+    all_feedback = [Support.to_dict(support_feedback[0]) for support_feedback in all_feedback_file]
+    return render_template('dashboard/feedback.html', all_feedback=all_feedback)
+
+
 @app.route('/gpa')
+@login_required
 def gpa():
     return render_template('pages/cgpa.html')
 
@@ -192,36 +281,45 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = MyForm()
-    if request.method == 'POST':
-        email = request.form['email'].lower()
-        password = request.form['password']
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    else:
+        form = MyForm()
+        if request.method == 'POST':
+            email = request.form['email'].lower()
+            password = request.form['password']
+            next_page = request.args.get('next')
+            if next_page:
+                next_page = request.args.get('next').replace('/', '')
 
-        try:
-            # Validator 2 - Email
-            if not email:
-                raise ValueError("Please enter a valid email")
+            try:
+                # Validator 2 - Email
+                if not email:
+                    raise ValueError("Please enter a valid email")
 
-            username = email.split('@')[0]
+                username = email.split('@')[0]
 
-            # Validator 3 - Existing User
-            user = Users.query.filter_by(contact=email).first()
-            if not user:
-                raise ValueError("Sorry we couldn't find an account with that email")
+                # Validator 3 - Existing User
+                user = Users.query.filter_by(email=email).first()
+                if not user:
+                    raise ValueError("Sorry we couldn't find an account with that email")
 
-            if not check_password_hash(user.password, password):
-                raise ValueError("Your password is incorrect!")
+                if not check_password_hash(user.password, password):
+                    raise ValueError("Your password is incorrect!")
 
-            login_user(user)
-            # return redirect(url_for(next=request.endpoint))
-            return redirect(url_for('dashboard', username=username))
+                login_user(user)
+                # return redirect(url_for(next=request.endpoint))
+                return redirect(url_for(next_page or 'index'))
+                # return redirect(url_for("dashboard", next_page=next_page, username=username))
 
-        except ValueError as e:
-            return render_template('pages/login.html', form=form, message=str(e))
-        except Exception as e:
-            return render_template('pages/login.html', form=form,
-                                   message="An error has occurred. Please check your details and try again")
-    return render_template('pages/login.html', form=form)
+            except ValueError as e:
+                return render_template('pages/login.html', form=form, message=str(e))
+            except Exception as e:
+                return render_template('pages/login.html', form=form,
+                                       message="An error has occurred. Please check your details and try again")
+            # An error has occurred. Please check your details and try again
+
+        return render_template('pages/login.html', form=form)
 
 
 @app.route('/logout')
@@ -229,6 +327,23 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.route('/profile/<username>')
+@login_required
+def profile(username):
+    # user_quizzes = db.session.execute(db.Select(Questions).filter_by(author=username)).scalars()
+    user_quizzes = db.session.query(Questions).filter_by(author=username).all()
+    user = Users.query.filter_by(username=username).first_or_404(description="No user with the provided username")
+    return render_template('pages/profile.html', user=user, quizzes=user_quizzes)
+
+
+@app.route('/questions')
+@login_required
+def questions_page():
+    all_questions_raw = db.session.execute(db.select(Questions).order_by(Questions.id)).fetchall()
+    all_questions = [Questions.to_dict(question[0]) for question in all_questions_raw]
+    return render_template('dashboard/questions.html', all_questions=all_questions)
 
 
 @app.route('/quiz')
@@ -244,9 +359,22 @@ def quiz_info(subject):
     return render_template('pages/quiz_info.html', all_quiz=all_quiz, subject=subject)
 
 
-@app.route("/<page>")
-def notfound(page):
+@app.route('/materials')
+@login_required
+def materials():
+    all_questions_raw = db.session.execute(db.select(Questions).order_by(Questions.id)).fetchall()
+    all_questions = [Questions.to_dict(question[0]) for question in all_questions_raw]
+    return render_template('dashboard/materials.html', all_questions=all_questions)
+
+
+@app.route("/notfound")
+def notfound():
     return render_template('pages/notFound.html')
+
+
+@app.route("/notifications")
+def notifications():
+    return render_template('dashboard/notifications.html')
 
 
 @app.route('/recover')
@@ -263,19 +391,20 @@ def register():
         username = email.split('@')[0]
         name = request.form['name']
         dob = request.form['dob']
+        today_date = get_today_date()
         password = request.form['password']
         hashed_password = hash_password(password)
         if user_exists(email, db, Users):
             return render_template('pages/register.html', form=form,
                                    message="An account with the given email already exists!")
         elif not user_exists(username, db, Users):
-            new_user = Users(username=username, name=name, accttype='Regular', contact=email, dob=dob,
+            new_user = Users(username=username, name=name, acct_plan='regular', acct_type='user', email=email, dob=dob,
                              location='Not set',
-                             password=hashed_password)
+                             password=hashed_password, date_joined=today_date)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
-            return redirect(url_for('dashboard', username=username))
+            return redirect(url_for('index'))
         else:
             return render_template('pages/register.html', form=form, message="There was an error with your form")
     return render_template('pages/register.html', form=form)
@@ -289,6 +418,30 @@ def select_quiz(quiz_id):
     return render_template('pages/select_quiz.html', quiz=selected_quiz)
 
 
+@app.route('/support')
+@login_required
+def support():
+    all_feedback_file = db.session.execute(db.select(Support).order_by(Support.id)).fetchall()
+    all_support = [Support.to_dict(support_feedback[0]) for support_feedback in all_feedback_file]
+    return render_template('dashboard/support.html', all_support=all_support)
+
+
+@app.route('/support-page', methods=['GET', 'POST'])
+@login_required
+def support_page():
+    if request.method == 'POST':
+        username = current_user.username
+        title = request.form['title']
+        msg = request.form['msg']
+        email = request.form['email']
+        support_type = 'support'
+        new_support = Support(username=username, email=email, title=title, msg=msg, type=support_type,
+                              status='pending', response='--', reply_date='--', reply_user='--')
+        db.session.add(new_support)
+        db.session.commit()
+    return render_template('pages/feedback.html')
+
+
 @app.route('/take-quiz', methods=['GET', 'POST'])
 @login_required
 def take_quiz():
@@ -299,6 +452,37 @@ def take_quiz():
         # quiz_type = request.form['type']
         quiz_data = get_quiz(amount)
         return render_template('pages/take-quiz.html', quiz_data=quiz_data, quiz_contents=amount)
+
+
+@app.route('/upgrade-user-plan/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def upgrade_user_plan(user_id):
+    user = db.get_or_404(Users, user_id)
+    if user:
+        user.acct_plan = 'premium'
+        db.session.commit()
+    return redirect(url_for('users_page'))
+
+
+@app.route('/upgrade-user-type/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def upgrade_user_type(user_id):
+    user = db.get_or_404(Users, user_id)
+    if user:
+        user.acct_type = 'moderator'
+        db.session.commit()
+    return redirect(url_for('users_page'))
+
+
+@app.route('/users-page')
+@login_required
+def users_page():
+    if current_user.acct_type == 'moderator':
+        all_users_raw = db.session.execute(db.select(Users).order_by(Users.id)).fetchall()
+        all_users = [Users.to_dict(user[0]) for user in all_users_raw]
+        return render_template('dashboard/users.html', all_users=all_users)
+    else:
+        return redirect(url_for('notfound'))
 
 
 if __name__ == "__main__":

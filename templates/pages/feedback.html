@@ -1,35 +1,73 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Feedback</title>
-{% endblock %}
-
-{% block body %}
-<section class="h-screen grid place-items-center bg-gradient-red">
-    <div class="w-8/12 lg:w-2/5">
-        <form class="w-full bg-white rounded-lg p-4">
-            <h2 class="text-3xl text-clifford font-bold">Feedback</h2>
-            <div class="text-clifford text-sm font-semibold mt-3">
-                <p>We've grabbed your name and email from your login, but if you prefer, you can change it</p>
-            </div>
-            <div class="mt-3">
-                <label class="font-bold text-gray-600">Name</label>
-                <input type="text" placeholder="John Doe" class="block w-full p-2 bg-gray-100 outline-none">
-            </div>
-            <div class="mt-3">
-                <label class="font-bold text-gray-600">Reply Method <span class="text-sm text-gray-500 font-semibold">(type your email)</span></label>
-                <input type="email" placeholder="johndoe@email.com" class="block w-full p-2 bg-gray-100 outline-none">
-            </div>
-            <div class="mt-3">
-                <label class="font-bold text-gray-600">Message</label>
-                <textarea placeholder="Message" class="block w-full p-2 bg-gray-100 outline-none"></textarea>
-            </div>
-            <div class="flex justify-between mt-3">
-                <span class="inline-block text-gray-500 text-sm w-3/5">
-                    This form submits issues directly to mindspark for this application, we'll handle it from here!</span>
-                <input type="submit" value="Send" class="bg-clifford text-white rounded-lg px-6 py-2 inline-block my-auto">
-            </div>
-        </form>
-    </div>
+{% endblock %} {% block body %}
+<section class="py-16">
+  <div class="w-11/12 mx-auto lg:w-2/5">
+    <form
+      class="w-full bg-white rounded-xl shadow-3 p-4"
+      method="post"
+      action=""
+    >
+      <h2 class="text-3xl text-clifford font-bold">Feedback</h2>
+      <div class="text-clifford text-sm font-semibold mt-3">
+        <p>
+          We've grabbed your name and email from your login, but if you prefer,
+          you can change it
+        </p>
+      </div>
+      <div class="mt-3">
+        <label class="font-bold text-gray-600">Name</label>
+        <input
+          type="text"
+          placeholder="John Doe"
+          class="block w-full p-2 bg-gray-100 outline-none"
+          value="{{current_user.name}}"
+          name="name"
+        />
+      </div>
+      <div class="mt-3">
+        <label class="font-bold text-gray-600"
+          >Reply Method
+          <span class="text-sm text-gray-500 font-semibold"
+            >(type your email)</span
+          ></label
+        >
+        <input
+          type="email"
+          placeholder="johndoe@email.com"
+          class="block w-full p-2 bg-gray-100 outline-none"
+          value="{{ current_user.email }}"
+          name="email"
+        />
+      </div>
+      <div class="mt-3">
+        <label class="font-bold text-gray-600">Title</label>
+        <input
+          placeholder="Title"
+          class="block w-full p-2 bg-gray-100 outline-none"
+          name="title"
+        />
+      </div>
+      <div class="mt-3">
+        <label class="font-bold text-gray-600">Message</label>
+        <textarea
+          placeholder="Message"
+          class="block w-full p-2 bg-gray-100 outline-none"
+          name="msg"
+        ></textarea>
+      </div>
+      <div class="flex justify-between mt-3">
+        <span class="inline-block text-gray-500 text-sm w-3/5">
+          This form submits issues directly to mindspark for this application,
+          we'll handle it from here!</span
+        >
+        <input
+          type="submit"
+          value="Send"
+          class="bg-clifford text-white rounded-lg px-6 py-2 inline-block my-auto"
+        />
+      </div>
+    </form>
+  </div>
 </section>
 {% endblock %}

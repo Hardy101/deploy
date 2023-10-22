@@ -1,31 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Add Questions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/tailwindcss" href="" />
-</head>
-<body class="">
-  <form class="w-2/5 mx-auto bg-[#f5f5f5] p-4" method="POST" action="/">
-    <div class="">
+  </head>
+  <body class="">
+    <form class="w-2/5 mx-auto bg-[#f5f5f5] p-4" method="POST" action="/">
+      <div class="">
         <label class="bold text-2xl">Question</label>
-        <input placeholder="Question" name="question" class="block w-full my-2 p-2 outline-none">
-    </div>
-    <div class="">
-        <label class="bold text-2xl">Correct answer</label>
-        <input placeholder="correct answer" name="c_answer" class="block w-full my-2 p-2 outline-none">
-    </div>
-    <div class="">
-        <label class="bold text-2xl">Incorrect answer</label>
-        <input placeholder="incorrect answer" name="ic_answer" class="block w-full my-2 p-2 outline-none">
-    </div>
-      <div>
-          <button type="submit" name="submit" class="bg-[#7091F5] text-white px-5 py-2 rounded-md">Add question</button>
+        <input
+          placeholder="Question"
+          name="question"
+          class="block w-full my-2 p-2 outline-none"
+        />
       </div>
-  </form>
-</body>
+      <div class="">
+        <label class="bold text-2xl">Correct answer</label>
+        <input
+          placeholder="correct answer"
+          name="c_answer"
+          class="block w-full my-2 p-2 outline-none"
+        />
+      </div>
+      <div class="">
+        <label class="bold text-2xl">Incorrect answer</label>
+        <input
+          placeholder="incorrect answer"
+          name="ic_answer"
+          class="block w-full my-2 p-2 outline-none"
+        />
+      </div>
+      <div>
+        <button
+          type="submit"
+          name="submit"
+          class="bg-[#7091F5] text-white px-5 py-2 rounded-md"
+        >
+          Add question
+        </button>
+      </div>
+    </form>
+  </body>
 </html>

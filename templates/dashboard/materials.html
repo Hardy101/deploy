@@ -1,0 +1,317 @@
+{% extends 'dashboard/base.html' %}
+
+<!-- Head -->
+{% block head %}
+<title>Materials</title>
+{% endblock %} {% block body %}
+<div class="w-full relative">
+  <h2 class="text-2xl font-semibold my-3 mx-4">Study Materials</h2>
+  <div class="flex px-4 mx-4 gap-5 shadow-4 py-2 rounded-2xl bg-white mb-5">
+    <span class="approved-toggle questions-btn text-clifford cursor-pointer"
+      >Approved</span
+    >
+    <span class="pending-toggle questions-btn cursor-pointer"
+      >Pending approval</span
+    >
+    <span class="rejected-toggle questions-btn cursor-pointer">Rejected</span>
+    <span class="deleted-toggle questions-btn cursor-pointer">Deleted</span>
+  </div>
+  <div
+    class="approved questions-div animate__animated animate__fadeInUp relative flex flex-wrap gap-5 rounded-2xl py-3 px-4"
+  >
+    {% for question in all_questions %}
+    <div
+      class="question w-4/12 bg-white p-3 rounded-2xl shadow-3 flex flex-between gap-5"
+    >
+      <p class="w-3/5 my-auto flex flex-col">
+        <span class="font-bold mb-1 text-primaryBlue">{{ question.name }}</span>
+        <span class="inline-block text-sm mb-2 font-medium text-gray-500"
+          >{{ question.author }}</span
+        >
+        <span class="text-sm">08/10/2023</span>
+      </p>
+      <div class="w-2/5 flex flex-col gap-3 my-auto text-sm font-bold">
+        <button
+          class="bg-facebookBlue text-white rounded-2xl py-1 px-4 view-btn"
+        >
+          View
+        </button>
+        <button class="bg-red text-white rounded-2xl py-1 px-4">Delete</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div
+    class="pending questions-div animate__animated animate__fadeInUp hidden relative flex flex-wrap gap-5 rounded-2xl py-3 px-4"
+  >
+    <div
+      class="question bg-white w-auto p-3 rounded-2xl shadow-3 flex gap-5 flex-between"
+    >
+      <p class="flex flex-col m-auto">
+        <span class="font-bold text-primaryBlue">Mindspark Official</span>
+        <span class="text-sm">Microbiology</span>
+        <span class="text-sm">Immunoglobin</span>
+        <span class="text-sm">08/10/2023</span>
+      </p>
+      <div class="flex flex-col gap-3 my-auto text-sm font-bold">
+        <button
+          class="bg-facebookBlue text-white rounded-2xl py-1 px-4 view-btn"
+        >
+          View
+        </button>
+        <button class="bg-green text-white rounded-2xl py-1 px-4">
+          Approve
+        </button>
+        <button class="bg-red text-white rounded-2xl py-1 px-4">Reject</button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="rejected questions-div animate__animated animate__fadeInUp hidden relative flex flex-wrap gap-5 rounded-2xl py-3 px-4"
+  >
+    <div
+      class="question bg-white w-auto p-3 rounded-2xl shadow-3 flex gap-5 flex-between"
+    >
+      <p class="flex flex-col">
+        <span class="font-bold text-primaryBlue">Mindspark Official</span>
+        <span class="text-sm">Microbiology</span>
+        <span class="text-sm">Immunoglobin</span>
+        <span class="text-sm">08/10/2023</span>
+      </p>
+      <div class="inline-block my-auto text-sm font-bold">
+        <button class="bg-red text-white rounded-2xl py-1 px-4">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="deleted questions-div animate__animated animate__fadeInUp hidden relative flex flex-wrap gap-5 rounded-2xl py-3 px-4"
+  >
+    <div class="question bg-white w-auto p-3 rounded-2xl shadow-3">
+      <p class="flex flex-col m-auto">
+        <span class="font-bold text-primaryBlue">Mindspark Official</span>
+        <span class="text-sm">Microbiology</span>
+        <span class="text-sm">Immunoglobin</span>
+        <span class="text-sm">08/10/2023</span>
+      </p>
+    </div>
+  </div>
+  <!-- Question Info Div   -->
+  <div
+    class="hidden question-info-div animate__animated animate__fadeInUp fixed h-full w-full left-0 top-10 pb-10 rounded-2xl bg-white z-10 overflow-scroll"
+    id="question-info-div"
+  >
+    <button class="text-4xl absolute right-5 top-5" id="close-info-div">
+      <i class="uil uil-minus-square-full"></i>
+    </button>
+    <div class="p-4">
+      <a href="#" class="text-2xl font-bold text-primaryBlue underline"
+        >@MindsparkOfficial</a
+      >
+      <span class="block mx-3">Immunoglobin</span>
+      <span class="block mx-3">No. of questions: 40</span>
+    </div>
+    <div>
+      <h2 class="text-2xl font-semibold mx-4">Questions</h2>
+      <div class="flex gap-5 flex-wrap mt-5 mx-4">
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#1</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#2</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#1</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#2</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#1</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#2</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#1</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+        <div class="w-2/5 flex gap-5 flex-row">
+          <span class="text-2xl font-semibold underline">#2</span>
+          <div class="my-auto">
+            <span class="block"
+              >Which of the following classes of immunoglobulins is primarily
+              responsible for allergic reactions and hypersensitivity
+              responses?</span
+            >
+            <span class="block mt-3"
+              ><span class="font-semibold">Options: </span>IgA, IgM, IgE,
+              IgD</span
+            >
+            <span class="block"
+              ><span class="font-semibold">Answer: </span>IgA</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="overlay hidden fixed h-full w-full left-0 top-0 bg-black opacity-30"
+    id="overlay"
+  ></div>
+</div>
+<script>
+  const allDiv = document.querySelectorAll(".questions-div");
+  const allBtn = document.querySelectorAll(".questions-btn");
+  const approvedBtn = document.querySelector(".approved-toggle");
+  const approvedDiv = document.querySelector(".approved");
+  const pendingBtn = document.querySelector(".pending-toggle");
+  const pendingDiv = document.querySelector(".pending");
+  const rejectedBtn = document.querySelector(".rejected-toggle");
+  const deletedBtn = document.querySelector(".deleted-toggle");
+  const rejectedDiv = document.querySelector(".rejected");
+  const deletedDiv = document.querySelector(".deleted");
+
+  function toggleDiv(div, btn) {
+    allDiv.forEach((div) => {
+      div.classList.add("hidden");
+    });
+    allBtn.forEach((btn) => {
+      btn.classList.remove("text-clifford");
+    });
+    btn.classList.add("text-clifford");
+    div.classList.toggle("hidden");
+  }
+
+  pendingBtn.addEventListener("click", function () {
+    toggleDiv(pendingDiv, pendingBtn);
+  });
+  approvedBtn.addEventListener("click", function () {
+    toggleDiv(approvedDiv, approvedBtn);
+  });
+  rejectedBtn.addEventListener("click", function () {
+    toggleDiv(rejectedDiv, rejectedBtn);
+  });
+  deletedBtn.addEventListener("click", function () {
+    toggleDiv(deletedDiv, deletedBtn);
+  });
+
+  const infoDiv = document.getElementById("question-info-div");
+  const overlay = document.getElementById("overlay");
+  const viewButton = document.querySelectorAll(".view-btn");
+  const closeButton = document.getElementById("close-info-div");
+
+  viewButton.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      infoDiv.classList.add("hidden");
+      infoDiv.classList.remove("hidden");
+      overlay.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+    });
+  });
+
+  closeButton.addEventListener("click", function () {
+    infoDiv.classList.remove("hidden");
+    infoDiv.classList.add("hidden");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+  });
+</script>
+{% endblock %} {% set active_page = 'materials' %}

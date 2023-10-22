@@ -1,6 +1,11 @@
+:root {
+  --animate-duration: 500ms;
+  --animate-delay: 0.9s;
+}
 * {
   transition: all 0.3s ease-in-out;
 }
+
 @font-face {
   font-family: renogare;
   src: url(RenogareSoft-Regular.ttf);
@@ -11,20 +16,21 @@
 html {
   scroll-behavior: smooth;
 }
- /*.no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-}*/
-::-webkit-scrollbar{width:7px;border-left:1px solid #E6ECF8;}
-::-webkit-scrollbar-thumb{background-color:#da373d;border-radius:4px;}
-.bg-gradient-red{
-background: rgb(218,55,61);
-background: linear-gradient(90deg, rgba(218,55,61,1) 20%, rgba(255,120,126,1) 100%);
+::-webkit-scrollbar {
+  width: 7px;
+  border-left: 1px solid #e6ecf8;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #da373d;
+  border-radius: 4px;
+}
+.bg-gradient-red {
+  background: rgb(218, 55, 61);
+  background: linear-gradient(
+    90deg,
+    rgba(218, 55, 61, 1) 20%,
+    rgba(255, 120, 126, 1) 100%
+  );
 }
 input[type="checkbox"] {
   accent-color: #862b0d;
@@ -54,9 +60,9 @@ body {
   animation: slideFadeOut 0.3s ease-in-out;
   animation-fill-mode: forwards;
 }
-.sidebarlink.active{
- border-left: 4px solid #da373d;
- background-color: rgb(243 244 246);
+.sidebarlink.active {
+  border-left: 4px solid #da373d;
+  background-color: rgb(243 244 246);
 }
 /* CSS */
 .animate__fadeInDown {
@@ -182,6 +188,10 @@ body {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .retake:hover {
+}
+.aside-a.active {
+  background-color: #eee !important;
+  color: #da373d !important;
 }
 /* Notifications */
 #notificationDiv,
